@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #define XPLATFORM_WINDOWS
 #include "../XPlatform/XPlatform.h"
@@ -7,7 +7,7 @@
 namespace AcroEngine
 {
 	/*
-		Ư¡: ���ø�����. �ʴܼ�����. �ʰ淮. �Ϻ��ѸŴ�����. C++�� C# ������ ��ȭ. ��Ƽ�÷�������. �ǽð�Ÿ����������. ��������Ʈ �ø�������� ����.
+		특징: 템플릿없음. 초단순구조. 초경량. 완벽한매니지드. C++을 C# 레벨로 변화. 멀티플랫폼지원. 실시간타입정보지원. 모든오브젝트 시리얼라이즈 가능.
 	*/
 
 	//class AAudio {};
@@ -30,7 +30,7 @@ namespace AcroEngine
 	//class AScript {};
 
 	/////////////////////////////////////////////////////////////////////////////
-	// @ �Լ� ���.
+	// @ 함수 목록.
 	/////////////////////////////////////////////////////////////////////////////
 	static void LoadAssembly();
 	static void UnloadAssembly();

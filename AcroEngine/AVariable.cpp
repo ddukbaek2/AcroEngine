@@ -1,4 +1,4 @@
-#include "AVariable.h"
+﻿#include "AVariable.h"
 
 
 namespace AcroEngine

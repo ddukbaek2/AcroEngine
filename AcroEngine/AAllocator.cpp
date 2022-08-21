@@ -1,12 +1,12 @@
-#include "AAllocator.h"
+ï»¿#include "AAllocator.h"
 
 void AcroEngine::AAllocator::Resize(XPlatform::sint32 size)
 {
-	// Ãß°¡.
+	// ì¶”ê°€.
 	if (m_Size < size)
 	{
 	}
-	// °¨¼Ò.
+	// ê°ì†Œ.
 	else if (m_Size > size)
 	{
 	}
