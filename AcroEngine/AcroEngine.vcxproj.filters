@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="AcroEngine.h" />
-    <ClInclude Include="AObjectManagedSystem.h" />
     <ClInclude Include="AObject.h" />
     <ClInclude Include="AVariable.h" />
     <ClInclude Include="AAllocator.h" />

@@ -166,7 +166,6 @@
     <ClInclude Include="AAllocator.h" />
     <ClInclude Include="AcroEngine.h" />
     <ClInclude Include="AObject.h" />
-    <ClInclude Include="AObjectManagedSystem.h" />
     <ClInclude Include="AVariable.h" />
     <ClInclude Include="APtr.h" />
   </ItemGroup>

@@ -2,47 +2,84 @@
 
 #include "AcroEngine.h"
 
-class AObject;
 
-
-template<typename T = AObject> class APtr
+namespace AcroEngine
 {
-private:
-	T* m_Target;
-public:
-	APtr()
-	{
-		m_Target = nullptr;
-	}
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 전방선언.
+	/////////////////////////////////////////////////////////////////////////////
+	class AObject;
 
-	APtr(T* target)
-	{
-		m_Target = nullptr;
-		Set(target);
-	}
 
-	virtual ~APtr()
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 포인터.
+	/////////////////////////////////////////////////////////////////////////////
+	template<typename T = AObject> class APtr
 	{
-		Set(nullptr);
-	}
+	private:
+		T* m_Target;
 
-	void Set(T* target)
-	{
-		if (m_Target != nullptr)
+	public:
+		APtr()
 		{
-			m_Target->DecreaseReference();
 			m_Target = nullptr;
 		}
 
-		if (target != nullptr)
+		APtr()
 		{
-			m_Target = target;
-			m_Target->IncreaseReference();
+			m_Target = nullptr;
 		}
-	}
 
-	void operator = (T* target)
-	{
-		Set(target);
-	}
-};
+		APtr(T* target)
+		{
+			m_Target = nullptr;
+			Set(target);
+		}
+
+		APtr(APtr<T> target)
+		{
+			m_Target = nullptr;
+			Set(target);
+		}
+
+		virtual ~APtr()
+		{
+			Set(nullptr);
+		}
+
+		void Set(const T* target)
+		{
+			if (m_Target != nullptr)
+			{
+				m_Target->DecreaseReference();
+				m_Target = nullptr;
+			}
+
+			if (target != nullptr)
+			{
+				m_Target = target;
+				m_Target->IncreaseReference();
+			}
+		}
+
+		const T* GetPtr()
+		{
+			return m_Target;
+		}
+
+		const T& GetRef()
+		{
+			return *m_Target;
+		}
+
+		void operator = (T* target)
+		{
+			Set(target);
+		}
+
+		T* operator -> (APtr<T> self)
+		{
+			return self.Get();
+		}
+	};
+}
