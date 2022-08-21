@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 
 #include "AcroEngine.h"
 
@@ -6,13 +6,13 @@
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ ¿¸πÊº±æ.
+	// @ Ï†ÑÎ∞©ÏÑ†Ïñ∏.
 	/////////////////////////////////////////////////////////////////////////////
 	class AObject;
 
 
 	/////////////////////////////////////////////////////////////////////////////
-	// @ ∆˜¿Œ≈Õ.
+	// @ Ìè¨Ïù∏ÌÑ∞.
 	/////////////////////////////////////////////////////////////////////////////
 	template<typename T = AObject> class APtr
 	{
@@ -33,21 +33,21 @@ namespace AcroEngine
 		APtr(T* target)
 		{
 			m_Target = nullptr;
-			Set(target);
+			SetPtr(target);
 		}
 
 		APtr(APtr<T> target)
 		{
 			m_Target = nullptr;
-			Set(target);
+			SetPtr(target);
 		}
 
 		virtual ~APtr()
 		{
-			Set(nullptr);
+			SetPtr(nullptr);
 		}
 
-		void Set(const T* target)
+		void SetPtr(const T* target)
 		{
 			if (m_Target != nullptr)
 			{
@@ -74,12 +74,7 @@ namespace AcroEngine
 
 		void operator = (T* target)
 		{
-			Set(target);
-		}
-
-		T* operator -> (APtr<T> self)
-		{
-			return self.Get();
+			SetPtr(target);
 		}
 	};
 }
