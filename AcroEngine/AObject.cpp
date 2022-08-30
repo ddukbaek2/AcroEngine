@@ -59,7 +59,7 @@ AcroEngine::AString AcroEngine::AObject::ToString()
 /////////////////////////////////////////////////////////////////////////////
 // @
 /////////////////////////////////////////////////////////////////////////////
-AcroEngine::AObject* AcroEngine::AObject::CreateObject(AcroEngine::AType* Class)
+AcroEngine::AObject* AcroEngine::AObject::Instantiate(AcroEngine::AType* Class)
 {
     return nullptr;
 }
@@ -67,7 +67,7 @@ AcroEngine::AObject* AcroEngine::AObject::CreateObject(AcroEngine::AType* Class)
 /////////////////////////////////////////////////////////////////////////////
 // @
 /////////////////////////////////////////////////////////////////////////////
-void AcroEngine::AObject::DestroyObject(AcroEngine::AObject* Object)
+void AcroEngine::AObject::Destroy(AcroEngine::AObject* Object)
 {
 
 }
@@ -77,6 +77,6 @@ void AcroEngine::AObject::DestroyObject(AcroEngine::AObject* Object)
 /////////////////////////////////////////////////////////////////////////////
 AcroEngine::AType* AcroEngine::AObject::GetType()
 {
-    AClassGenerated::GetClassNameClass();
+    AClassGenerated::GetClassName();
     return nullptr;
 }

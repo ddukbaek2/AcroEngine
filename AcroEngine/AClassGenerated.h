@@ -2,7 +2,7 @@
 // Generate by AcroPreBuildTool.
 #include "AObject.h"
 
-#define DECLARE_ACLASSGENERATED(Class) return L#Class; }
+
 #define CLASSHASH(Class)
 
 namespace AcroEngine
@@ -10,13 +10,13 @@ namespace AcroEngine
 	class CRC32
 	{
 	public:
-		static void CreateTable(XPlatform::uint32(&table)[256])
+		static void CreateTable(XPlatform::UINT32(&table)[256])
 		{
-			XPlatform::uint32 polynomial = 0xEDB88320;
-			for (XPlatform::uint32 i = 0; i < 256; i++)
+			XPlatform::UINT32 polynomial = 0xEDB88320;
+			for (XPlatform::UINT32 i = 0; i < 256; i++)
 			{
-				XPlatform::uint32 c = i;
-				for (XPlatform::uint32 j = 0; j < 8; j++)
+				XPlatform::UINT32 c = i;
+				for (XPlatform::UINT32 j = 0; j < 8; j++)
 				{
 					if (c & 1) {
 						c = polynomial ^ (c >> 1);
@@ -29,11 +29,11 @@ namespace AcroEngine
 			}
 		}
 
-		static XPlatform::uint32 ComputeHash(XPlatform::uint32(&table)[256], XPlatform::uint32 initial, const void* buf, size_t len)
+		static XPlatform::UINT32 ComputeHash(XPlatform::UINT32(&table)[256], XPlatform::UINT32 initial, const void* buf, XPlatform::UINT32 len)
 		{
-			XPlatform::uint32 c = initial ^ 0xFFFFFFFF;
-			const XPlatform::uint8* u = static_cast<const XPlatform::uint8*>(buf);
-			for (XPlatform::uint32 i = 0; i < len; ++i)
+			XPlatform::UINT32 c = initial ^ 0xFFFFFFFF;
+			const XPlatform::UINT8* u = static_cast<const XPlatform::UINT8*>(buf);
+			for (XPlatform::UINT32 i = 0; i < len; ++i)
 			{
 				c = table[(c ^ u[i]) & 0xFF] ^ (c >> 8);
 			}
@@ -54,9 +54,10 @@ namespace AcroEngine
 
 		inline const wchar_t* GetClassName()
 		{
-			DECLARE_ACLASSGENERATED(AObject)
-			DECLARE_ACLASSGENERATED(AString)
-			DECLARE_ACLASSGENERATED(AInt)
+			//DECLARE_ACLASSGENERATED(AObject)
+			//DECLARE_ACLASSGENERATED(AString)
+			//DECLARE_ACLASSGENERATED(AInt)
+			//DECLARE_ACLASSGENERATED(AInt)
 		}
 	};
 }

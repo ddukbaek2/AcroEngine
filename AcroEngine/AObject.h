@@ -18,9 +18,11 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class AObject
 	{
+		DECLARE_GETCLASSNAME(AObject)
+
 	private:
-		XPlatform::sint32 m_ID;
-		XPlatform::sint32 m_ReferenceCount;
+		XPlatform::INT32 m_ID;
+		XPlatform::INT32 m_ReferenceCount;
 
 	protected:
 		static void IncreaseReference(const AObject* Object);
@@ -32,7 +34,7 @@ namespace AcroEngine
 	public:
 		virtual AString ToString();
 
-		static AObject* CreateObject(AType* Type);
+		static AObject* Instantiate(AType* Type);
 		static void Destroy(AObject** Object);
 		static void DestroyImmediate(AObject** Object);
 		static bool IsDeadlyObject();

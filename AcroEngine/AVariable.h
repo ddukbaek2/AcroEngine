@@ -58,9 +58,20 @@ namespace AcroEngine
 		{
 			m_Value = value;
 		}
+	};
 
-		static AInt ToInt(const AString& String)
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 정수형 변수.
+	/////////////////////////////////////////////////////////////////////////////
+	class AUInt : public AVariable
+	{
+	private:
+		XPlatform::UINT32 m_Value;
+
+	public:
+		void operator = (XPlatform::UINT32 value)
 		{
+			m_Value = value;
 		}
 	};
 
@@ -72,9 +83,6 @@ namespace AcroEngine
 	{
 	private:
 	public:
-		static AString ToString(const AInt& Int)
-		{
-		}
 	};
 
 
@@ -84,8 +92,8 @@ namespace AcroEngine
 	class AVector2 : public AVariable
 	{
 	private:
-		XPlatform::DOUBLE m_X;
-		XPlatform::DOUBLE m_Y;
+		XPlatform::FLOAT64 m_X;
+		XPlatform::FLOAT64 m_Y;
 
 	public:
 	};

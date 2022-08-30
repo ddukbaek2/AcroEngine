@@ -21,24 +21,30 @@ namespace XPlatform
 	typedef signed int INT32;
 	typedef unsigned int UINT32;
 	typedef bool BOOL;
-	typedef float FLOAT;
-	typedef double DOUBLE;
+	typedef float FLOAT32;
+	typedef double FLOAT64;
+	typedef wchar_t CHAR16;
+
 #elif defined(XPLATFORM_ANDROID)
 	typedef signed char INT8;
 	typedef unsigned char UINT8;
 	typedef signed int INT32;
 	typedef unsigned int UINT32;
 	typedef bool BOOL;
-	typedef float FLOAT;
-	typedef double DOUBLE;
+	typedef float FLOAT32;
+	typedef double FLOAT64;
+	typedef wchar_t CHAR16;
+
 #elif defined(XPLATFORM_IOS)
 	typedef signed char INT8;
 	typedef unsigned char UINT8;
 	typedef signed int INT32;
 	typedef unsigned int UINT32;
 	typedef bool BOOL;
-	typedef float FLOAT;
-	typedef double DOUBLE;
+	typedef float FLOAT32;
+	typedef double FLOAT64;
+	typedef wchar_t CHAR16;
+
 #endif
 
 	class XPlatform

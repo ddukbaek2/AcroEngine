@@ -7,6 +7,7 @@
 #define GENERATE_BASE(Class) typedef Class Base;
 
 #define GENERATE_TYPE(Class) public: static AType* GetType() { return AType::Getter(L#Class); }
+#define DECLARE_GETCLASSNAME(Class) public: static const wchar_t* GetClassName(){ return L#Class; }
 
 #define CREATE_OBJECT(Class)
 #define DESTROY_OBJECT(Object) if (Object != nullptr) { AObject::Destroy(Object); Object = nullptr; }
