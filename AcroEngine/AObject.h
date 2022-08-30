@@ -2,6 +2,7 @@
 
 #include "AcroEngine.h"
 
+
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
@@ -13,35 +14,6 @@ namespace AcroEngine
 
 
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 클래스 정보.
-	/////////////////////////////////////////////////////////////////////////////
-	class AClass
-	{
-	private:
-		
-	public:
-		AClass(const wchar_t* className)
-		{
-
-		}
-
-		virtual ~AClass()
-		{
-		}
-
-		inline bool IsParent(AClass* Class)
-		{
-			return false;
-		}
-
-		inline bool IsChildren(AClass* Class)
-		{
-			return false;
-		}
-	};
-
-
-	/////////////////////////////////////////////////////////////////////////////
 	// @ 기본 오브젝트 클래스.
 	/////////////////////////////////////////////////////////////////////////////
 	class AObject
@@ -50,40 +22,21 @@ namespace AcroEngine
 		XPlatform::sint32 m_ID;
 		XPlatform::sint32 m_ReferenceCount;
 
-	private:
-		void IncreaseReference()
-		{
-			++m_ReferenceCount;
-		}
+	protected:
+		static void IncreaseReference(const AObject* Object);
+		static void DecreaseReference(AObject** Object);
 
-		void DecreaseReference()
-		{
-			--m_ReferenceCount;
-			if (m_ReferenceCount <= 0)
-			{
-				delete this;
-			}
-		}
+		AObject();
+		virtual ~AObject();
+
 	public:
-		AObject()
-		{
-			m_ID = 0;
-			m_ReferenceCount = 0;
-		}
-
-		virtual ~AObject()
-		{
-		}
-
 		virtual AString ToString();
 
+		static AObject* CreateObject(AType* Type);
+		static void Destroy(AObject** Object);
+		static void DestroyImmediate(AObject** Object);
+		static bool IsDeadlyObject();
 
-		static AObject* CreateObject(AClass* Class);
-
-		static void DestroyObject(AObject* Object);
-
-		static AClass* GetClass();
-
-		friend class APtr;
+		static AType* GetType();
 	};
 }

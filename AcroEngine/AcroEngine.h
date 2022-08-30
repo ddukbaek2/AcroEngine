@@ -3,6 +3,20 @@
 #define XPLATFORM_WINDOWS
 #include "../XPlatform/XPlatform.h"
 
+#define AINHERIT(Class) public Class
+#define GENERATE_BASE(Class) typedef Class Base;
+
+#define GENERATE_TYPE(Class) public: static AType* GetType() { return AType::Getter(L#Class); }
+
+#define CREATE_OBJECT(Class)
+#define DESTROY_OBJECT(Object) if (Object != nullptr) { AObject::Destroy(Object); Object = nullptr; }
+
+#include "AType.h"
+#include "AObject.h"
+#include "AOwnership.h"
+#include "AVariable.h"
+#include "ADelegate.h"
+#include "AAllocator.h"
 
 namespace AcroEngine
 {
@@ -28,6 +42,19 @@ namespace AcroEngine
 	//};
 
 	//class AScript {};
+
+	typedef void* AUnknownObject;
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 반복자 정보.
+	/////////////////////////////////////////////////////////////////////////////
+	class AEnumerator : public AObject
+	{
+	public:
+		bool Next();
+		const AObject* GetCurrent();
+	};
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 함수 목록.

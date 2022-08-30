@@ -1,4 +1,4 @@
-Ôªø#pragma once
+#pragma once
 
 #include "AcroEngine.h"
 
@@ -6,16 +6,17 @@
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ Î©îÎ™®Î¶¨Ìï†ÎãπÏûê.
+	// @ ≈¨∑°Ω∫ ¡§∫∏.
 	/////////////////////////////////////////////////////////////////////////////
-	class AAllocator
+	class AJson : public AObject
 	{
 	private:
-		AUnknownObject* m_Pointer;
-		XPlatform::sint32 m_Size;
 
 	public:
-		void Resize(XPlatform::sint32 size);
-		XPlatform::sint32 GetSize();
+		AJson() {}
+		virtual ~AJson() {}
+
+		static AObject* Deserialize(AString* String);
+		static AString Serialize(AObject* Object);
 	};
 }

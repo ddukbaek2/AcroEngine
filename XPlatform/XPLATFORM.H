@@ -6,7 +6,7 @@
 
 // Mobile.
 //#define XPLATFORM_ANDROID // Base AndroidNDK
-//#define XPLATFORM_IOS // Base 
+//#define XPLATFORM_IOS // Base CocoaFramework
 
 // Console.
 //#define XPLATFORM_SWITCH
@@ -16,17 +16,29 @@
 namespace XPlatform
 {
 #if defined(XPLATFORM_WINDOWS)
-	typedef signed int sint32;
-	typedef unsigned int uint32;
-	typedef bool boolean;
+	typedef signed char INT8;
+	typedef unsigned char UINT8;
+	typedef signed int INT32;
+	typedef unsigned int UINT32;
+	typedef bool BOOL;
+	typedef float FLOAT;
+	typedef double DOUBLE;
 #elif defined(XPLATFORM_ANDROID)
-	typedef signed int sint32;
-	typedef unsigned int uint32;
-	typedef bool boolean;
+	typedef signed char INT8;
+	typedef unsigned char UINT8;
+	typedef signed int INT32;
+	typedef unsigned int UINT32;
+	typedef bool BOOL;
+	typedef float FLOAT;
+	typedef double DOUBLE;
 #elif defined(XPLATFORM_IOS)
-	typedef signed int sint32;
-	typedef unsigned int uint32;
-	typedef bool boolean;
+	typedef signed char INT8;
+	typedef unsigned char UINT8;
+	typedef signed int INT32;
+	typedef unsigned int UINT32;
+	typedef bool BOOL;
+	typedef float FLOAT;
+	typedef double DOUBLE;
 #endif
 
 	class XPlatform

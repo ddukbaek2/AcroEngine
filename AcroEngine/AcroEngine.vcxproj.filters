@@ -5,12 +5,19 @@
     <ClInclude Include="AObject.h" />
     <ClInclude Include="AVariable.h" />
     <ClInclude Include="AAllocator.h" />
-    <ClInclude Include="APtr.h" />
+    <ClInclude Include="AOwnership.h" />
+    <ClInclude Include="AClassGenerated.h" />
+    <ClInclude Include="ADelegate.h" />
+    <ClInclude Include="AType.h" />
+    <ClInclude Include="AJson.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AcroEngine.cpp" />
     <ClCompile Include="AObject.cpp" />
     <ClCompile Include="AVariable.cpp" />
     <ClCompile Include="AAllocator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

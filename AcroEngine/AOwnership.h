@@ -6,48 +6,42 @@
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 전방선언.
+	// @ 소유권자.
 	/////////////////////////////////////////////////////////////////////////////
-	class AObject;
-
-
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 포인터.
-	/////////////////////////////////////////////////////////////////////////////
-	template<typename T = AObject> class APtr
+	class AOwner
 	{
 	private:
-		T* m_Target;
+		AObject* m_Target;
 
 	public:
-		APtr()
+		AOwner()
 		{
 			m_Target = nullptr;
 		}
 
-		APtr()
+		AOwner()
 		{
 			m_Target = nullptr;
 		}
 
-		APtr(T* target)
+		AOwner(AObject* target)
 		{
 			m_Target = nullptr;
-			SetPtr(target);
+			SetOwner(target);
 		}
 
-		APtr(APtr<T> target)
+		AOwner(const AOwner* Owner)
 		{
 			m_Target = nullptr;
-			SetPtr(target);
+			SetOwner(Owner->m_Target);
 		}
 
-		virtual ~APtr()
+		virtual ~AOwner()
 		{
-			SetPtr(nullptr);
+			SetOwner(nullptr);
 		}
 
-		void SetPtr(const T* target)
+		void SetOwner(const AObject* target)
 		{
 			if (m_Target != nullptr)
 			{
@@ -62,19 +56,19 @@ namespace AcroEngine
 			}
 		}
 
-		const T* GetPtr()
+		const AObject* GetPtr()
 		{
 			return m_Target;
 		}
 
-		const T& GetRef()
+		const AObject& GetRef()
 		{
 			return *m_Target;
 		}
 
-		void operator = (T* target)
+		void operator = (AObject* target)
 		{
-			SetPtr(target);
+			SetOwner(target);
 		}
 	};
 }
