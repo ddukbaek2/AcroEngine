@@ -11,11 +11,11 @@ namespace AcroEngine
 	class AAllocator
 	{
 	private:
-		AUnknownObject* m_Pointer;
-		XPlatform::sint32 m_Size;
+		AUnknownObject m_Pointer;
+		XPlatform::INT32 m_Size;
 
 	public:
-		void Resize(XPlatform::sint32 size);
-		XPlatform::sint32 GetSize();
+		void Resize(XPlatform::INT32 size);
+		XPlatform::INT32 GetSize();
 	};
 }

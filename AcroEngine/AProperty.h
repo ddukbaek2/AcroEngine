@@ -6,17 +6,21 @@
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ JSON 데이터.
+	// @ 프로퍼티.
 	/////////////////////////////////////////////////////////////////////////////
-	class AJson : public AObject
+	class AProperty : public AObject
 	{
 	private:
+		ADelegate m_Get;
+		ADelegate m_Set;
 
 	public:
-		AJson() {}
-		virtual ~AJson() {}
+		AProperty() {}
+		virtual ~AProperty() {}
 
-		static AObject* Deserialize(AString* String);
-		static AString Serialize(AObject* Object);
+		void operator += (ADelegate Delegate)
+		{
+			m_Get.Add
+		}
 	};
 }

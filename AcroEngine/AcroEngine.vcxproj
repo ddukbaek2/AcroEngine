@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="AAllocator.h" />
     <ClInclude Include="AJson.h" />
+    <ClInclude Include="AProperty.h" />
     <ClInclude Include="AType.h" />
     <ClInclude Include="AClassGenerated.h" />
     <ClInclude Include="AcroEngine.h" />
@@ -172,6 +173,9 @@
     <ClInclude Include="AObject.h" />
     <ClInclude Include="AVariable.h" />
     <ClInclude Include="AOwnership.h" />
+    <ClInclude Include="ICollection.h" />
+    <ClInclude Include="IEnumerable.h" />
+    <ClInclude Include="IEnumerator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

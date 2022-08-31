@@ -10,6 +10,10 @@
     <ClInclude Include="ADelegate.h" />
     <ClInclude Include="AType.h" />
     <ClInclude Include="AJson.h" />
+    <ClInclude Include="AProperty.h" />
+    <ClInclude Include="IEnumerator.h" />
+    <ClInclude Include="IEnumerable.h" />
+    <ClInclude Include="ICollection.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AcroEngine.cpp" />

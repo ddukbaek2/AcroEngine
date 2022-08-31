@@ -11,10 +11,32 @@ namespace AcroEngine
 	class ADelegate : public AObject
 	{
 	private:
+		AList m_Delegates;
+
 	public:
 		static ADelegate* CreateDelegate()
 		{
 			return nullptr;
+		}
+
+		void Add()
+		{
+		}
+
+		void Remove()
+		{
+		}
+
+		void Clear()
+		{
+		}
+
+		AObject* Invoke(...)
+		{
+			//for (auto delegate : m_Delegates)
+			{
+
+			}
 		}
 	};
 }

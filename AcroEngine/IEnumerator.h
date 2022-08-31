@@ -6,17 +6,15 @@
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ JSON 데이터.
+	// @ 반복자.
 	/////////////////////////////////////////////////////////////////////////////
-	class AJson : public AObject
+	class IEnumerator
 	{
-	private:
-
 	public:
-		AJson() {}
-		virtual ~AJson() {}
-
-		static AObject* Deserialize(AString* String);
-		static AString Serialize(AObject* Object);
+		virtual void Reset() = 0
+		virtual bool MoveNext() = 0
+		virtual const AObject* GetCurrent() = 0
 	};
+
+	DECLARE_POINTER(IEnumerator)
 }

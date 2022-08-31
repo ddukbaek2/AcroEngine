@@ -12,8 +12,16 @@
 #define CREATE_OBJECT(Class)
 #define DESTROY_OBJECT(Object) if (Object != nullptr) { AObject::Destroy(Object); Object = nullptr; }
 
+#define DECLARE_POINTER(Class) typedef Class* ClassPointer;
+
 #include "AType.h"
 #include "AObject.h"
+
+
+#include "IEnumerator.h"
+#include "IEnumerable.h"
+#include "ICollection.h"
+
 #include "AOwnership.h"
 #include "AVariable.h"
 #include "ADelegate.h"
@@ -44,17 +52,8 @@ namespace AcroEngine
 
 	//class AScript {};
 
-	typedef void* AUnknownObject;
 
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 반복자 정보.
-	/////////////////////////////////////////////////////////////////////////////
-	class AEnumerator : public AObject
-	{
-	public:
-		bool Next();
-		const AObject* GetCurrent();
-	};
+	typedef void* AUnknownObject;
 
 
 	/////////////////////////////////////////////////////////////////////////////

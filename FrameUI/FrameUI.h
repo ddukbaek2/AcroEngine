@@ -6,11 +6,4 @@
 namespace FrameUI
 {
 	using namespace AcroEngine;
-
-	class FObject : public AObject
-	{
-	private:
-
-	public:
-	};
 }

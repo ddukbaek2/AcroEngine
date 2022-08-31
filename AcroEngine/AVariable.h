@@ -5,7 +5,7 @@
 
 namespace AcroEngine
 {
-	class ICollection
+	class AFlag : public AObject
 	{
 	};
 
@@ -89,6 +89,16 @@ namespace AcroEngine
 	public:
 	};
 
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 실수형 변수.
+	/////////////////////////////////////////////////////////////////////////////
+	class AFloat : public AVariable
+	{
+	private:
+		XPlatform::FLOAT64 m_Value;
+
+	public:
+	};
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 문자열형 변수.
@@ -96,8 +106,7 @@ namespace AcroEngine
 	class AVector2 : public AVariable
 	{
 	private:
-		XPlatform::FLOAT64 m_X;
-		XPlatform::FLOAT64 m_Y;
+		XPlatform::FLOAT64 m_Values[2];
 
 	public:
 	};
@@ -105,12 +114,29 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 자료구조형 변수.
 	/////////////////////////////////////////////////////////////////////////////
-	class ACollection : public AVariable
+	class ACollection : public AVariable//, ICollection, IEnumerator, IEnumerable
 	{
 	private:
-
 	public:
-		
+		//virtual void Reset() override
+		//{
+
+		//}
+
+		//virtual bool MoveNext() override
+		//{
+		//	return true;
+		//}
+
+		//virtual const AObject* GetCurrent() override
+		//{
+		//	return nullptr;
+		//}
+
+		//virtual const IEnumerator* GetEnumerator() override
+		//{
+		//	return nullptr;
+		//}
 	};
 
 
@@ -119,6 +145,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class AList : public ACollection
 	{
+		
 	};
 
 

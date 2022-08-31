@@ -19,11 +19,6 @@ namespace AcroEngine
 			m_Target = nullptr;
 		}
 
-		AOwner()
-		{
-			m_Target = nullptr;
-		}
-
 		AOwner(AObject* target)
 		{
 			m_Target = nullptr;
@@ -43,16 +38,21 @@ namespace AcroEngine
 
 		void SetOwner(const AObject* target)
 		{
-			if (m_Target != nullptr)
-			{
-				m_Target->DecreaseReference();
-				m_Target = nullptr;
-			}
+			UnsetOwner();
 
 			if (target != nullptr)
 			{
-				m_Target = target;
-				m_Target->IncreaseReference();
+				m_Target = const_cast<AObject*>(target);
+				AObject::IncreaseReference(m_Target);
+			}
+		}
+
+		void UnsetOwner()
+		{
+			if (m_Target != nullptr)
+			{
+				AObject::DecreaseReference(&m_Target);
+				m_Target = nullptr;
 			}
 		}
 
