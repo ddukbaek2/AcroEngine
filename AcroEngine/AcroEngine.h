@@ -12,7 +12,7 @@
 #define CREATE_OBJECT(Class)
 #define DESTROY_OBJECT(Object) if (Object != nullptr) { AObject::Destroy(Object); Object = nullptr; }
 
-#define DECLARE_POINTER(Class) typedef Class* ClassPointer;
+#define DECLARE_POINTER(Class) typedef Class* Class##Pointer;
 
 #include "AType.h"
 #include "AObject.h"

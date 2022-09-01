@@ -24,9 +24,7 @@ namespace AcroEngine
 	private:
 	protected:
 	public:
-		AVariable() : Base()
-		{
-		}
+
 
 		void Foo() {}
 	};
