@@ -20,7 +20,7 @@ namespace AcroEngine
 
 		void operator += (ADelegate Delegate)
 		{
-			m_Get.Add
+			//m_Get.Add
 		}
 	};
 }

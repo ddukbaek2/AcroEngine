@@ -18,16 +18,31 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FComponent.h" />
+    <ClInclude Include="FNode.h" />
+    <ClInclude Include="FrameUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FrameUI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AcroEngine\AcroEngine.vcxproj">
+      <Project>{9206450e-dedc-42ca-993b-290d0b8000ab}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{95c74038-a42f-46ad-908c-6f173a2a210a}</ProjectGuid>
+    <ProjectGuid>{e1f2f37b-fc36-4bb7-b673-831ed23dd2f2}</ProjectGuid>
     <RootNamespace>FrameUI</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -137,19 +152,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="FrameUI.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="FComponent.h" />
-    <ClInclude Include="FNode.h" />
-    <ClInclude Include="FrameUI.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AcroEngine\AcroEngine.vcxproj">
-      <Project>{9206450e-dedc-42ca-993b-290d0b8000ab}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
