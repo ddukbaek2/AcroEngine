@@ -152,9 +152,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AAllocator.cpp" />
     <ClCompile Include="AcroEngine.cpp" />
     <ClCompile Include="AObject.cpp" />
+    <ClCompile Include="AOwner.cpp" />
+    <ClCompile Include="AType.cpp" />
     <ClCompile Include="AVariable.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +164,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AAllocator.h" />
     <ClInclude Include="AJson.h" />
     <ClInclude Include="AProperty.h" />
     <ClInclude Include="AType.h" />
@@ -172,7 +172,7 @@
     <ClInclude Include="ADelegate.h" />
     <ClInclude Include="AObject.h" />
     <ClInclude Include="AVariable.h" />
-    <ClInclude Include="AOwnership.h" />
+    <ClInclude Include="AOwner.h" />
     <ClInclude Include="ICollection.h" />
     <ClInclude Include="IEnumerable.h" />
     <ClInclude Include="IEnumerator.h" />

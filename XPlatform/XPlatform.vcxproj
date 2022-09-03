@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TAllocator.h" />
     <ClInclude Include="XPlatform.h" />
   </ItemGroup>
   <ItemGroup>

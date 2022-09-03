@@ -1,42 +1,51 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "AObject.h"
+//#include "AVariable.h"
 
 
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
+	// @ 전방선언.
+	/////////////////////////////////////////////////////////////////////////////
+	class AObject;
+	//class AList;
+
+
+	/////////////////////////////////////////////////////////////////////////////
 	// @ 함수대리자.
 	/////////////////////////////////////////////////////////////////////////////
-	class ADelegate : public AObject
+	class ADelegate // : public AObject
 	{
 	private:
-		AList m_Delegates;
+		//AList m_Delegates;
 
 	public:
-		static ADelegate* CreateDelegate()
-		{
-			return nullptr;
-		}
+		//static ADelegate* CreateDelegate()
+		//{
+		//	return nullptr;
+		//}
 
-		void Add()
-		{
-		}
+		//void Add()
+		//{
+		//}
 
-		void Remove()
-		{
-		}
+		//void Remove()
+		//{
+		//}
 
-		void Clear()
-		{
-		}
+		//void Clear()
+		//{
+		//}
 
-		AObject* Invoke(...)
-		{
-			//for (auto delegate : m_Delegates)
-			{
+		//AObject* Invoke(...)
+		//{
+		//	//for (auto delegate : m_Delegates)
+		//	{
 
-			}
-		}
+		//	}
+		//}
 	};
 }

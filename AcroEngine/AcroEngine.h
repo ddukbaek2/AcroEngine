@@ -2,12 +2,14 @@
 
 #define XPLATFORM_WINDOWS
 #include "../XPlatform/XPlatform.h"
+#include "../XPlatform/TAllocator.h"
+
 
 #define AINHERIT(Class) public Class
 #define GENERATE_BASE(Class) typedef Class Base;
 
-#define GENERATE_TYPE(Class) public: static AType* GetType() { return AType::Getter(L#Class); }
-#define DECLARE_GETCLASSNAME(Class) public: static const wchar_t* GetClassName(){ return L#Class; }
+#define GENERATE_TYPE(Class) //public: static AcroEngine::AType* GetType() { return AcroEngine::AType::GetType(L#Class); }
+//#define DECLARE_GETCLASSNAME(Class) public: static const wchar_t* GetTypeName(){ return L#Class; }
 
 #define CREATE_OBJECT(Class)
 #define DESTROY_OBJECT(Object) if (Object != nullptr) { AObject::Destroy(Object); Object = nullptr; }
@@ -22,10 +24,10 @@
 #include "IEnumerable.h"
 #include "ICollection.h"
 
-#include "AOwnership.h"
+#include "AOwner.h"
 #include "AVariable.h"
 #include "ADelegate.h"
-#include "AAllocator.h"
+
 
 namespace AcroEngine
 {

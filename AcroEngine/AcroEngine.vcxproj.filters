@@ -4,8 +4,7 @@
     <ClInclude Include="AcroEngine.h" />
     <ClInclude Include="AObject.h" />
     <ClInclude Include="AVariable.h" />
-    <ClInclude Include="AAllocator.h" />
-    <ClInclude Include="AOwnership.h" />
+    <ClInclude Include="AOwner.h" />
     <ClInclude Include="AClassGenerated.h" />
     <ClInclude Include="ADelegate.h" />
     <ClInclude Include="AType.h" />
@@ -19,7 +18,8 @@
     <ClCompile Include="AcroEngine.cpp" />
     <ClCompile Include="AObject.cpp" />
     <ClCompile Include="AVariable.cpp" />
-    <ClCompile Include="AAllocator.cpp" />
+    <ClCompile Include="AOwner.cpp" />
+    <ClCompile Include="AType.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

@@ -1,32 +1,38 @@
 ﻿#pragma once
 
 #include "AcroEngine.h"
+#include "AObject.h"
 
 
 namespace AcroEngine
 {
-	class AFlag : public AObject
-	{
-	};
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 전방선언.
+	/////////////////////////////////////////////////////////////////////////////
+	class AType;
+	class AObject;
+	class AInt;
+	class AString;
 
-	class AEnum : public AObject
-	{
-	};
+	//class AFlag : public AObject
+	//{
+	//};
+
+	//class AEnum : public AObject
+	//{
+	//};
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 변수.
 	/////////////////////////////////////////////////////////////////////////////
-	class AVariable : public AObject
+	class AVariable// : public AObject
 	{
 		GENERATE_BASE(AObject)
-		GENERATE_TYPE(AObject)
+		GENERATE_TYPE(AVariable)
 
 	private:
 	protected:
 	public:
-
-
-		void Foo() {}
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -35,7 +41,7 @@ namespace AcroEngine
 	class ABoolean : public AVariable
 	{
 		GENERATE_BASE(AVariable)
-		GENERATE_TYPE(AVariable)
+		GENERATE_TYPE(ABoolean)
 
 	private:
 		XPlatform::BOOL m_Value;
@@ -43,7 +49,6 @@ namespace AcroEngine
 	public:
 		ABoolean()
 		{
-			Base::Foo();
 		}
 	};
 
