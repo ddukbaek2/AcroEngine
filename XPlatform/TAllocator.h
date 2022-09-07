@@ -5,6 +5,8 @@
 
 namespace XPlatform
 {
+	#define SAFE_DELETE_ARRAY(ptr) if (ptr != nullptr) { delete[] ptr; ptr = nullptr; }
+
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 메모리할당자.
 	/////////////////////////////////////////////////////////////////////////////
@@ -22,6 +24,13 @@ namespace XPlatform
 		void Clear();
 		void Resize(INT32 size);
 		INT32 GetSize();
+
+		// -1
+		void Pull(INT32 Index);
+
+		// +1
+		void Push(INT32 Index);
+
 		void SetValue(INT32 Index, T* Object);
 		T* GetValue(INT32 Index);
 	};
@@ -36,6 +45,7 @@ namespace XPlatform
 	template<typename T>
 	inline TAllocator<T>::~TAllocator()
 	{
+		SAFE_DELETE_ARRAY(m_Begin);
 	}
 
 	template<typename T>
