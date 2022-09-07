@@ -1,12 +1,13 @@
 #pragma once
 
 #include "FrameUI.h"
+#include "FComponent.h"
 
 
 namespace FrameUI
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ ±âº»°èÃþ±¸Á¶.
+	// @ °èÃþ±¸Á¶.
 	/////////////////////////////////////////////////////////////////////////////
 	class FNode : public AObject
 	{
@@ -20,8 +21,23 @@ namespace FrameUI
 		FNode* m_ParentNode;
 		AList m_ChildNodes;
 
+		AList m_Components;
+
 	public:
-		void SetParent(const FNode* ParentNode)
+		template<typename T = FComponent>
+		T* Attach()
+		{
+			auto component = new T();
+			m_Components.Add(component);
+			return component;
+		}
+
+		void Dettach(FComponent* component)
+		{
+
+		}
+
+		inline void SetParent(const FNode* ParentNode)
 		{
 			if (ParentNode == nullptr)
 				return;

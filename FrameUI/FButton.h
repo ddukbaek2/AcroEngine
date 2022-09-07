@@ -1,20 +1,16 @@
 #pragma once
 
 #include "FrameUI.h"
+#include "FComponent.h"
 
 
 namespace FrameUI
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 각 계층에서 사용될 기본요소.
+	// @ 버튼 요소.
 	/////////////////////////////////////////////////////////////////////////////
-	class FComponent : public AObject
+	class FButtonComponent : public FComponent
 	{
-	private:
-	protected:
-		virtual void OnAttached() = 0;
-		virtual void OnDettached() = 0;
-		virtual void OnUpdate(AFloat deltaTime) = 0;
 	public:
 
 	};

@@ -12,7 +12,7 @@ namespace XPlatform
 	class TAllocator
 	{
 	private:
-		T* m_Pointer;
+		T* m_Begin;
 		INT32 m_Size;
 
 	public:
@@ -22,12 +22,14 @@ namespace XPlatform
 		void Clear();
 		void Resize(INT32 size);
 		INT32 GetSize();
+		void SetValue(INT32 Index, T* Object);
+		T* GetValue(INT32 Index);
 	};
 
 	template<typename T>
 	inline TAllocator<T>::TAllocator()
 	{
-		m_Pointer = nullptr;
+		m_Begin = nullptr;
 		m_Size = 0;
 	}
 
@@ -41,7 +43,7 @@ namespace XPlatform
 	{
 		for (INT32 i = 0; i < m_Size; ++i)
 		{
-			m_Pointer[i] = 0;
+			m_Begin[i] = 0;
 		}
 	}
 
@@ -65,5 +67,23 @@ namespace XPlatform
 	inline INT32 TAllocator<T>::GetSize()
 	{
 		return m_Size;
+	}
+
+	template<typename T>
+	inline void TAllocator<T>::SetValue(INT32 Index, T* Object)
+	{
+		if (Index < 0 || Index >= m_Size)
+			return;
+
+		m_Begin[index] = Object;
+	}
+
+	template<typename T>
+	inline T* TAllocator<T>::GetValue(INT32 Index);
+	{
+		if (Index < 0 || Index >= m_Size)
+			return nullptr;
+
+		return m_Begin[index];
 	}
 }

@@ -6,7 +6,9 @@
 
 
 #define AINHERIT(Class) public Class
-#define GENERATE_BASE(Class) typedef Class Base;
+#define GENERATE_BASE(ThisClass, ParentClass)\
+typedef ParentClass Base;\
+typedef ThisClass This;
 
 #define GENERATE_TYPE(Class) //public: static AcroEngine::AType* GetType() { return AcroEngine::AType::GetType(L#Class); }
 //#define DECLARE_GETCLASSNAME(Class) public: static const wchar_t* GetTypeName(){ return L#Class; }

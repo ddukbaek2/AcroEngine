@@ -27,7 +27,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class AVariable// : public AObject
 	{
-		GENERATE_BASE(AObject)
+		GENERATE_BASE(AVariable, AObject)
 		GENERATE_TYPE(AVariable)
 
 	private:
@@ -40,7 +40,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class ABoolean : public AVariable
 	{
-		GENERATE_BASE(AVariable)
+		GENERATE_BASE(ABoolean, AVariable)
 		GENERATE_TYPE(ABoolean)
 
 	private:
@@ -61,9 +61,14 @@ namespace AcroEngine
 		XPlatform::INT32 m_Value;
 
 	public:
-		void operator = (XPlatform::INT32 value)
+		void operator = (XPlatform::INT32 Value)
 		{
-			m_Value = value;
+			m_Value = Value;
+		}
+
+		XPlatform::INT32 ToINT32()
+		{
+			return m_Value;
 		}
 	};
 
@@ -115,10 +120,22 @@ namespace AcroEngine
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
+	// @ 문자열형 변수.
+	/////////////////////////////////////////////////////////////////////////////
+	class AVector3 : public AVariable
+	{
+	private:
+		XPlatform::FLOAT64 m_Values[3];
+
+	public:
+	};
+
+	/////////////////////////////////////////////////////////////////////////////
 	// @ 자료구조형 변수.
 	/////////////////////////////////////////////////////////////////////////////
 	class ACollection : public AVariable//, ICollection, IEnumerator, IEnumerable
 	{
+		GENERATE_BASE(ACollection, AVariable)
 	private:
 	public:
 		//virtual void Reset() override
@@ -148,7 +165,50 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class AList : public ACollection
 	{
-		
+		GENERATE_BASE(AList, ACollection)
+
+	private:
+		XPlatform::TAllocator<AObject> m_Allocator;
+		XPlatform::INT32 m_Count;
+
+	public:
+		AList() : Base()
+		{
+			m_Allocator.Clear();
+			m_Count = 0;
+		}
+
+		AList(AInt Capacity) : This()
+		{
+			m_Allocator.Resize(Capacity.ToINT32());
+		}
+
+		void Add(AObject* Object)
+		{			
+			auto size = m_Allocator.GetSize();
+			if (size == 0)
+			{
+				m_Allocator.Resize(2);
+			}
+			else if (m_Count + 1 >= size)
+			{
+				size = size * 2;
+				m_Allocator.Resize(size * 2);
+			}
+
+			++m_Count;
+			m_Allocator.SetValue(m_Count++, Object);
+		}
+
+		void RemoveAt(XPlatform::INT32 Index)
+		{
+			m_Allocator.SetValue(Index, nullptr);
+		}
+
+		XPlatform::INT32 GetCount()
+		{
+			return m_Count;
+		}
 	};
 
 
