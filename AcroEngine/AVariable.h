@@ -200,9 +200,26 @@ namespace AcroEngine
 			m_Allocator.SetValue(m_Count++, Object);
 		}
 
+		void Insert(AInt Index, AObject* Object)
+		{
+		}
+
+		void Remove(AObject* Object)
+		{
+
+		}
+
+
+
 		void RemoveAt(XPlatform::INT32 Index)
 		{
-			m_Allocator.SetValue(Index, nullptr);
+			//m_Allocator.SetValue(Index, nullptr);
+			m_Allocator.Decrease(Index);
+		}
+
+		bool Contains()
+		{
+			return false;
 		}
 
 		XPlatform::INT32 GetCount()
