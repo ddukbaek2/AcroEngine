@@ -50,6 +50,7 @@ namespace XPlatform
 	typedef float FLOAT32;
 	typedef double FLOAT64;
 	typedef wchar_t CHAR16;
+
 #else // UNKNOWN PLATFORM
 	typedef signed char INT8;
 	typedef unsigned char UINT8;
@@ -61,6 +62,7 @@ namespace XPlatform
 	typedef float FLOAT32;
 	typedef double FLOAT64;
 	typedef wchar_t CHAR16;
+
 #endif
 
 	struct XMemory
