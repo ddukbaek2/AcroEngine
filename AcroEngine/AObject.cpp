@@ -4,7 +4,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////
-// @
+// @ 생성.
 /////////////////////////////////////////////////////////////////////////////
 AcroEngine::AObject::AObject()
 {
@@ -13,7 +13,7 @@ AcroEngine::AObject::AObject()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// @
+// @ 소멸.
 /////////////////////////////////////////////////////////////////////////////
 AcroEngine::AObject::~AObject()
 {
@@ -21,29 +21,28 @@ AcroEngine::AObject::~AObject()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// @
+// @ 레퍼런스 카운트 증가.
 /////////////////////////////////////////////////////////////////////////////
 void AcroEngine::AObject::IncreaseReference(AObject* Object)
 {
-    if (Object != nullptr)
+    if (Object != nullptr && !Object->m_IsDestroyed)
     {
         ++Object->m_ReferenceCount;
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// @
+// @ 레퍼런스 카운트 감소.
 /////////////////////////////////////////////////////////////////////////////
-void AcroEngine::AObject::DecreaseReference(AObject** Object)
+void AcroEngine::AObject::DecreaseReference(AObject* Object)
 {
-    if ((*Object) != nullptr)
+    if (Object != nullptr && !Object->m_IsDestroyed)
     {
-        --(*Object)->m_ReferenceCount;
+        --Object->m_ReferenceCount;
 
-        if ((*Object)->m_ReferenceCount <= 0)
+        if (Object->m_ReferenceCount <= 0)
         {
-            delete (*Object);
-            Object = nullptr;
+            Object->m_IsDestroyed = true;
         }
     }
 }
@@ -57,7 +56,7 @@ AcroEngine::AString AcroEngine::AObject::ToString()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// @
+// @ 생성.
 /////////////////////////////////////////////////////////////////////////////
 AcroEngine::AObject* AcroEngine::AObject::Instantiate(AcroEngine::AType* Class)
 {
@@ -65,11 +64,28 @@ AcroEngine::AObject* AcroEngine::AObject::Instantiate(AcroEngine::AType* Class)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// @
+// @ 파괴.
 /////////////////////////////////////////////////////////////////////////////
-void AcroEngine::AObject::Destroy(AcroEngine::AObject** Object)
+void AcroEngine::AObject::Destroy(AcroEngine::AObject* Object)
 {
+    if (Object != nullptr && !Object->m_IsDestroyed)
+    {
+        Object->m_ReferenceCount = 0;
+        Object->m_IsDestroyed = true;
+    }
+}
 
+
+/////////////////////////////////////////////////////////////////////////////
+// @ 즉시 파괴.
+/////////////////////////////////////////////////////////////////////////////
+void AcroEngine::AObject::DestroyImmediate(AcroEngine::AObject* Object)
+{
+    if (Object != nullptr)
+    {
+        delete Object;
+        Object = nullptr;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

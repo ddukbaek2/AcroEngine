@@ -25,7 +25,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 변수.
 	/////////////////////////////////////////////////////////////////////////////
-	class AVariable// : public AObject
+	class AVariable : public AObject
 	{
 		GENERATE_BASE(AVariable, AObject)
 		GENERATE_TYPE(AVariable)
@@ -33,6 +33,15 @@ namespace AcroEngine
 	private:
 	protected:
 	public:
+	};
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 정수.
+	/////////////////////////////////////////////////////////////////////////////
+	class Number : public AVariable
+	{
+	public:
+
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -47,10 +56,22 @@ namespace AcroEngine
 		XPlatform::BOOL m_Value;
 
 	public:
-		ABoolean()
+		ABoolean() : Base()
 		{
+			m_Value = false;
+		}
+
+		void operator = (XPlatform::BOOL& Value)
+		{
+			m_Value = Value;
+		}
+
+		operator XPlatform::BOOL& ()
+		{
+			return m_Value;
 		}
 	};
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 정수형 변수.
@@ -61,16 +82,17 @@ namespace AcroEngine
 		XPlatform::INT32 m_Value;
 
 	public:
-		void operator = (XPlatform::INT32 Value)
+		void operator = (XPlatform::INT32& Value)
 		{
 			m_Value = Value;
 		}
 
-		XPlatform::INT32 ToINT32()
+		operator XPlatform::INT32& ()
 		{
 			return m_Value;
 		}
 	};
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 정수형 변수.
@@ -81,9 +103,35 @@ namespace AcroEngine
 		XPlatform::UINT32 m_Value;
 
 	public:
-		void operator = (XPlatform::UINT32 value)
+		void operator = (XPlatform::UINT32& Value)
 		{
-			m_Value = value;
+			m_Value = Value;
+		}
+
+		operator XPlatform::UINT32& ()
+		{
+			return m_Value;
+		}
+	};
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 정수형 변수.
+	/////////////////////////////////////////////////////////////////////////////
+	class AShort : public AVariable
+	{
+	private:
+		XPlatform::INT16 m_Value;
+
+	public:
+		void operator = (XPlatform::INT16& Value)
+		{
+			m_Value = Value;
+		}
+
+		operator XPlatform::INT16& ()
+		{
+			return m_Value;
 		}
 	};
 
@@ -94,7 +142,29 @@ namespace AcroEngine
 	class AString : public AVariable
 	{
 	private:
+		XPlatform::TAllocator<XPlatform::CHAR16> m_Value;
+
 	public:
+		AString()
+		{
+			m_Value.Clear();
+		}
+
+		AString(XPlatform::CHAR16* Value)
+		{
+			m_Value.Clear();
+			m_Value.Resize(sizeof(Value));
+			for (XPlatform::INT32 i = 0; i < m_Value.GetSize(); ++i)
+			{
+				m_Value.SetValue(i, Value[i]);
+			}
+		}
+
+		~AString()
+		{
+			m_Value.Clear();
+		}
+
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -103,13 +173,43 @@ namespace AcroEngine
 	class AFloat : public AVariable
 	{
 	private:
+		XPlatform::FLOAT32 m_Value;
+
+	public:
+		void operator = (XPlatform::FLOAT32& Value)
+		{
+			m_Value = Value;
+		}
+
+		operator XPlatform::FLOAT32& ()
+		{
+			return m_Value;
+		}
+	};
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 실수형 변수.
+	/////////////////////////////////////////////////////////////////////////////
+	class ADouble : public AVariable
+	{
+	private:
 		XPlatform::FLOAT64 m_Value;
 
 	public:
+		void operator = (XPlatform::FLOAT64& Value)
+		{
+			m_Value = Value;
+		}
+
+		operator XPlatform::FLOAT64& ()
+		{
+			return m_Value;
+		}
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 문자열형 변수.
+	// @ 이차원 벡터 변수.
 	/////////////////////////////////////////////////////////////////////////////
 	class AVector2 : public AVariable
 	{
@@ -120,12 +220,34 @@ namespace AcroEngine
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 문자열형 변수.
+	// @ 삼차원 벡터 변수.
 	/////////////////////////////////////////////////////////////////////////////
 	class AVector3 : public AVariable
 	{
 	private:
 		XPlatform::FLOAT64 m_Values[3];
+
+	public:
+	};
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 사차원 벡터 변수.
+	/////////////////////////////////////////////////////////////////////////////
+	class AVector4 : public AVariable
+	{
+	private:
+		XPlatform::FLOAT64 m_Values[4];
+
+	public:
+	};
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 사차원 벡터 변수.
+	/////////////////////////////////////////////////////////////////////////////
+	class AVector4 : public AVariable
+	{
+	private:
+		XPlatform::FLOAT64 m_Values[4];
 
 	public:
 	};
@@ -178,9 +300,9 @@ namespace AcroEngine
 			m_Count = 0;
 		}
 
-		AList(AInt Capacity) : This()
+		AList(AInt& Capacity) : This()
 		{
-			m_Allocator.Resize(Capacity.ToINT32());
+			m_Allocator.Resize(Capacity);
 		}
 
 		void Add(AObject* Object)
@@ -197,7 +319,7 @@ namespace AcroEngine
 			}
 
 			++m_Count;
-			m_Allocator.SetValue(m_Count++, Object);
+			m_Allocator.SetValuePointer(m_Count++, Object);
 		}
 
 		void Insert(AInt Index, AObject* Object)

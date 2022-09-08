@@ -39,7 +39,7 @@ void AcroEngine::AOwner::UnsetOwner()
 {
 	if (m_Target != nullptr)
 	{
-		AObject::DecreaseReference(&m_Target);
+		AObject::DecreaseReference(m_Target);
 		m_Target = nullptr;
 	}
 }

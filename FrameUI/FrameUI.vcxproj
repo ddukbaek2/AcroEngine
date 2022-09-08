@@ -19,9 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FButton.h" />
     <ClInclude Include="FComponent.h" />
+    <ClInclude Include="FImage.h" />
     <ClInclude Include="FNode.h" />
     <ClInclude Include="FrameUI.h" />
+    <ClInclude Include="FTextComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FrameUI.cpp" />

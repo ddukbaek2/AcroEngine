@@ -34,7 +34,8 @@ namespace FrameUI
 
 		void Dettach(FComponent* component)
 		{
-
+			m_Components.Remove(component);
+			Destroy((AObject*)component);
 		}
 
 		inline void SetParent(const FNode* ParentNode)

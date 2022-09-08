@@ -20,6 +20,7 @@
     <ClCompile Include="AVariable.cpp" />
     <ClCompile Include="AOwner.cpp" />
     <ClCompile Include="AType.cpp" />
+    <ClCompile Include="AJson.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

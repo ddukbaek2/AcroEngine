@@ -5,9 +5,6 @@
 
 namespace XPlatform
 {
-	#define SAFE_DELETE_ARRAY(ptr) if (ptr != nullptr) { delete[] ptr; ptr = nullptr; }
-
-
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 메모리할당자.
 	/////////////////////////////////////////////////////////////////////////////
@@ -17,6 +14,7 @@ namespace XPlatform
 	private:
 		T* m_Begin;
 		INT32 m_Size;
+		INT32 m_Length;
 
 	public:
 		TAllocator();
@@ -32,7 +30,8 @@ namespace XPlatform
 		// +1
 		void Decrease(INT32 Index = -1);
 
-		bool SetValue(INT32 Index, T* Object);
+		BOOL SetValue(INT32 Index, T& Object);
+		BOOL SetValuePointer(INT32 Index, T* Object);
 		T* GetValue(INT32 Index);
 
 		T* Begin();
@@ -49,7 +48,11 @@ namespace XPlatform
 	template<typename T>
 	inline TAllocator<T>::~TAllocator()
 	{
-		SAFE_DELETE_ARRAY(m_Begin);
+		if (m_Begin != nullptr)
+		{
+			delete[] m_Begin;
+			m_Begin = nullptr;
+		}
 	}
 
 	template<typename T>
@@ -57,7 +60,7 @@ namespace XPlatform
 	{
 		for (INT32 i = 0; i < m_Size; ++i)
 		{
-			m_Begin[i] = 0;
+			//m_Begin[i] = 0;
 		}
 	}
 
@@ -111,12 +114,22 @@ namespace XPlatform
 	}
 
 	template<typename T>
-	inline bool TAllocator<T>::SetValue(INT32 Index, T* Object)
+	inline bool TAllocator<T>::SetValue(INT32 Index, T& Object)
 	{
 		if (Index < 0 || Index >= m_Size)
 			return false;
 
-		m_Begin[index] = Object;
+		//m_Begin[Index] = Object;
+		return true;
+	}
+
+	template<typename T>
+	inline bool TAllocator<T>::SetValuePointer(INT32 Index, T* Object)
+	{
+		if (Index < 0 || Index >= m_Size)
+			return false;
+
+		//m_Begin[Index] = Object;
 		return true;
 	}
 
@@ -126,6 +139,6 @@ namespace XPlatform
 		if (Index < 0 || Index >= m_Size)
 			return nullptr;
 
-		return m_Begin[index];
+		return m_Begin[Index];
 	}
 }

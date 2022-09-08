@@ -23,21 +23,19 @@ namespace AcroEngine
 	private:
 		XPlatform::INT32 m_ID;
 		XPlatform::INT32 m_ReferenceCount;
-
-	protected:
-
-		AObject();
-		virtual ~AObject();
+		XPlatform::BOOL m_IsDestroyed;
 
 	public:
+		AObject();
+		virtual ~AObject();
 		virtual AString ToString();
 
-		static AObject* Instantiate(AType* Type);
-		static void Destroy(AObject** Object);
-		//static void DestroyImmediate(AObject** Object);
-		//static bool IsDeadlyObject();
 		static void IncreaseReference(AObject* Object);
-		static void DecreaseReference(AObject** Object);
+		static void DecreaseReference(AObject* Object);
+		static AObject* Instantiate(AType* Type);
+		static void Destroy(AObject* Object);
+		static void DestroyImmediate(AObject* Object);
+		//static bool IsDeadlyObject();
 		//static AType* GetType();
 	};
 

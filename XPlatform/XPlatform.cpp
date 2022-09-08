@@ -1,6 +1,6 @@
 #include "XPlatform.h"
 
-#include "C:\\Users\\dagraac\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\sources\\android\\"
+//#include "C:\\Users\\dagraac\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\sources\\android\\"
 
 namespace XPlatform
 {
