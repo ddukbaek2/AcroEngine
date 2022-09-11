@@ -7,19 +7,24 @@ namespace XPlatform
 #if defined(XPLATFORM_WINDOWS)
 #elif defined(XPLATFORM_ANDROID)
 #elif defined(XPLATFORM_IOS)
-#else
+#else // ENGINE
 #endif
 
+// APPLICATION MAIN.
 #if defined(XPLATFORM_WINDOWS)
+	void main(wchar_t argv[], int argc)
+	{
+
+	}
 #elif defined(XPLATFORM_ANDROID)
 #include <EGL/egl.h>
 #include <GLES/gl.h>
-	void android_main(struct android_app* state)
+	void android_main(android_app* state)
 	{
 
 	}
 #elif defined(XPLATFORM_IOS)
-#else
+#else // ENGINE
 #endif
 
 	void XSound::Clear()

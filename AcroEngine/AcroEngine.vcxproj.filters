@@ -4,25 +4,41 @@
     <ClInclude Include="AcroEngine.h" />
     <ClInclude Include="AObject.h" />
     <ClInclude Include="AVariable.h" />
-    <ClInclude Include="AOwner.h" />
     <ClInclude Include="AClassGenerated.h" />
     <ClInclude Include="ADelegate.h" />
-    <ClInclude Include="AType.h" />
     <ClInclude Include="AJson.h" />
     <ClInclude Include="AProperty.h" />
     <ClInclude Include="IEnumerator.h" />
     <ClInclude Include="IEnumerable.h" />
     <ClInclude Include="ICollection.h" />
+    <ClInclude Include="AType.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="AOwner.h">
+      <Filter>Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AcroEngine.cpp" />
     <ClCompile Include="AObject.cpp" />
     <ClCompile Include="AVariable.cpp" />
-    <ClCompile Include="AOwner.cpp" />
-    <ClCompile Include="AType.cpp" />
     <ClCompile Include="AJson.cpp" />
+    <ClCompile Include="AType.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="AOwner.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{8d8bab65-80a1-4b01-be1b-91df4395a922}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Readme.txt" />
   </ItemGroup>
 </Project>

@@ -19,9 +19,8 @@ namespace AcroEngine
 	class AType
 	{
 	private:
-
 	public:
-		AType(const XPlatform::CHAR16* className) {}
+		AType(const XPlatform::CHAR16 ClassName[]) {}
 		virtual ~AType() {}
 
 		virtual bool IsParent(AType* Class) = 0;
@@ -30,6 +29,6 @@ namespace AcroEngine
 		virtual ADictionary GetVariables() = 0;
 		virtual ADictionary GetMethods() = 0;
 
-		static AType* GetType(const XPlatform::CHAR16* className);
+		static AType* GetType(const XPlatform::CHAR16 ClassName[]);
 	};
 }

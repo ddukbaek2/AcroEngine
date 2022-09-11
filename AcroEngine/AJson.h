@@ -17,6 +17,6 @@ namespace AcroEngine
 		virtual ~AJson() {}
 
 		static AObject* Deserialize(AString* String);
-		static AString Serialize(AObject* Object);
+		static AString Serialize(AObject* IObject);
 	};
 }

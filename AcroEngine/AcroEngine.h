@@ -14,7 +14,7 @@ typedef ThisClass This;
 //#define DECLARE_GETCLASSNAME(Class) public: static const wchar_t* GetTypeName(){ return L#Class; }
 
 #define CREATE_OBJECT(Class)
-#define DESTROY_OBJECT(Object) if (Object != nullptr) { AObject::Destroy(Object); Object = nullptr; }
+#define DESTROY_OBJECT(AObjectImpl) if (AObjectImpl != nullptr) { AObject::Destroy(AObjectImpl); AObjectImpl = nullptr; }
 
 #define DECLARE_POINTER(Class) typedef Class* Class##Pointer;
 
@@ -63,6 +63,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 함수 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	static void LoadAssembly();
-	static void UnloadAssembly();
+	static void LoadType();
+	static void UnloadType();
+	static AUnknownObject GetOrCreate(AType* Type);
 }

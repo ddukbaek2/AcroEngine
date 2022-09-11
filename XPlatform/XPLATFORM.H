@@ -51,7 +51,7 @@ namespace XPlatform
 	typedef double FLOAT64;
 	typedef wchar_t CHAR16;
 
-#else // UNKNOWN PLATFORM
+#else // ENGINE
 	typedef signed char INT8;
 	typedef unsigned char UINT8;
 	typedef signed short INT16;

@@ -30,14 +30,12 @@ namespace AcroEngine
 		virtual ~AObject();
 		virtual AString ToString();
 
-		static void IncreaseReference(AObject* Object);
-		static void DecreaseReference(AObject* Object);
+		static void IncreaseReference(AObject* AObjectImpl);
+		static void DecreaseReference(AObject* AObjectImpl);
 		static AObject* Instantiate(AType* Type);
-		static void Destroy(AObject* Object);
-		static void DestroyImmediate(AObject* Object);
+		static void Destroy(AObject* AObjectImpl);
+		static void DestroyImmediate(AObject* AObjectImpl);
 		//static bool IsDeadlyObject();
 		//static AType* GetType();
 	};
-
-	DECLARE_POINTER(AObject)
 }

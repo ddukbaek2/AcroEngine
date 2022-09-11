@@ -20,11 +20,11 @@ namespace AcroEngine
 	public:
 		virtual int GetCount() = 0;
 
-		virtual void Add(AObject* Object) = 0;
-		virtual void Remove(AObject* Object) = 0;
+		virtual void Add(AObject* IObject) = 0;
+		virtual void Remove(AObject* IObject) = 0;
 		virtual void Clear() = 0;
 
-		virtual bool Contains(AObject* Object) = 0;
+		virtual bool Contains(AObject* IObject) = 0;
 		virtual void CopyTo(AObject* Array, AInt arrayIndex) = 0;
 	};
 }
