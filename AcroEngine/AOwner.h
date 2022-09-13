@@ -1,40 +1,26 @@
 ﻿#pragma once
 
 #include "AcroEngine.h"
-
+#include "AObject.h"
 
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 전방선언.
-	/////////////////////////////////////////////////////////////////////////////
-	class AObject;
-
-
-	/////////////////////////////////////////////////////////////////////////////
 	// @ 소유권자.
 	/////////////////////////////////////////////////////////////////////////////
-	class AOwner
+	class IOwner
 	{
 	private:
-		AObject* m_Target;
+		AObject m_Target;
 
 	public:
-		AOwner();
-		AOwner(AObject* target);
-		AOwner(const AOwner* Owner);
-		virtual ~AOwner();
-		void SetOwner(const AObject* target);
+		IOwner();
+		IOwner(AObject target);
+		IOwner(AOwner Owner);
+		virtual ~IOwner();
+		void SetOwner(AObject target);
 		void UnsetOwner();
-		const AObject* GetPointer();
-		const AObject& GetReference();
-
-		template<typename T = AObject> const T* GetPointerT()
-		{
-			return (T*)m_Target;
-		}
-
-		void operator = (AObject* target);
-
+		AObject GetObject();
+		void operator = (AObject target);
 	};
 }

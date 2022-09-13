@@ -1,23 +1,18 @@
 #pragma once
 
 #include "AcroEngine.h"
-#include "AObject.h"
 
 
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ JSON 데이터.
+	// @ 이차원 벡터 변수.
 	/////////////////////////////////////////////////////////////////////////////
-	class IJson : public IObject
+	class IVector2 : public IVariable
 	{
 	private:
+		XPlatform::FLOAT64 m_Values[2];
 
 	public:
-		IJson() {}
-		virtual ~IJson() {}
-
-		static AObject Deserialize(AString String);
-		static AString Serialize(AObject IObject);
 	};
 }

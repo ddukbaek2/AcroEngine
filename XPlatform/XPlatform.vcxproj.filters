@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClInclude Include="XPlatform.h" />
     <ClInclude Include="TAllocator.h" />
+    <ClInclude Include="XString.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="XPlatform.cpp" />

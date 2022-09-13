@@ -6,29 +6,21 @@
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 전방선언.
-	/////////////////////////////////////////////////////////////////////////////
-	class AObject;
-	class AString;
-	class ADictionary;
-
-
-	/////////////////////////////////////////////////////////////////////////////
 	// @ 클래스 정보.
 	/////////////////////////////////////////////////////////////////////////////
-	class AType
+	class IType
 	{
 	private:
 	public:
-		AType(const XPlatform::CHAR16 ClassName[]) {}
-		virtual ~AType() {}
+		IType(const XPlatform::CHAR16 ClassName[]) {}
+		virtual ~IType() {}
 
-		virtual bool IsParent(AType* Class) = 0;
-		virtual bool IsChildren(AType* Class) = 0;
-		virtual AString GetTypeName() = 0;
-		virtual ADictionary GetVariables() = 0;
-		virtual ADictionary GetMethods() = 0;
+		virtual bool IsParent(AType Class) { return false; }
+		virtual bool IsChildren(AType Class) { return false; }
+		virtual AString GetTypeName() { return nullptr; }
+		virtual ADictionary GetVariables() { return nullptr; }
+		virtual ADictionary GetMethods() { return nullptr; }
 
-		static AType* GetType(const XPlatform::CHAR16 ClassName[]);
+		static AType GetType(const XPlatform::CHAR16 ClassName[]);
 	};
 }

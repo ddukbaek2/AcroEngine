@@ -15,7 +15,7 @@ namespace FrameUI
 		AVector2 m_Anchor;
 		AVector2 m_Offset;
 		AVector2 m_LocalPosition;
-		AVector2 m_Size;
+		AVector2 m_TotalSize;
 		AFloat m_Rotation;
 
 		FNode* m_ParentNode;

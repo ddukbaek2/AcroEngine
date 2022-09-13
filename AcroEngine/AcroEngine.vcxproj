@@ -165,18 +165,34 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ABoolean.h" />
+    <ClInclude Include="ADictionary.h" />
+    <ClInclude Include="ADouble.h" />
+    <ClInclude Include="AFloat.h" />
+    <ClInclude Include="AInt.h" />
     <ClInclude Include="AJson.h" />
+    <ClInclude Include="AList.h" />
     <ClInclude Include="AProperty.h" />
+    <ClInclude Include="AQueue.h" />
+    <ClInclude Include="ASet.h" />
+    <ClInclude Include="AShort.h" />
+    <ClInclude Include="AStack.h" />
+    <ClInclude Include="AString.h" />
     <ClInclude Include="AType.h" />
     <ClInclude Include="AClassGenerated.h" />
     <ClInclude Include="AcroEngine.h" />
     <ClInclude Include="ADelegate.h" />
     <ClInclude Include="AObject.h" />
+    <ClInclude Include="AUShort.h" />
     <ClInclude Include="AVariable.h" />
     <ClInclude Include="AOwner.h" />
+    <ClInclude Include="AVector2.h" />
+    <ClInclude Include="AVector3.h" />
+    <ClInclude Include="AVector4.h" />
     <ClInclude Include="ICollection.h" />
     <ClInclude Include="IEnumerable.h" />
     <ClInclude Include="IEnumerator.h" />
+    <ClInclude Include="AUInt.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

@@ -2,40 +2,122 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="AcroEngine.h" />
-    <ClInclude Include="AObject.h" />
-    <ClInclude Include="AVariable.h" />
     <ClInclude Include="AClassGenerated.h" />
-    <ClInclude Include="ADelegate.h" />
-    <ClInclude Include="AJson.h" />
-    <ClInclude Include="AProperty.h" />
-    <ClInclude Include="IEnumerator.h" />
-    <ClInclude Include="IEnumerable.h" />
-    <ClInclude Include="ICollection.h" />
     <ClInclude Include="AType.h">
-      <Filter>Base</Filter>
+      <Filter>Bases</Filter>
     </ClInclude>
     <ClInclude Include="AOwner.h">
-      <Filter>Base</Filter>
+      <Filter>Bases</Filter>
+    </ClInclude>
+    <ClInclude Include="AObject.h">
+      <Filter>Bases</Filter>
+    </ClInclude>
+    <ClInclude Include="AVariable.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="AJson.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="ADelegate.h">
+      <Filter>Bases</Filter>
+    </ClInclude>
+    <ClInclude Include="AProperty.h">
+      <Filter>Bases</Filter>
+    </ClInclude>
+    <ClInclude Include="IEnumerator.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollection.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IEnumerable.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ABoolean.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="AInt.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="AUInt.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="AShort.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="AUShort.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="AStack.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="AQueue.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="ASet.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="ADictionary.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="AList.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="AString.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="AFloat.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="ADouble.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="AVector2.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="AVector3.h">
+      <Filter>Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="AVector4.h">
+      <Filter>Variables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AcroEngine.cpp" />
-    <ClCompile Include="AObject.cpp" />
-    <ClCompile Include="AVariable.cpp" />
-    <ClCompile Include="AJson.cpp" />
     <ClCompile Include="AType.cpp">
-      <Filter>Base</Filter>
+      <Filter>Bases</Filter>
     </ClCompile>
     <ClCompile Include="AOwner.cpp">
-      <Filter>Base</Filter>
+      <Filter>Bases</Filter>
+    </ClCompile>
+    <ClCompile Include="AObject.cpp">
+      <Filter>Bases</Filter>
+    </ClCompile>
+    <ClCompile Include="AVariable.cpp">
+      <Filter>Variables</Filter>
+    </ClCompile>
+    <ClCompile Include="AJson.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Base">
+    <Filter Include="Variables">
+      <UniqueIdentifier>{82961b3c-5be9-48e6-ba87-1636c9337a0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{f7c88d35-43ad-43d2-b5c9-28edb5d897fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{2c1d5412-4721-4711-98c1-813b6522770e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bases">
       <UniqueIdentifier>{8d8bab65-80a1-4b01-be1b-91df4395a922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container">
+      <UniqueIdentifier>{22e254d6-24fa-457a-b3b5-9b54d81d919e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

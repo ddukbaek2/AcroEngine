@@ -1,60 +1,54 @@
 #include "AOwner.h"
-#include "AObject.h"
 
 
-AcroEngine::AOwner::AOwner()
+AcroEngine::IOwner::IOwner()
 {
 	m_Target = nullptr;
 }
 
-AcroEngine::AOwner::AOwner(AcroEngine::AObject* target)
+AcroEngine::IOwner::IOwner(AcroEngine::AObject target)
 {
 	m_Target = nullptr;
 	SetOwner(target);
 }
 
-AcroEngine::AOwner::AOwner(const AcroEngine::AOwner* Owner)
+AcroEngine::IOwner::IOwner(AcroEngine::AOwner Owner)
 {
 	m_Target = nullptr;
 	SetOwner(Owner->m_Target);
 }
 
-AcroEngine::AOwner::~AOwner()
+AcroEngine::IOwner::~IOwner()
 {
 	UnsetOwner();
 }
 
-void AcroEngine::AOwner::SetOwner(const AObject* target)
+void AcroEngine::IOwner::SetOwner(AObject target)
 {
 	UnsetOwner();
 
 	if (target != nullptr)
 	{
-		m_Target = const_cast<AObject*>(target);
-		AObject::IncreaseReference(m_Target);
+		m_Target = const_cast<AObject>(target);
+		IObject::IncreaseReference(m_Target);
 	}
 }
 
-void AcroEngine::AOwner::UnsetOwner()
+void AcroEngine::IOwner::UnsetOwner()
 {
 	if (m_Target != nullptr)
 	{
-		AObject::DecreaseReference(m_Target);
+		IObject::DecreaseReference(m_Target);
 		m_Target = nullptr;
 	}
 }
 
-const AcroEngine::AObject* AcroEngine::AOwner::GetPointer()
+AcroEngine::AObject AcroEngine::IOwner::GetObject()
 {
 	return m_Target;
 }
 
-const AcroEngine::AObject& AcroEngine::AOwner::GetReference()
-{
-	return *m_Target;
-}
-
-void AcroEngine::AOwner::operator = (AcroEngine::AObject* target)
+void AcroEngine::IOwner::operator = (AcroEngine::AObject target)
 {
 	SetOwner(target);
 }

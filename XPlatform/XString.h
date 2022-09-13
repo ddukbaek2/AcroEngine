@@ -33,6 +33,7 @@ namespace XPlatform
 
 		virtual ~XString()
 		{
+			m_Data.Clear();
 		}
 
 		void Clear()

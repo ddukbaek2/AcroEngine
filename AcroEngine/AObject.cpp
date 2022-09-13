@@ -1,12 +1,12 @@
 ﻿#include "AObject.h"
+#include "AType.h"
 #include "AVariable.h"
-#include "AClassGenerated.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
 // @ 생성.
 /////////////////////////////////////////////////////////////////////////////
-AcroEngine::AObject::AObject()
+AcroEngine::IObject::IObject()
 {
     m_ID = 0;
     m_ReferenceCount = 0;
@@ -15,7 +15,7 @@ AcroEngine::AObject::AObject()
 /////////////////////////////////////////////////////////////////////////////
 // @ 소멸.
 /////////////////////////////////////////////////////////////////////////////
-AcroEngine::AObject::~AObject()
+AcroEngine::IObject::~IObject()
 {
 
 }
@@ -23,26 +23,26 @@ AcroEngine::AObject::~AObject()
 /////////////////////////////////////////////////////////////////////////////
 // @ 레퍼런스 카운트 증가.
 /////////////////////////////////////////////////////////////////////////////
-void AcroEngine::AObject::IncreaseReference(AObject* AObjectImpl)
+void AcroEngine::IObject::IncreaseReference(AObject Object)
 {
-    if (AObjectImpl != nullptr && !AObjectImpl->m_IsDestroyed)
+    if (Object != nullptr && !Object->m_IsDestroyed)
     {
-        ++AObjectImpl->m_ReferenceCount;
+        ++Object->m_ReferenceCount;
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // @ 레퍼런스 카운트 감소.
 /////////////////////////////////////////////////////////////////////////////
-void AcroEngine::AObject::DecreaseReference(AObject* AObjectImpl)
+void AcroEngine::IObject::DecreaseReference(AObject Object)
 {
-    if (AObjectImpl != nullptr && !AObjectImpl->m_IsDestroyed)
+    if (Object != nullptr && !Object->m_IsDestroyed)
     {
-        --AObjectImpl->m_ReferenceCount;
+        --Object->m_ReferenceCount;
 
-        if (AObjectImpl->m_ReferenceCount <= 0)
+        if (Object->m_ReferenceCount <= 0)
         {
-            AObjectImpl->m_IsDestroyed = true;
+            Object->m_IsDestroyed = true;
         }
     }
 }
@@ -50,7 +50,7 @@ void AcroEngine::AObject::DecreaseReference(AObject* AObjectImpl)
 /////////////////////////////////////////////////////////////////////////////
 // @
 /////////////////////////////////////////////////////////////////////////////
-AcroEngine::AString AcroEngine::AObject::ToString()
+AcroEngine::AString AcroEngine::IObject::ToString()
 {
     return AString();
 }
@@ -58,7 +58,7 @@ AcroEngine::AString AcroEngine::AObject::ToString()
 /////////////////////////////////////////////////////////////////////////////
 // @ 생성.
 /////////////////////////////////////////////////////////////////////////////
-AcroEngine::AObject* AcroEngine::AObject::Instantiate(AcroEngine::AType* Class)
+AcroEngine::AObject AcroEngine::IObject::Instantiate(AcroEngine::AType Class)
 {
     return nullptr;
 }
@@ -66,12 +66,12 @@ AcroEngine::AObject* AcroEngine::AObject::Instantiate(AcroEngine::AType* Class)
 /////////////////////////////////////////////////////////////////////////////
 // @ 파괴.
 /////////////////////////////////////////////////////////////////////////////
-void AcroEngine::AObject::Destroy(AcroEngine::AObject* AObjectImpl)
+void AcroEngine::IObject::Destroy(AcroEngine::AObject Object)
 {
-    if (AObjectImpl != nullptr && !AObjectImpl->m_IsDestroyed)
+    if (Object != nullptr && !Object->m_IsDestroyed)
     {
-        AObjectImpl->m_ReferenceCount = 0;
-        AObjectImpl->m_IsDestroyed = true;
+        Object->m_ReferenceCount = 0;
+        Object->m_IsDestroyed = true;
     }
 }
 
@@ -79,19 +79,19 @@ void AcroEngine::AObject::Destroy(AcroEngine::AObject* AObjectImpl)
 /////////////////////////////////////////////////////////////////////////////
 // @ 즉시 파괴.
 /////////////////////////////////////////////////////////////////////////////
-void AcroEngine::AObject::DestroyImmediate(AcroEngine::AObject* AObjectImpl)
+void AcroEngine::IObject::DestroyImmediate(AcroEngine::AObject Object)
 {
-    if (AObjectImpl != nullptr)
+    if (Object != nullptr)
     {
-        delete AObjectImpl;
-        AObjectImpl = nullptr;
+        delete Object;
+        Object = nullptr;
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 //// @
 ///////////////////////////////////////////////////////////////////////////////
-//AcroEngine::AType* AcroEngine::AObject::GetType()
+//AcroEngine::AType* AcroEngine::IObject::GetType()
 //{
 //    //AClassGenerated::GetTypeName();
 //    return nullptr;

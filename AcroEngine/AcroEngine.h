@@ -10,25 +10,11 @@
 typedef ParentClass Base;\
 typedef ThisClass This;
 
-#define GENERATE_TYPE(Class) //public: static AcroEngine::AType* GetType() { return AcroEngine::AType::GetType(L#Class); }
+#define GENERATE_TYPE(Class) public: inline AcroEngine::AType GetType() { return AcroEngine::IType::GetType(L#Class); }
 //#define DECLARE_GETCLASSNAME(Class) public: static const wchar_t* GetTypeName(){ return L#Class; }
 
 #define CREATE_OBJECT(Class)
-#define DESTROY_OBJECT(AObjectImpl) if (AObjectImpl != nullptr) { AObject::Destroy(AObjectImpl); AObjectImpl = nullptr; }
-
-#define DECLARE_POINTER(Class) typedef Class* Class##Pointer;
-
-#include "AType.h"
-#include "AObject.h"
-
-
-#include "IEnumerator.h"
-#include "IEnumerable.h"
-#include "ICollection.h"
-
-#include "AOwner.h"
-#include "AVariable.h"
-#include "ADelegate.h"
+#define DESTROY_OBJECT(Object) if (Object != nullptr) { AObject::Destroy(Object); Object = nullptr; }
 
 
 namespace AcroEngine
@@ -57,7 +43,65 @@ namespace AcroEngine
 	//class AScript {};
 
 
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 클래스 전방선언 목록.
+	/////////////////////////////////////////////////////////////////////////////
+	class IObject;
+	class IType;
+	class IOwner;
+	class IJson;
+	class IProperty;
+	class IDelegate;
+	class IVariable;
+	class IBoolean;
+	class IShort;
+	class IUShort;
+	class IInt;
+	class IUInt;
+	class IFloat;
+	class IDouble;
+	class IString;
+	class IVector2;
+	class IVector3;
+	class IVector4;
+	class IList;
+	class IQueue;
+	class IStack;
+	class ISet;
+	class IDictionary;
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 클래스포인터 전방선언 목록.
+	/////////////////////////////////////////////////////////////////////////////
 	typedef void* AUnknownObject;
+	typedef IObject* AObject;
+	typedef IType* AType;
+	typedef IOwner* AOwner;
+	typedef IJson* AJson;
+	typedef IProperty* AProperty;
+	typedef IDelegate* ADelegate;
+	typedef IVariable* AVariable;
+	typedef IBoolean* ABoolean;
+	typedef IShort* AShort;
+	typedef IUShort* AUShort;
+	typedef IInt* AInt;
+	typedef IUInt* AUInt;
+	typedef IFloat* AFloat;
+	typedef IDouble* ADouble;
+	typedef IString* AString;
+	typedef IVector2* AVector2;
+	typedef IVector3* AVector3;
+	typedef IVector4* AVector4;
+	typedef IList* AList;
+	typedef IQueue* AQueue;
+	typedef IStack* AStack;
+	typedef ISet* ASet;
+	typedef IDictionary* ADictionary;
+
+	//class AFlag;
+	//class AEnum;
+	//class ACollection;
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -65,5 +109,5 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	static void LoadType();
 	static void UnloadType();
-	static AUnknownObject GetOrCreate(AType* Type);
+	static AUnknownObject GetOrCreate(AType Type);
 }

@@ -8,15 +8,15 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 프로퍼티.
 	/////////////////////////////////////////////////////////////////////////////
-	class AProperty
+	class IProperty
 	{
 	private:
 		ADelegate m_Get;
 		ADelegate m_Set;
 
 	public:
-		AProperty() {}
-		virtual ~AProperty() {}
+		IProperty() {}
+		virtual ~IProperty() {}
 
 		void operator += (ADelegate Delegate)
 		{

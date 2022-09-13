@@ -1,12 +1,12 @@
 #include "AJson.h"
 
 
-AcroEngine::AObject* AcroEngine::AJson::Deserialize(AcroEngine::AString* String)
+AcroEngine::AObject AcroEngine::IJson::Deserialize(AcroEngine::AString String)
 {
 	return nullptr;
 }
 
-AcroEngine::AString AcroEngine::AJson::Serialize(AcroEngine::AObject* Object)
+AcroEngine::AString AcroEngine::IJson::Serialize(AcroEngine::AObject Object)
 {
-	return AString();
+	return nullptr;
 }
