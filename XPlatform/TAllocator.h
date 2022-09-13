@@ -14,7 +14,6 @@ namespace XPlatform
 	private:
 		T* m_Begin;
 		INT32 m_Size;
-		INT32 m_Length;
 
 	public:
 		TAllocator();
@@ -30,12 +29,13 @@ namespace XPlatform
 		// +1
 		void Decrease(INT32 Index = -1);
 
-		BOOL SetValue(INT32 Index, T& Object);
+		BOOL SetValue(INT32 Index, T Object);
+		BOOL SetValueReference(INT32 Index, T& Object);
 		BOOL SetValuePointer(INT32 Index, T* Object);
 		T* GetValue(INT32 Index);
 
-		T* Begin();
-		T* End();
+		T* Begin() { return m_Begin; }
+		T* End() { return m_Begin + m_Size; }
 	};
 
 	template<typename T>
@@ -67,17 +67,19 @@ namespace XPlatform
 	template<typename T>
 	inline void TAllocator<T>::Resize(INT32 size)
 	{
-		if (m_Size == size)
+		if (m_TotalSize == size)
 			return;
 
-		if (size > m_Size)
+		if (size > m_TotalSize)
 		{
-
+			
 		}
 		else if (size < m_Size)
 		{
 
 		}
+
+		m_Size = size;
 	}
 
 	template<typename T>
@@ -91,11 +93,11 @@ namespace XPlatform
 	inline void TAllocator<T>::Increase(INT32 Index)
 	{
 		// back.
-		if (Index < 0 || Index >= m_Size)
+		if (Index < 0 || Index >= m_TotalSize)
 		{
 		}
 
-		++m_Size;
+		++m_TotalSize;
 	}
 
 	template<typename T>
@@ -114,12 +116,22 @@ namespace XPlatform
 	}
 
 	template<typename T>
-	inline bool TAllocator<T>::SetValue(INT32 Index, T& Object)
+	inline bool TAllocator<T>::SetValue(INT32 Index, T Object)
 	{
 		if (Index < 0 || Index >= m_Size)
 			return false;
 
-		//m_Begin[Index] = Object;
+		m_Begin[Index] = Object;
+		return true;
+	}
+
+	template<typename T>
+	inline bool TAllocator<T>::SetValueReference(INT32 Index, T& Object)
+	{
+		if (Index < 0 || Index >= m_Size)
+			return false;
+
+		m_Begin[Index] = Object;
 		return true;
 	}
 
@@ -129,7 +141,7 @@ namespace XPlatform
 		if (Index < 0 || Index >= m_Size)
 			return false;
 
-		//m_Begin[Index] = Object;
+		m_Begin[Index] = Object;
 		return true;
 	}
 

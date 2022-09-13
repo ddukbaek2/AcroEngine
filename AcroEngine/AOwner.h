@@ -5,6 +5,9 @@
 
 namespace AcroEngine
 {
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 전방선언.
+	/////////////////////////////////////////////////////////////////////////////
 	class AObject;
 
 
@@ -23,8 +26,15 @@ namespace AcroEngine
 		virtual ~AOwner();
 		void SetOwner(const AObject* target);
 		void UnsetOwner();
-		const AObject* GetPtr();
-		const AObject& GetRef();
+		const AObject* GetPointer();
+		const AObject& GetReference();
+
+		template<typename T = AObject> const T* GetPointerT()
+		{
+			return (T*)m_Target;
+		}
+
 		void operator = (AObject* target);
+
 	};
 }

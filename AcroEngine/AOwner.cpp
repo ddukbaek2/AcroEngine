@@ -1,5 +1,4 @@
 #include "AOwner.h"
-
 #include "AObject.h"
 
 
@@ -22,7 +21,7 @@ AcroEngine::AOwner::AOwner(const AcroEngine::AOwner* Owner)
 
 AcroEngine::AOwner::~AOwner()
 {
-	SetOwner(nullptr);
+	UnsetOwner();
 }
 
 void AcroEngine::AOwner::SetOwner(const AObject* target)
@@ -45,12 +44,12 @@ void AcroEngine::AOwner::UnsetOwner()
 	}
 }
 
-const AcroEngine::AObject* AcroEngine::AOwner::GetPtr()
+const AcroEngine::AObject* AcroEngine::AOwner::GetPointer()
 {
 	return m_Target;
 }
 
-const AcroEngine::AObject& AcroEngine::AOwner::GetRef()
+const AcroEngine::AObject& AcroEngine::AOwner::GetReference()
 {
 	return *m_Target;
 }
