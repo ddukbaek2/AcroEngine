@@ -157,7 +157,6 @@
     <ClCompile Include="AObject.cpp" />
     <ClCompile Include="AOwner.cpp" />
     <ClCompile Include="AType.cpp" />
-    <ClCompile Include="AVariable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XPlatform\XPlatform.vcxproj">

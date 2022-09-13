@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FrameUI", "FrameUI\FrameUI.
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AcroTool", "AcroTool\AcroTool.pyproj", "{F64BB11D-ECAE-4641-B059-C15D675C5C7B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AcroEditor", "AcroEditor\AcroEditor.vcxproj", "{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,18 @@ Global
 		{F64BB11D-ECAE-4641-B059-C15D675C5C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F64BB11D-ECAE-4641-B059-C15D675C5C7B}.Release|x64.ActiveCfg = Release|Any CPU
 		{F64BB11D-ECAE-4641-B059-C15D675C5C7B}.Release|x86.ActiveCfg = Release|Any CPU
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Debug|Any CPU.Build.0 = Debug|x64
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Debug|x64.ActiveCfg = Debug|x64
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Debug|x64.Build.0 = Debug|x64
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Debug|x86.ActiveCfg = Debug|Win32
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Debug|x86.Build.0 = Debug|Win32
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Release|Any CPU.ActiveCfg = Release|x64
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Release|Any CPU.Build.0 = Release|x64
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Release|x64.ActiveCfg = Release|x64
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Release|x64.Build.0 = Release|x64
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Release|x86.ActiveCfg = Release|Win32
+		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

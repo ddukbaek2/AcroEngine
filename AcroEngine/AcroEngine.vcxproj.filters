@@ -93,9 +93,6 @@
     <ClCompile Include="AObject.cpp">
       <Filter>Bases</Filter>
     </ClCompile>
-    <ClCompile Include="AVariable.cpp">
-      <Filter>Variables</Filter>
-    </ClCompile>
     <ClCompile Include="AJson.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
