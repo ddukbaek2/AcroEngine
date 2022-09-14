@@ -115,7 +115,7 @@ namespace XPlatform
 	}
 
 	template<typename T>
-	inline bool TAllocator<T>::SetValue(INT32 Index, T Object)
+	inline BOOL8 TAllocator<T>::SetValue(INT32 Index, T Object)
 	{
 		if (Index < 0 || Index >= m_Size)
 			return false;

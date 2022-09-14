@@ -53,12 +53,12 @@ XPlatform::VOID AcroEngine::IOwner::operator = (AcroEngine::AObject target)
 	SetOwner(target);
 }
 
-//AcroEngine::IOwner::operator AObject()
-//{
-//	return m_Target;
-//}
-
-bool AcroEngine::IOwner::IsValid()
+AcroEngine::AObject AcroEngine::IOwner::operator -> ()
 {
-	return m_Target != nullptr;
+	return m_Target;
+}
+
+XPlatform::BOOL8 AcroEngine::IOwner::IsValid()
+{
+	return IsDestroyed(m_Target);
 }

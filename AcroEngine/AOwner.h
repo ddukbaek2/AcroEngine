@@ -23,7 +23,7 @@ namespace AcroEngine
 		XPlatform::VOID UnsetOwner();
 		AObject GetObject();
 		XPlatform::VOID operator = (AObject target);
-		//operator AObject();
-		bool IsValid();
+		AObject operator -> ();
+		XPlatform::BOOL8 IsValid();
 	};
 }
