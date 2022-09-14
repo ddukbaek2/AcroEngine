@@ -52,3 +52,13 @@ void AcroEngine::IOwner::operator = (AcroEngine::AObject target)
 {
 	SetOwner(target);
 }
+
+AcroEngine::IOwner::operator AObject()
+{
+	return m_Target;
+}
+
+bool AcroEngine::IOwner::IsValid()
+{
+	return m_Target != nullptr;
+}

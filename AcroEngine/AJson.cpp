@@ -8,5 +8,8 @@ AcroEngine::AObject AcroEngine::IJson::Deserialize(AcroEngine::AString String)
 
 AcroEngine::AString AcroEngine::IJson::Serialize(AcroEngine::AObject Object)
 {
+	AType type = Object->GetType();
+	//type->GetVariables();
+
 	return nullptr;
 }

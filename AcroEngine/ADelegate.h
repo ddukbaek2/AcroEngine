@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "AObject.h"
 
 
 namespace AcroEngine
@@ -8,10 +9,10 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 함수대리자.
 	/////////////////////////////////////////////////////////////////////////////
-	class IDelegate
+	class IDelegate : public IObject
 	{
 	private:
-		//AList m_Delegates;
+		AList m_Delegates;
 
 	public:
 		//static ADelegate* CreateDelegate()

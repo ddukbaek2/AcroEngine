@@ -110,4 +110,9 @@ namespace AcroEngine
 	static void LoadType();
 	static void UnloadType();
 	static AUnknownObject GetOrCreate(AType Type);
+	static AObject Instantiate(AType Type);
+	static void Destroy(AObject Object);
+	static bool IsDeadlyObject(AObject Object);
+	static bool Register(AObject Object);
+	static bool Unregister(AObject Object);
 }
