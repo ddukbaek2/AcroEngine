@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "AVariable.h"
 
 
 namespace AcroEngine
@@ -13,7 +14,7 @@ namespace AcroEngine
 		GENERATE_TYPE(IBoolean)
 
 	private:
-		XPlatform::BOOL m_Value;
+		XPlatform::BOOL8 m_Value;
 
 	public:
 		IBoolean() : IVariable(), m_Value(false)
@@ -24,12 +25,12 @@ namespace AcroEngine
 		{
 		}
 
-		void operator = (XPlatform::BOOL& Value)
+		XPlatform::VOID operator = (XPlatform::BOOL8& Value)
 		{
 			m_Value = Value;
 		}
 
-		operator XPlatform::BOOL& ()
+		operator XPlatform::BOOL8& ()
 		{
 			return m_Value;
 		}

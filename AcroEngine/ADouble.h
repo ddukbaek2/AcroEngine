@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "AVariable.h"
 
 
 namespace AcroEngine
@@ -14,7 +15,7 @@ namespace AcroEngine
 		XPlatform::FLOAT64 m_Value;
 
 	public:
-		void operator = (XPlatform::FLOAT64& Value)
+		XPlatform::VOID operator = (XPlatform::FLOAT64& Value)
 		{
 			m_Value = Value;
 		}

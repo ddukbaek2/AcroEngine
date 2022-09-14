@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "AVariable.h"
 #include "AInt.h"
 
 
@@ -21,7 +22,7 @@ namespace AcroEngine
 	public:
 		IList() : Base()
 		{
-			m_Allocator.Clear();
+			m_Allocator.Reset();
 			m_Count = 0;
 		}
 
@@ -30,7 +31,7 @@ namespace AcroEngine
 			m_Allocator.Resize(Capacity->ToInt());
 		}
 
-		void Add(AObject Object)
+		XPlatform::VOID Add(AObject Object)
 		{
 			auto size = m_Allocator.GetSize();
 			if (size == 0)
@@ -47,23 +48,49 @@ namespace AcroEngine
 			m_Allocator.SetValue(m_Count++, Object);
 		}
 
-		void Insert(AInt Index, AObject Object)
+		XPlatform::VOID Insert(AInt Index, AObject Object)
 		{
 		}
 
-		void Remove(AObject Object)
+		XPlatform::VOID Reset()
 		{
+			m_Allocator.Reset();
 		}
 
-		void RemoveAt(XPlatform::INT32 Index)
+		XPlatform::BOOL8 Remove(AObject Object)
 		{
-			//m_Allocator.SetValue(Index, nullptr);
+			XPlatform::INT32 Index = Find(Object);
+			if (Index == -1)
+				return false;
+
 			m_Allocator.Decrease(Index);
+			return true;
 		}
 
-		bool Contains()
+		XPlatform::BOOL8 RemoveAt(XPlatform::INT32 Index)
 		{
-			return false;
+			if (Index < 0 || Index >= m_Allocator.GetSize())
+				return false;
+
+			m_Allocator.Decrease(Index);
+			return true;
+		}
+
+		XPlatform::INT32 Find(AObject Object)
+		{
+			for (XPlatform::INT32 Index = 0; Index < m_Allocator.GetSize(); ++Index)
+			{
+				AObject Current = m_Allocator.GetValue(Index);
+				if (Current->Equals(Object))
+					return Index;
+			}
+
+			return -1;
+		}
+
+		XPlatform::BOOL8 Contains(AObject Object)
+		{
+			return Find(Object) != -1;
 		}
 
 		XPlatform::INT32 GetCount()

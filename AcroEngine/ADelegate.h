@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "AList.h"
 #include "AObject.h"
 
 
@@ -20,17 +21,18 @@ namespace AcroEngine
 		//	return nullptr;
 		//}
 
-		//void Add()
-		//{
-		//}
+		XPlatform::VOID Add(ADelegate Delegate)
+		{
+		}
 
-		//void Remove()
-		//{
-		//}
+		XPlatform::VOID Remove(ADelegate Delegate)
+		{
+		}
 
-		//void Clear()
-		//{
-		//}
+		XPlatform::VOID Reset()
+		{
+			//m_Delegates.
+		}
 
 		//AObject* Invoke(...)
 		//{

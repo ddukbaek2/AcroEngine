@@ -8,4 +8,9 @@
   <ItemGroup>
     <ClCompile Include="XPlatform.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{f6baccf5-adc1-433c-8332-6fec3ec31403}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
 </Project>

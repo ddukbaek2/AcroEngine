@@ -23,7 +23,7 @@ AcroEngine::IOwner::~IOwner()
 	UnsetOwner();
 }
 
-void AcroEngine::IOwner::SetOwner(AObject target)
+XPlatform::VOID AcroEngine::IOwner::SetOwner(AObject target)
 {
 	UnsetOwner();
 
@@ -34,7 +34,7 @@ void AcroEngine::IOwner::SetOwner(AObject target)
 	}
 }
 
-void AcroEngine::IOwner::UnsetOwner()
+XPlatform::VOID AcroEngine::IOwner::UnsetOwner()
 {
 	if (m_Target != nullptr)
 	{
@@ -48,15 +48,15 @@ AcroEngine::AObject AcroEngine::IOwner::GetObject()
 	return m_Target;
 }
 
-void AcroEngine::IOwner::operator = (AcroEngine::AObject target)
+XPlatform::VOID AcroEngine::IOwner::operator = (AcroEngine::AObject target)
 {
 	SetOwner(target);
 }
 
-AcroEngine::IOwner::operator AObject()
-{
-	return m_Target;
-}
+//AcroEngine::IOwner::operator AObject()
+//{
+//	return m_Target;
+//}
 
 bool AcroEngine::IOwner::IsValid()
 {

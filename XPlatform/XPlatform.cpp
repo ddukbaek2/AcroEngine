@@ -27,7 +27,7 @@ namespace XPlatform
 #else // ENGINE
 #endif
 
-	void XSound::Clear()
+	void XSound::Reset()
 	{
 	}
 	void XSound::Add(INT32 Identity, CHAR16* SoundFilePath)

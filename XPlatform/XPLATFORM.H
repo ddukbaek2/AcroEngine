@@ -13,52 +13,71 @@
 //#define XPLATFORM_PS5
 //#define XPLATFORM_XBOXSX
 
+#define INVALID -1
+
 namespace XPlatform
 {
-#if defined(XPLATFORM_WINDOWS)
+#if defined(XPLATFORM_WINDOWS) // WINDOWS
+	typedef void VOID;
 	typedef signed char INT8;
 	typedef unsigned char UINT8;
 	typedef signed short INT16;
 	typedef unsigned short UINT16;
 	typedef signed int INT32;
 	typedef unsigned int UINT32;
-	typedef bool BOOL;
+	typedef bool BOOL8;
+	typedef float FLOAT32;
+	typedef double FLOAT64;
+	typedef wchar_t CHAR16;
+	
+#elif defined(XPLATFORM_MAC) // MAC
+	typedef void VOID;
+	typedef signed char INT8;
+	typedef unsigned char UINT8;
+	typedef signed short INT16;
+	typedef unsigned short UINT16;
+	typedef signed int INT32;
+	typedef unsigned int UINT32;
+	typedef bool BOOL8;
 	typedef float FLOAT32;
 	typedef double FLOAT64;
 	typedef wchar_t CHAR16;
 
-#elif defined(XPLATFORM_ANDROID)
+#elif defined(XPLATFORM_ANDROID) // ANDORID
+	typedef void VOID;
 	typedef signed char INT8;
 	typedef unsigned char UINT8;
 	typedef signed short INT16;
 	typedef unsigned short UINT16;
 	typedef signed int INT32;
 	typedef unsigned int UINT32;
-	typedef bool BOOL;
+	typedef bool BOOL8;
 	typedef float FLOAT32;
 	typedef double FLOAT64;
 	typedef wchar_t CHAR16;
 
-#elif defined(XPLATFORM_IOS)
+#elif defined(XPLATFORM_IOS) // IOS
+	typedef void VOID;
 	typedef signed char INT8;
 	typedef unsigned char UINT8;
 	typedef signed short INT16;
 	typedef unsigned short UINT16;
 	typedef signed int INT32;
 	typedef unsigned int UINT32;
-	typedef bool BOOL;
+	typedef bool BOOL8;
 	typedef float FLOAT32;
 	typedef double FLOAT64;
 	typedef wchar_t CHAR16;
 
-#else // ENGINE
+#else // EDITOR
+	typedef void VOID;
 	typedef signed char INT8;
 	typedef unsigned char UINT8;
 	typedef signed short INT16;
 	typedef unsigned short UINT16;
 	typedef signed int INT32;
 	typedef unsigned int UINT32;
-	typedef bool BOOL;
+	typedef bool BOOL8;
 	typedef float FLOAT32;
 	typedef double FLOAT64;
 	typedef wchar_t CHAR16;
@@ -83,7 +102,7 @@ namespace XPlatform
 
 	struct XSound
 	{
-		static void Clear();
+		static void Reset();
 		static void Add(INT32 Identity, CHAR16* SoundFilePath);
 		static void Remove(INT32 Identity);
 		static void Play(INT32 Identity);

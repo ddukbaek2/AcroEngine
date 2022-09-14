@@ -2,6 +2,7 @@
 
 #include "AcroEngine.h"
 #include "AObject.h"
+#include "AString.h"
 
 
 namespace AcroEngine

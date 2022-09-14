@@ -19,21 +19,21 @@ namespace XPlatform
 		TAllocator();
 		virtual ~TAllocator();
 
-		void Clear();
-		void Resize(INT32 size);
+		VOID Reset();
+		VOID Resize(INT32 size);
 		INT32 GetSize();
 
 		// -1
-		void Increase(INT32 Index = -1);
+		VOID Increase(INT32 Index = -1);
 
 		// +1
-		void Decrease(INT32 Index = -1);
+		VOID Decrease(INT32 Index = -1);
 
-		BOOL SetValue(INT32 Index, T Object);
-		T* GetValue(INT32 Index);
+		BOOL8 SetValue(INT32 Index, T Object);
+		T GetValue(INT32 Index);
 
-		T* Begin() { return m_Begin; }
-		T* End() { return m_Begin + m_Size; }
+		inline T* Begin() { return m_Begin; }
+		inline T* End() { return m_Begin + m_Size; }
 	};
 
 	template<typename T>
@@ -54,7 +54,7 @@ namespace XPlatform
 	}
 
 	template<typename T>
-	inline void TAllocator<T>::Clear()
+	inline void TAllocator<T>::Reset()
 	{
 		INT32 elementSize = sizeof(T);
 
@@ -126,7 +126,7 @@ namespace XPlatform
 
 
 	template<typename T>
-	inline T* TAllocator<T>::GetValue(INT32 Index)
+	inline T TAllocator<T>::GetValue(INT32 Index)
 	{
 		if (Index < 0 || Index >= m_Size)
 			return nullptr;

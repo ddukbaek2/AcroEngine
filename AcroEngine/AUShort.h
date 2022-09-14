@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "AVariable.h"
 
 
 namespace AcroEngine
@@ -24,7 +25,7 @@ namespace AcroEngine
 		{
 		}
 
-		void operator = (XPlatform::UINT16& Value)
+		XPlatform::VOID operator = (XPlatform::UINT16& Value)
 		{
 			m_Value = Value;
 		}

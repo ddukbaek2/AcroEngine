@@ -74,7 +74,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 클래스포인터 전방선언 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	typedef void* AUnknownObject;
+	typedef XPlatform::VOID* AUnknownObject;
 	typedef IObject* AObject;
 	typedef IType* AType;
 	typedef IOwner* AOwner;
@@ -107,12 +107,8 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 함수 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	static void LoadType();
-	static void UnloadType();
-	static AUnknownObject GetOrCreate(AType Type);
 	static AObject Instantiate(AType Type);
-	static void Destroy(AObject Object);
-	static bool IsDeadlyObject(AObject Object);
-	static bool Register(AObject Object);
-	static bool Unregister(AObject Object);
+	static XPlatform::VOID Destroy(AObject Object);
+	static XPlatform::VOID DestroyImmediate(AObject Object);
+	static XPlatform::BOOL8 IsDestroyed(AObject Object);
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "AVariable.h"
 
 
 namespace AcroEngine
@@ -24,7 +25,7 @@ namespace AcroEngine
 		{
 		}
 
-		void operator = (XPlatform::INT32& Value)
+		XPlatform::VOID operator = (XPlatform::INT32& Value)
 		{
 			m_Value = Value;
 		}

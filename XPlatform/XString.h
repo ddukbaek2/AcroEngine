@@ -16,27 +16,27 @@ namespace XPlatform
 	public:
 		XString()
 		{
-			Clear();
+			Reset();
 		}
 
 		XString(CHAR16 text[])
 		{
-			Clear();
+			Reset();
 			Set(text);
 		}
 
 		XString(XString& string)
 		{
-			Clear();
+			Reset();
 			Set(string.m_Data.Begin());
 		}
 
 		virtual ~XString()
 		{
-			m_Data.Clear();
+			m_Data.Reset();
 		}
 
-		void Clear()
+		void Reset()
 		{
 			m_Data.Resize(32);
 			for (INT32 i = 0; i < m_Data.GetSize(); ++i)

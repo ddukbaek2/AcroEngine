@@ -3,6 +3,7 @@
 #include "AcroEngine.h"
 #include "AObject.h"
 
+
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
@@ -18,9 +19,11 @@ namespace AcroEngine
 		IOwner(AObject target);
 		IOwner(AOwner Owner);
 		virtual ~IOwner();
-		void SetOwner(AObject target);
-		void UnsetOwner();
+		XPlatform::VOID SetOwner(AObject target);
+		XPlatform::VOID UnsetOwner();
 		AObject GetObject();
-		void operator = (AObject target);
+		XPlatform::VOID operator = (AObject target);
+		//operator AObject();
+		bool IsValid();
 	};
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "AVariable.h"
 #include "AInt.h"
 
 
@@ -17,12 +18,12 @@ namespace AcroEngine
 	public:
 		IString()
 		{
-			m_Value.Clear();
+			m_Value.Reset();
 		}
 
 		IString(XPlatform::CHAR16* Value)
 		{
-			m_Value.Clear();
+			m_Value.Reset();
 			m_Value.Resize(sizeof(Value));
 			for (XPlatform::INT32 i = 0; i < m_Value.GetSize(); ++i)
 			{
@@ -32,7 +33,7 @@ namespace AcroEngine
 
 		virtual ~IString()
 		{
-			m_Value.Clear();
+			m_Value.Reset();
 		}
 	};
 }

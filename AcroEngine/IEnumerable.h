@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "IEnumerator.h"
 
 
 namespace AcroEngine

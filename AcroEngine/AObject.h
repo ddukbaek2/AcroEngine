@@ -16,19 +16,21 @@ namespace AcroEngine
 	private:
 		XPlatform::INT32 m_ID;
 		XPlatform::INT32 m_ReferenceCount;
-		XPlatform::BOOL m_IsDestroyed;
+		XPlatform::BOOL8 m_IsDestroyed;
 
 	public:
 		IObject();
 		virtual ~IObject();
 		virtual AString ToString();
+		virtual XPlatform::BOOL8 Equals(AObject Object);
+		virtual XPlatform::INT32 GetHashCode();
 
-		static void IncreaseReference(AObject Object);
-		static void DecreaseReference(AObject Object);
-		static AObject Instantiate(AType Type);
-		static void Destroy(AObject Object);
-		static void DestroyImmediate(AObject Object);
-		//static bool IsDeadlyObject();
-		//static AType* GetType();
+		static XPlatform::VOID IncreaseReference(AObject Object);
+		static XPlatform::VOID DecreaseReference(AObject Object);
+
+		friend static AObject Instantiate(AType Type);
+		friend static XPlatform::VOID Destroy(AObject Object);
+		friend static XPlatform::VOID DestroyImmediate(AObject Object);
+		friend static XPlatform::BOOL8 IsDestroyed(AObject Object);
 	};
 }

@@ -23,7 +23,7 @@ AcroEngine::IObject::~IObject()
 /////////////////////////////////////////////////////////////////////////////
 // @ 레퍼런스 카운트 증가.
 /////////////////////////////////////////////////////////////////////////////
-void AcroEngine::IObject::IncreaseReference(AObject Object)
+XPlatform::VOID AcroEngine::IObject::IncreaseReference(AObject Object)
 {
     if (Object != nullptr && !Object->m_IsDestroyed)
     {
@@ -34,7 +34,7 @@ void AcroEngine::IObject::IncreaseReference(AObject Object)
 /////////////////////////////////////////////////////////////////////////////
 // @ 레퍼런스 카운트 감소.
 /////////////////////////////////////////////////////////////////////////////
-void AcroEngine::IObject::DecreaseReference(AObject Object)
+XPlatform::VOID AcroEngine::IObject::DecreaseReference(AObject Object)
 {
     if (Object != nullptr && !Object->m_IsDestroyed)
     {
@@ -56,36 +56,22 @@ AcroEngine::AString AcroEngine::IObject::ToString()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// @ 생성.
+// @
 /////////////////////////////////////////////////////////////////////////////
-AcroEngine::AObject AcroEngine::IObject::Instantiate(AcroEngine::AType Class)
+XPlatform::BOOL8 AcroEngine::IObject::Equals(AObject Object)
 {
-    return nullptr;
+    if (Object == nullptr)
+        return false;
+
+    return m_ID == Object->m_ID;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// @ 파괴.
+// @
 /////////////////////////////////////////////////////////////////////////////
-void AcroEngine::IObject::Destroy(AcroEngine::AObject Object)
+XPlatform::INT32 AcroEngine::IObject::GetHashCode()
 {
-    if (Object != nullptr && !Object->m_IsDestroyed)
-    {
-        Object->m_ReferenceCount = 0;
-        Object->m_IsDestroyed = true;
-    }
-}
-
-
-/////////////////////////////////////////////////////////////////////////////
-// @ 즉시 파괴.
-/////////////////////////////////////////////////////////////////////////////
-void AcroEngine::IObject::DestroyImmediate(AcroEngine::AObject Object)
-{
-    if (Object != nullptr)
-    {
-        delete Object;
-        Object = nullptr;
-    }
+    return m_ID;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
