@@ -64,6 +64,7 @@ namespace AcroEngine
 	class IVector2;
 	class IVector3;
 	class IVector4;
+	class IArray;
 	class IList;
 	class IQueue;
 	class IStack;
@@ -93,12 +94,13 @@ namespace AcroEngine
 	typedef IVector2* AVector2;
 	typedef IVector3* AVector3;
 	typedef IVector4* AVector4;
+	typedef IArray* AArray;
 	typedef IList* AList;
 	typedef IQueue* AQueue;
 	typedef IStack* AStack;
 	typedef ISet* ASet;
 	typedef IDictionary* ADictionary;
-
+	
 	//class AFlag;
 	//class AEnum;
 	//class ACollection;
@@ -111,4 +113,5 @@ namespace AcroEngine
 	static XPlatform::VOID Destroy(AObject Object);
 	static XPlatform::VOID DestroyImmediate(AObject Object);
 	static XPlatform::BOOL8 IsDestroyed(AObject Object);
+	static AString Format(const XPlatform::CHAR16 Format[], AArray Arguments);
 }

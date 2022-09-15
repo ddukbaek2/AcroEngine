@@ -1,6 +1,7 @@
 ﻿#include "AcroEngine.h"
 #include "AObject.h"
 #include "ADelegate.h"
+#include "AArray.h"
 
 
 namespace AcroEngine
@@ -122,5 +123,13 @@ namespace AcroEngine
 	XPlatform::BOOL8 IsDestroyed(AObject Object)
 	{
 		return Object == nullptr || Object->m_IsDestroyed;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 문자열 포맷.
+	/////////////////////////////////////////////////////////////////////////////
+	AString Format(const XPlatform::CHAR16 Format[], AArray Arguments)
+	{
+		return nullptr;
 	}
 }
