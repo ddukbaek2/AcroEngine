@@ -108,7 +108,8 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	XPlatform::VOID DestroyImmediate(AObject Object)
 	{
-		if (Object != nullptr)
+		// 이미 파괴가 예약잡힌 오브젝트는 제외한다.
+		if (Object != nullptr && !Object->m_IsDestroyed)
 		{
 			delete Object;
 			Object = nullptr;
