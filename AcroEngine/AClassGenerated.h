@@ -20,7 +20,7 @@ namespace AcroEngine
 	{
 	public:
 
-		inline const wchar_t* GetTypeName()
+		inline const wchar_t* GetName()
 		{
 			//DECLARE_ACLASSGENERATED(AObject)
 			//DECLARE_ACLASSGENERATED(AString)
