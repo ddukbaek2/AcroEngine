@@ -11,8 +11,6 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class IArray : public IVariable
 	{
-		GENERATE_TYPE(IArray)
-
 	private:
 		XPlatform::BOOL8 m_Value;
 

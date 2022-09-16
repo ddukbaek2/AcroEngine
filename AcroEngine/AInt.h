@@ -11,8 +11,6 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class IInt : public IVariable
 	{
-		GENERATE_TYPE(IInt)
-
 	private:
 		XPlatform::INT32 m_Value;
 

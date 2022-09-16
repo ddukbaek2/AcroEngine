@@ -11,8 +11,6 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class IUInt : public IVariable
 	{
-		GENERATE_TYPE(IUInt)
-
 	private:
 		XPlatform::UINT32 m_Value;
 

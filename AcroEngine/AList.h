@@ -12,21 +12,18 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class IList : public IVariable
 	{
-		GENERATE_BASE(IList, IVariable)
-		GENERATE_TYPE(IList)
-
 	private:
 		XPlatform::TAllocator<AObject> m_Allocator;
 		XPlatform::INT32 m_Count;
 
 	public:
-		IList() : Base()
+		IList() : IVariable()
 		{
 			m_Allocator.Reset();
 			m_Count = 0;
 		}
 
-		IList(AInt Capacity) : This()
+		IList(AInt Capacity) : IList()
 		{
 			m_Allocator.Resize(Capacity->ToInt());
 		}

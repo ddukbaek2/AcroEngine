@@ -13,6 +13,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AcroTool", "AcroTool\AcroTo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AcroEditor", "AcroEditor\AcroEditor.vcxproj", "{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProjectExample", "ProjectExample\ProjectExample.vcxproj", "{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,18 @@ Global
 		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Release|x64.Build.0 = Release|x64
 		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Release|x86.ActiveCfg = Release|Win32
 		{87A2AEB4-1F32-4BE5-8B29-B8AA4B62DCAD}.Release|x86.Build.0 = Release|Win32
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Debug|Any CPU.Build.0 = Debug|x64
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Debug|x64.ActiveCfg = Debug|x64
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Debug|x64.Build.0 = Debug|x64
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Debug|x86.ActiveCfg = Debug|Win32
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Debug|x86.Build.0 = Debug|Win32
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Release|Any CPU.ActiveCfg = Release|x64
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Release|Any CPU.Build.0 = Release|x64
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Release|x64.ActiveCfg = Release|x64
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Release|x64.Build.0 = Release|x64
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Release|x86.ActiveCfg = Release|Win32
+		{170DA8FF-898B-49D8-A4B0-EE930D0E0F33}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,15 +1,19 @@
 #include "AJson.h"
+#include "AString.h"
 
 
-AcroEngine::AObject AcroEngine::IJson::Deserialize(AcroEngine::AString String)
+namespace AcroEngine
 {
-	return nullptr;
-}
+	AObject IJson::Deserialize(AString String)
+	{
+		return nullptr;
+	}
 
-AcroEngine::AString AcroEngine::IJson::Serialize(AcroEngine::AObject Object)
-{
-	AType type = Object->GetType();
-	//type->GetVariables();
+	AString IJson::Serialize(AObject Object)
+	{
+		//AType type = Object->GetType();
+		//type->GetVariables();
 
-	return nullptr;
+		return nullptr;
+	}
 }

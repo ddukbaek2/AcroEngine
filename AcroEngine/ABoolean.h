@@ -11,8 +11,6 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class IBoolean : public IVariable
 	{
-		GENERATE_TYPE(IBoolean)
-
 	private:
 		XPlatform::BOOL8 m_Value;
 

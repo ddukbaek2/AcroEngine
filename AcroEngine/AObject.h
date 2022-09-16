@@ -11,8 +11,6 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class IObject
 	{
-		GENERATE_TYPE(IObject)
-
 	private:
 		XPlatform::INT32 m_ID;
 		XPlatform::INT32 m_ReferenceCount;

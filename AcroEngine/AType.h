@@ -21,6 +21,6 @@ namespace AcroEngine
 		virtual ADictionary GetVariables() { return nullptr; }
 		virtual ADictionary GetMethods() { return nullptr; }
 
-		static AType GetType(const XPlatform::CHAR16 ClassName[]);
+		friend static AType GetType(const XPlatform::CHAR16 ClassName[]);
 	};
 }

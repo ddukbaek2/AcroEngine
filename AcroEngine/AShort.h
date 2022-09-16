@@ -11,8 +11,6 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class IShort : public IVariable
 	{
-		GENERATE_TYPE(IShort)
-
 	private:
 		XPlatform::INT16 m_Value;
 

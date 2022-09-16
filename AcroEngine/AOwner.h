@@ -19,6 +19,7 @@ namespace AcroEngine
 		IOwner(AObject target);
 		IOwner(AOwner Owner);
 		virtual ~IOwner();
+
 		XPlatform::VOID SetOwner(AObject target);
 		XPlatform::VOID UnsetOwner();
 		AObject GetObject();
