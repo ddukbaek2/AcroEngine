@@ -12,5 +12,12 @@ namespace AcroEngine
 	class IVariable : public IObject
 	{
 	public:
+		IVariable() : IObject()
+		{
+		}
+
+		virtual ~IVariable()
+		{
+		}
 	};
 }

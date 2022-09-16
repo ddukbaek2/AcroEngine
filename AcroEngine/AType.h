@@ -1,7 +1,8 @@
 #pragma once
 
 #include "AcroEngine.h"
-
+#include "AString.h"
+#include "ADictionary.h"
 
 namespace AcroEngine
 {
@@ -11,15 +12,19 @@ namespace AcroEngine
 	class IType
 	{
 	private:
-	public:
-		IType(const XPlatform::CHAR16 ClassName[]) {}
-		virtual ~IType() {}
+		AString	m_Name;
+		ADictionary m_Variables;
+		ADictionary m_Methods;
 
-		virtual XPlatform::BOOL8 IsParent(AType Class) { return false; }
-		virtual XPlatform::BOOL8 IsChildren(AType Class) { return false; }
-		virtual AString GetTypeName() { return nullptr; }
-		virtual ADictionary GetVariables() { return nullptr; }
-		virtual ADictionary GetMethods() { return nullptr; }
+	public:
+		IType();
+		virtual ~IType();
+
+		virtual XPlatform::BOOL8 IsParent(AType Class);
+		virtual XPlatform::BOOL8 IsChildren(AType Class);
+		virtual AString GetName();
+		virtual ADictionary GetVariables();
+		virtual ADictionary GetMethods();
 
 		friend AType GetType(const XPlatform::CHAR16 ClassName[]);
 	};

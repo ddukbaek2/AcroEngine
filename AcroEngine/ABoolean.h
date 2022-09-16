@@ -15,20 +15,22 @@ namespace AcroEngine
 		XPlatform::BOOL8 m_Value;
 
 	public:
-		IBoolean() : IVariable(), m_Value(false)
+		IBoolean() : IVariable()
 		{
+			m_Value = false;
 		}
 
 		virtual ~IBoolean()
 		{
+
 		}
 
-		XPlatform::VOID operator = (const XPlatform::BOOL8& Value)
+		XPlatform::VOID operator = (XPlatform::BOOL8 Value)
 		{
 			m_Value = Value;
 		}
 
-		operator XPlatform::BOOL8& ()
+		operator XPlatform::BOOL8 ()
 		{
 			return m_Value;
 		}

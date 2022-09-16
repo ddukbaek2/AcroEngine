@@ -13,10 +13,12 @@
 //#define XPLATFORM_PS5
 //#define XPLATFORM_XBOXSX
 
-#define INVALID -1
 
 namespace XPlatform
 {
+	#define INVALID -1
+	#define TEXT(Text) L#Text
+
 #if defined(XPLATFORM_WINDOWS) // WINDOWS
 	typedef void VOID;
 	typedef signed char INT8;
@@ -84,7 +86,9 @@ namespace XPlatform
 
 #endif
 
-	VOID* ZeroMemory(VOID* Source, INT32 Size);
+	VOID* CreateMemory(UINT32 Length);
+	VOID DeleteMemory(VOID* Pointer);
+	VOID FillMemory(VOID* Source, UINT8 Value, UINT32 Length);
 
 	struct XMemory
 	{

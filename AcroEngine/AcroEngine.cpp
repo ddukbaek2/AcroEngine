@@ -124,7 +124,7 @@ namespace AcroEngine
 		Object->m_ID = 1;
 		Object->m_IsDestroyed = false;
 		Object->m_ReferenceCount = 1;
-		g_ObjectManager.Add(Object);
+		//g_ObjectManager.Add(Object);
 		return Object;
 	}
 
@@ -150,7 +150,7 @@ namespace AcroEngine
 		// 이미 파괴가 예약잡힌 오브젝트는 제외한다.
 		if (Object != nullptr && !Object->m_IsDestroyed)
 		{
-			delete Object;
+			delete(Object);
 			Object = nullptr;
 		}
 	}

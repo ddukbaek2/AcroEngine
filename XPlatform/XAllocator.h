@@ -12,8 +12,8 @@ namespace XPlatform
 	class XAllocator
 	{
 	private:
-		T* m_Begin;
-		INT32 m_Size;
+		UINT8* m_Memory;
+		UINT32 m_Size;
 
 	public:
 		XAllocator();
@@ -32,83 +32,76 @@ namespace XPlatform
 		BOOL8 SetValue(INT32 Index, T Object);
 		T GetValue(INT32 Index);
 
-		inline T* Begin() { return m_Begin; }
-		inline T* End() { return m_Begin + m_Size; }
+		inline T* Begin() { return (T*)m_Memory; }
+		inline T* End() { return ((T*)m_Memory) + m_Size; }
 	};
 
 	template<typename T>
 	inline XAllocator<T>::XAllocator()
 	{
-		m_Begin = nullptr;
+		m_Memory = nullptr;
 		m_Size = 0;
 	}
 
 	template<typename T>
 	inline XAllocator<T>::~XAllocator()
 	{
-		if (m_Begin != nullptr)
-		{
-			delete[] m_Begin;
-			m_Begin = nullptr;
-		}
+		DeleteMemory((VOID*)m_Memory);
+		m_Memory = nullptr;
+		m_Size = 0;
 	}
 
 	template<typename T>
 	inline void XAllocator<T>::Reset(BOOL8 resizing)
 	{
-		if (m_Begin == nullptr)
+		if (m_Memory == nullptr)
 			return;
 
 		if (resizing)
 		{
-			if (m_Begin != nullptr)
-			{
-				delete[] m_Begin;
-				m_Begin = nullptr;
-			}
+			DeleteMemory((VOID*)m_Memory);
+			m_Memory = nullptr;
+			m_Size = 0;
 		}
 		else
 		{
-			UINT8* temp = (UINT8*)m_Begin;
-			UINT32 length = m_Size * sizeof(T);
-			for (UINT32 Index = 0; Index < length; ++Index)
-				temp[Index] = 1;
+			FillMemory((VOID*)m_Memory, 1, m_Size * sizeof(T));
 		}
-
-		//m_Begin = (T*)ZeroMemory(m_Begin, sizeof(T) * m_Size);
 	}
 
 	template<typename T>
 	inline void XAllocator<T>::Resize(UINT32 Size)
 	{
 		if (m_Size == Size)
-			return;
+			return; 
 
-		T* begin = new T[Size];
-		UINT32 length = Size * sizeof(T);
-		UINT8* temp = (UINT8*)begin;
-		for (UINT32 Index = 0; Index < length; ++Index)
-			temp[Index] = 1;
+		int a[32];
+		FillMemory((VOID*)a, 1, 4 * 32);
 
-		//temp = (T*)ZeroMemory(temp, sizeof(T) * Size);
+		UINT32 typeSize = sizeof(T);
+		UINT8* memory = (UINT8*)CreateMemory(Size * typeSize);
+		FillMemory((VOID*)memory, 1, Size * typeSize);
+
+		//temp = (T*)FillMemory(temp, sizeof(T) * Size);
 
 		if (Size > m_Size)
 		{
-			for (INT32 Index = 0; Index < m_Size; Index += sizeof(T))
+			for (INT32 Index = 0; Index < sizeof(T) * m_Size; ++Index)
 			{
-				begin[Index] = m_Begin[Index];
+				((T*)memory)[Index] = ((T*)m_Memory)[Index];
 			}
 		}
 		else if (Size < m_Size)
 		{
-			for (INT32 Index = 0; Index < Size; Index += sizeof(T))
+			for (INT32 Index = 0; Index < sizeof(T) * Size; ++Index)
 			{
-				begin[Index] = m_Begin[Index];
+				((T*)memory)[Index] = ((T*)m_Memory)[Index];
 			}
 		}
 
 		m_Size = Size;
-		m_Begin = begin;
+		DeleteMemory((VOID*)m_Memory);
+		m_Memory = memory;
 	}
 
 	template<typename T>
@@ -150,7 +143,7 @@ namespace XPlatform
 		if (Index < 0 || Index >= m_Size)
 			return false;
 
-		m_Begin[Index] = Object;
+		((T*)m_Memory)[Index] = Object;
 		return true;
 	}
 
@@ -161,6 +154,6 @@ namespace XPlatform
 		if (Index < 0 || Index >= m_Size)
 			return nullptr;
 
-		return m_Begin[Index];
+		 return ((T*)m_Memory)[Index];
 	}
 }

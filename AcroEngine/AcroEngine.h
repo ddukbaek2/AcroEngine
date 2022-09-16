@@ -9,9 +9,10 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 디파인 매크로 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	#define A_INSTANTIATE(Class) Instantiate(A_TYPEOF(Class))
 	#define A_TYPEOF(Class) GetType(L#Class)
+	#define A_INSTANTIATE(Class) (Class)Instantiate(A_TYPEOF(Class))
 	#define A_DESTROY(Object) if (Object != nullptr) { Destroy(Object); Object = nullptr; }
+	#define A_DESTROYIMMEDIATE(Object) if (Object != nullptr) { DestroyImmediate(Object); Object = nullptr; }
 
 
 	/////////////////////////////////////////////////////////////////////////////

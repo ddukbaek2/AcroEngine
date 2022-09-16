@@ -64,14 +64,27 @@ namespace XPlatform
 	{
 	}
 
-	VOID* ZeroMemory(VOID* Source, INT32 Size)
+	VOID* CreateMemory(UINT32 Length)
 	{
-		UINT8* temp = (UINT8*)Source;
-		for (INT32 Index = 0; Index < Size; ++Index)
-		{
-			temp[Index] = 0;
-		}
+		return new UINT8[Length];
+	}
 
-		return Source;
+	VOID DeleteMemory(VOID* Pointer)
+	{
+		if (Pointer != nullptr)
+		{
+			delete[](Pointer);
+		}
+	}
+
+	VOID FillMemory(VOID* Source, UINT8 Value, UINT32 Length)
+	{
+		return;
+
+		UINT8* temp = (UINT8*)Source;
+		for (UINT32 Index = 0; Index < Length; ++Index)
+		{
+			temp[Index] = Value;
+		}
 	}
 }

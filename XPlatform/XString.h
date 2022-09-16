@@ -1,9 +1,7 @@
 #pragma once
 
 #include "XPlatform.h"
-#include "TAllocator.h"
-
-#define TEXT(Text) L#Text
+#include "XAllocator.h"
 
 
 namespace XPlatform
@@ -11,7 +9,7 @@ namespace XPlatform
 	class XString
 	{
 	private:
-		TAllocator<CHAR16> m_Data;
+		XAllocator<CHAR16> m_Data;
 
 	public:
 		XString()
