@@ -23,12 +23,12 @@ namespace AcroEngine
 		virtual XPlatform::BOOL8 Equals(AObject Object);
 		virtual XPlatform::INT32 GetHashCode();
 
-		static XPlatform::VOID IncreaseReference(AObject Object);
-		static XPlatform::VOID DecreaseReference(AObject Object);
+		friend XPlatform::VOID IncreaseReference(AObject Object);
+		friend XPlatform::VOID DecreaseReference(AObject Object);
 
-		friend static AObject Instantiate(AType Type);
-		friend static XPlatform::VOID Destroy(AObject Object);
-		friend static XPlatform::VOID DestroyImmediate(AObject Object);
-		friend static XPlatform::BOOL8 IsDestroyed(AObject Object);
+		friend AObject Instantiate(AType Type);
+		friend XPlatform::VOID Destroy(AObject Object);
+		friend XPlatform::VOID DestroyImmediate(AObject Object);
+		friend XPlatform::BOOL8 IsDestroyed(AObject Object);
 	};
 }

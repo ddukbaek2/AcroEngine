@@ -23,33 +23,6 @@ namespace AcroEngine
     }
 
     /////////////////////////////////////////////////////////////////////////////
-    // @ 레퍼런스 카운트 증가.
-    /////////////////////////////////////////////////////////////////////////////
-    XPlatform::VOID IObject::IncreaseReference(AObject Object)
-    {
-        if (Object != nullptr && !Object->m_IsDestroyed)
-        {
-            ++Object->m_ReferenceCount;
-        }
-    }
-
-    /////////////////////////////////////////////////////////////////////////////
-    // @ 레퍼런스 카운트 감소.
-    /////////////////////////////////////////////////////////////////////////////
-    XPlatform::VOID IObject::DecreaseReference(AObject Object)
-    {
-        if (Object != nullptr && !Object->m_IsDestroyed)
-        {
-            --Object->m_ReferenceCount;
-
-            if (Object->m_ReferenceCount <= 0)
-            {
-                Object->m_IsDestroyed = true;
-            }
-        }
-    }
-
-    /////////////////////////////////////////////////////////////////////////////
     // @
     /////////////////////////////////////////////////////////////////////////////
     AString IObject::ToString()

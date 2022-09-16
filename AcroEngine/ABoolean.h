@@ -23,7 +23,7 @@ namespace AcroEngine
 		{
 		}
 
-		XPlatform::VOID operator = (XPlatform::BOOL8& Value)
+		XPlatform::VOID operator = (const XPlatform::BOOL8& Value)
 		{
 			m_Value = Value;
 		}

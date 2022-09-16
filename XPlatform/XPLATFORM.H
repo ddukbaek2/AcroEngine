@@ -84,6 +84,8 @@ namespace XPlatform
 
 #endif
 
+	VOID* ZeroMemory(VOID* Source, INT32 Size);
+
 	struct XMemory
 	{
 	};
@@ -102,17 +104,17 @@ namespace XPlatform
 
 	struct XSound
 	{
-		static void Reset();
-		static void Add(INT32 Identity, CHAR16* SoundFilePath);
-		static void Remove(INT32 Identity);
-		static void Play(INT32 Identity);
-		static void Pause(INT32 Identity);
-		static void Resume(INT32 Identity);
-		static void Stop(INT32 Identity);
-		static void SetPosition(INT32 Identity, INT32 Time);
-		static INT32 GetPosition(INT32 Identity);
-		static void SetVolume(INT32 Identity, INT32 Volume);
-		static void GetVolume(INT32 Identity);
+		void Reset();
+		void Add(INT32 Identity, CHAR16* SoundFilePath);
+		void Remove(INT32 Identity);
+		void Play(INT32 Identity);
+		void Pause(INT32 Identity);
+		void Resume(INT32 Identity);
+		void Stop(INT32 Identity);
+		void SetPosition(INT32 Identity, INT32 Time);
+		INT32 GetPosition(INT32 Identity);
+		void SetVolume(INT32 Identity, INT32 Volume);
+		void GetVolume(INT32 Identity);
 	};
 
 	struct XVideo

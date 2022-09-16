@@ -13,7 +13,7 @@ namespace AcroEngine
 	class IList : public IVariable
 	{
 	private:
-		XPlatform::TAllocator<AObject> m_Allocator;
+		XPlatform::XAllocator<AObject> m_Allocator;
 		XPlatform::INT32 m_Count;
 
 	public:

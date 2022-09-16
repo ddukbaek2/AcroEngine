@@ -13,7 +13,7 @@ namespace AcroEngine
 	class IString : public IVariable
 	{
 	private:
-		XPlatform::TAllocator<XPlatform::CHAR16> m_Value;
+		XPlatform::XAllocator<XPlatform::CHAR16> m_Value;
 
 	public:
 		IString()

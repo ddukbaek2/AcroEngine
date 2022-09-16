@@ -12,7 +12,7 @@ namespace AcroEngine
 	class CRC32
 	{
 	public:
-		static XPlatform::VOID CreateTable(XPlatform::UINT32(&table)[256])
+		XPlatform::VOID CreateTable(XPlatform::UINT32(&table)[256])
 		{
 			XPlatform::UINT32 polynomial = 0xEDB88320;
 			for (XPlatform::UINT32 i = 0; i < 256; i++)
@@ -31,7 +31,7 @@ namespace AcroEngine
 			}
 		}
 
-		static XPlatform::UINT32 ComputeHash(XPlatform::UINT32(&table)[256], XPlatform::UINT32 initial, const XPlatform::VOID* buf, XPlatform::UINT32 len)
+		XPlatform::UINT32 ComputeHash(XPlatform::UINT32(&table)[256], XPlatform::UINT32 initial, const XPlatform::VOID* buf, XPlatform::UINT32 len)
 		{
 			XPlatform::UINT32 c = initial ^ 0xFFFFFFFF;
 			const XPlatform::UINT8* u = static_cast<const XPlatform::UINT8*>(buf);
@@ -49,7 +49,7 @@ namespace AcroEngine
 	class ObjectManager
 	{
 	private:
-		XPlatform::TAllocator<AObject> m_Objects;
+		XPlatform::XAllocator<AObject> m_Objects;
 
 	public:
 		ObjectManager()
@@ -74,6 +74,35 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	static ObjectManager g_ObjectManager;
 	static CRC32 g_CRC32;
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 레퍼런스 카운트 증가.
+	/////////////////////////////////////////////////////////////////////////////
+	XPlatform::VOID IncreaseReference(AObject Object)
+	{
+		if (Object != nullptr && !Object->m_IsDestroyed)
+		{
+			++Object->m_ReferenceCount;
+		}
+	}
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 레퍼런스 카운트 감소.
+	/////////////////////////////////////////////////////////////////////////////
+	XPlatform::VOID DecreaseReference(AObject Object)
+	{
+		if (Object != nullptr && !Object->m_IsDestroyed)
+		{
+			--Object->m_ReferenceCount;
+
+			if (Object->m_ReferenceCount <= 0)
+			{
+				Object->m_IsDestroyed = true;
+			}
+		}
+	}
 
 
 	/////////////////////////////////////////////////////////////////////////////

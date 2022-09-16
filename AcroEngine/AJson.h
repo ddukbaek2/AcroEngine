@@ -18,7 +18,7 @@ namespace AcroEngine
 		IJson() {}
 		virtual ~IJson() {}
 
-		static AObject Deserialize(AString String);
-		static AString Serialize(AObject IObject);
+		AObject Deserialize(AString String);
+		AString Serialize(AObject IObject);
 	};
 }

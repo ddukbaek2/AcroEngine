@@ -32,7 +32,7 @@ namespace AcroEngine
 		if (target != nullptr)
 		{
 			m_Target = const_cast<AObject>(target);
-			IObject::IncreaseReference(m_Target);
+			IncreaseReference(m_Target);
 		}
 	}
 
@@ -40,7 +40,7 @@ namespace AcroEngine
 	{
 		if (m_Target != nullptr)
 		{
-			IObject::DecreaseReference(m_Target);
+			DecreaseReference(m_Target);
 			m_Target = nullptr;
 		}
 	}
@@ -62,6 +62,7 @@ namespace AcroEngine
 
 	XPlatform::BOOL8 IOwner::IsValid()
 	{
-		return AcroEngine::IsDestroyed(m_Target);
+		//return AcroEngine::IsDestroyed(m_Target);
+		return false;
 	}
 }

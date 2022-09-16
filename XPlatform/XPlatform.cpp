@@ -55,10 +55,23 @@ namespace XPlatform
 	{
 		return INT32();
 	}
-	void XSound::SetVolume(INT32 Identity, INT32 Volume)
+
+	VOID XSound::SetVolume(INT32 Identity, INT32 Volume)
 	{
 	}
-	void XSound::GetVolume(INT32 Identity)
+
+	VOID XSound::GetVolume(INT32 Identity)
 	{
+	}
+
+	VOID* ZeroMemory(VOID* Source, INT32 Size)
+	{
+		UINT8* temp = (UINT8*)Source;
+		for (INT32 Index = 0; Index < Size; ++Index)
+		{
+			temp[Index] = 0;
+		}
+
+		return Source;
 	}
 }
