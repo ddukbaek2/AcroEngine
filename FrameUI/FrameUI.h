@@ -1,17 +1,28 @@
 #pragma once
 
 #include "../AcroEngine/AcroEngine.h"
-
+#include "../AcroEngine/AObject.h"
+#include "../AcroEngine/AList.h"
 
 namespace FrameUI
 {
-	using namespace AcroEngine;
+	class INode;
+	class IComponent;
+	class IImageComponent;
+	class ITextComponent;
+	class IButtonComponent;
+
+	typedef class INode* FNode;
+	typedef class IComponent* FComponent;
+	typedef class IImageComponent* FImageComponent;
+	typedef class ITextComponent* FTextComponent;
+	typedef class IButtonComponent* FButtonComponent;
 
 	struct ITouchable
 	{
-		virtual void OnTouchPress(AVector2 Position) = 0;
-		virtual void OnTouchDrag(AVector2 Position, AVector2 MoveDelta) = 0;
-		virtual void OnTouchRelease(AVector2 Position) = 0;
+		virtual void OnTouchPress(AcroEngine::AVector2 Position) = 0;
+		virtual void OnTouchDrag(AcroEngine::AVector2 Position, AcroEngine::AVector2 MoveDelta) = 0;
+		virtual void OnTouchRelease(AcroEngine::AVector2 Position) = 0;
 	};
 
 	struct IReactable
@@ -21,9 +32,9 @@ namespace FrameUI
 
 	struct IInputable
 	{
-		virtual void OnKeyPress(AInt KeyCode);
-		virtual void OnKeyPressing(AInt KeyCode);
-		virtual void OnKeyRelease(AInt KeyCode);
+		virtual void OnKeyPress(AcroEngine::AInt KeyCode);
+		virtual void OnKeyPressing(AcroEngine::AInt KeyCode);
+		virtual void OnKeyRelease(AcroEngine::AInt KeyCode);
 	};
 
 	struct IDrawable
@@ -34,10 +45,10 @@ namespace FrameUI
 
 	struct IMeshModel
 	{
-		virtual void SetVertices(AVector3 Vertices[]) = 0;
-		virtual void SetIndices(AInt Indices[]) = 0;
-		virtual void SetTexture(AInt Index, AUnknownObject* Texture) = 0;
-		virtual void SetTextureCoords(AVector2 TextureCoords[]) = 0;
+		virtual void SetVertices(AcroEngine::AVector3 Vertices[]) = 0;
+		virtual void SetIndices(AcroEngine::AInt Indices[]) = 0;
+		virtual void SetTexture(AcroEngine::AInt Index, AcroEngine::AUnknownObject Texture) = 0;
+		virtual void SetTextureCoords(AcroEngine::AVector2 TextureCoords[]) = 0;
 	};
 
 	struct IRenderPipeline

@@ -25,7 +25,7 @@ namespace AcroEngine
 		{
 			m_Value.Clear();
 			m_Value.Resize(sizeof(Value));
-			for (XPlatform::INT32 i = 0; i < m_Value.GetSize(); ++i)
+			for (XPlatform::UINT32 i = 0; i < m_Value.GetSize(); ++i)
 			{
 				m_Value.SetValue(i, Value[i]);
 			}

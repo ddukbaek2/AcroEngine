@@ -9,48 +9,70 @@ namespace FrameUI
 	/////////////////////////////////////////////////////////////////////////////
 	// @ °èÃþ±¸Á¶.
 	/////////////////////////////////////////////////////////////////////////////
-	class FNode : public AObject
+	class INode : public AcroEngine::IObject
 	{
 	private:
-		AVector2 m_Anchor;
-		AVector2 m_Offset;
-		AVector2 m_LocalPosition;
-		AVector2 m_TotalSize;
-		AFloat m_Rotation;
+		AcroEngine::AVector2 m_Anchor;
+		AcroEngine::AVector2 m_Offset;
+		AcroEngine::AVector2 m_Position;
+		AcroEngine::AVector2 m_Size;
+		AcroEngine::AFloat m_Rotation;
 
-		FNode* m_ParentNode;
-		AList m_ChildNodes;
-
-		AList m_Components;
+		FNode m_Parent;
+		AcroEngine::AList m_Childs;
+		AcroEngine::AList m_Components;
 
 	public:
-		template<typename T = FComponent>
-		T* Attach()
+		INode() : AcroEngine::IObject()
 		{
-			auto component = new T();
-			m_Components.Add(component);
-			return component;
+			m_Components = A_INSTANTIATE(AcroEngine::AList);
+			m_Anchor = A_INSTANTIATE(AcroEngine::AVector2);
+			m_Offset = A_INSTANTIATE(AcroEngine::AVector2);
+			m_Position = A_INSTANTIATE(AcroEngine::AVector2);
+			m_Size = A_INSTANTIATE(AcroEngine::AVector2);
+			m_Rotation = A_INSTANTIATE(AcroEngine::AFloat);
+			
+			m_Parent = nullptr;
+			m_Childs = A_INSTANTIATE(AcroEngine::AList);
 		}
 
-		void Dettach(FComponent* component)
+		virtual ~INode()
 		{
-			m_Components.Remove(component);
-			Destroy((AObject*)component);
+			A_DESTROYIMMEDIATE(m_Components);
+			A_DESTROYIMMEDIATE(m_Anchor);
+			A_DESTROYIMMEDIATE(m_Offset);
+			A_DESTROYIMMEDIATE(m_Position);
+			A_DESTROYIMMEDIATE(m_Size);
+			A_DESTROYIMMEDIATE(m_Rotation);
+			A_DESTROYIMMEDIATE(m_Childs);
 		}
 
-		inline void SetParent(const FNode* ParentNode)
+		void AddComponent(FComponent Component)
 		{
-			if (ParentNode == nullptr)
-				return;
+			m_Components->Add(Component);
+		}
 
-			if (m_ParentNode != nullptr)
+		void RemoveComponent(FComponent Component)
+		{
+			m_Components->Remove(Component);
+			AcroEngine::Destroy(Component);
+		}
+
+		FComponent GetComponent(XPlatform::UINT32 Index)
+		{
+			return (FComponent)m_Components->Find(Index);
+		}
+
+		void SetParent(FNode Parent)
+		{
+			if (m_Parent != nullptr)
 			{
 
 			}
 
-			m_ParentNode = const_cast<FNode*>(ParentNode);
+			m_Parent = Parent;
 
-			if (m_ParentNode != nullptr)
+			if (m_Parent != nullptr)
 			{
 
 			}

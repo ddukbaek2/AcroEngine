@@ -5,8 +5,8 @@
     <ClInclude Include="FNode.h" />
     <ClInclude Include="FrameUI.h" />
     <ClInclude Include="FTextComponent.h" />
-    <ClInclude Include="FImage.h" />
-    <ClInclude Include="FButton.h" />
+    <ClInclude Include="FImageComponent.h" />
+    <ClInclude Include="FButtonComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FrameUI.cpp" />

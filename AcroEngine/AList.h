@@ -14,7 +14,7 @@ namespace AcroEngine
 	{
 	private:
 		XPlatform::XAllocator<AObject> m_Allocator;
-		XPlatform::INT32 m_Count;
+		XPlatform::UINT32 m_Count;
 
 	public:
 		IList() : IVariable()
@@ -64,7 +64,7 @@ namespace AcroEngine
 			return true;
 		}
 
-		XPlatform::BOOL8 RemoveAt(XPlatform::INT32 Index)
+		XPlatform::BOOL8 RemoveAt(XPlatform::UINT32 Index)
 		{
 			if (Index < 0 || Index >= m_Allocator.GetSize())
 				return false;
@@ -75,7 +75,7 @@ namespace AcroEngine
 
 		XPlatform::INT32 Find(AObject Object)
 		{
-			for (XPlatform::INT32 Index = 0; Index < m_Allocator.GetSize(); ++Index)
+			for (XPlatform::UINT32 Index = 0; Index < m_Allocator.GetSize(); ++Index)
 			{
 				AObject Current = m_Allocator.GetValue(Index);
 				if (Current->Equals(Object))
@@ -83,6 +83,11 @@ namespace AcroEngine
 			}
 
 			return -1;
+		}
+
+		AObject Find(XPlatform::UINT32 Index)
+		{
+			return m_Allocator.GetValue(Index);
 		}
 
 		XPlatform::BOOL8 Contains(AObject Object)

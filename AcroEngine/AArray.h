@@ -15,8 +15,9 @@ namespace AcroEngine
 		XPlatform::BOOL8 m_Value;
 
 	public:
-		IArray() : IVariable(), m_Value(false)
+		IArray() : IVariable()
 		{
+			m_Value = false;
 		}
 
 		virtual ~IArray()
