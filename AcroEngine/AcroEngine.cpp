@@ -50,11 +50,15 @@ namespace AcroEngine
 	{
 	private:
 		XPlatform::XAllocator<AObject> m_Objects;
-
+		
 	public:
 		ObjectManager()
 		{
 			m_Objects.Resize(4096);
+		}
+
+		virtual ~ObjectManager()
+		{
 		}
 
 		void Add(AObject Object)
@@ -65,6 +69,23 @@ namespace AcroEngine
 		void Remove(AObject Object)
 		{
 			m_Objects.SetValue(0, nullptr);
+		}
+	};
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 타입관리자.
+	/////////////////////////////////////////////////////////////////////////////
+	class TypeManager
+	{
+	private:
+	public:
+		TypeManager()
+		{
+		}
+
+		virtual ~TypeManager()
+		{
 		}
 	};
 
@@ -121,7 +142,7 @@ namespace AcroEngine
 	{
 		//CRC32::CreateTable();
 		AObject Object = new IObject();
-		Object->m_ID = 1;
+		Object->m_Identifier = 1;
 		Object->m_IsDestroyed = false;
 		Object->m_ReferenceCount = 1;
 		//g_ObjectManager.Add(Object);

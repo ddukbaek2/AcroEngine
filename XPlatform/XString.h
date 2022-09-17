@@ -6,6 +6,9 @@
 
 namespace XPlatform
 {
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 문자열 클래스.
+	/////////////////////////////////////////////////////////////////////////////
 	class XString
 	{
 	private:
@@ -14,30 +17,30 @@ namespace XPlatform
 	public:
 		XString()
 		{
-			Reset();
+			Clear();
 		}
 
 		XString(CHAR16 text[])
 		{
-			Reset();
+			Clear();
 			Set(text);
 		}
 
 		XString(XString& string)
 		{
-			Reset();
+			Clear();
 			Set(string.m_Data.Begin());
 		}
 
 		virtual ~XString()
 		{
-			m_Data.Reset();
+			m_Data.Clear();
 		}
 
-		void Reset()
+		void Clear()
 		{
 			m_Data.Resize(32);
-			for (INT32 i = 0; i < m_Data.GetSize(); ++i)
+			for (UINT32 i = 0; i < m_Data.GetSize(); ++i)
 			{
 				m_Data.SetValue(i, 0x0000);
 			}
@@ -45,9 +48,9 @@ namespace XPlatform
 
 		void Set(CHAR16 text[])
 		{
-			INT32 size = sizeof(text);
+			UINT32 size = sizeof(text);
 			m_Data.Resize(size);
-			for (INT32 i = 0; i < m_Data.GetSize(); ++i)
+			for (UINT32 i = 0; i < m_Data.GetSize(); ++i)
 			{
 				m_Data.SetValue(i, text[i]);
 			}
@@ -55,9 +58,9 @@ namespace XPlatform
 
 		void At(CHAR16 text[])
 		{
-			INT32 size = sizeof(text);
+			UINT32 size = sizeof(text);
 			m_Data.Resize(size);
-			for (INT32 i = 0; i < m_Data.GetSize(); ++i)
+			for (UINT32 i = 0; i < m_Data.GetSize(); ++i)
 			{
 				m_Data.SetValue(i, text[i]);
 			}

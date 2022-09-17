@@ -1,21 +1,21 @@
 #pragma once
 
-// Desktop.
-//#define XPLATFORM_WINDOWS // Base WindowsAPI
-//#define XPLATFORM_MAC // Base CocoaFramework
-
-// Mobile.
-//#define XPLATFORM_ANDROID // Base AndroidNDK
-//#define XPLATFORM_IOS // Base CocoaFramework
-
-// Console.
-//#define XPLATFORM_SWITCH
-//#define XPLATFORM_PS5
-//#define XPLATFORM_XBOXSX
-
 
 namespace XPlatform
 {
+	// Desktop.
+	//#define XPLATFORM_WINDOWS // Base WindowsAPI
+	//#define XPLATFORM_MAC // Base CocoaFramework
+
+	// Mobile.
+	//#define XPLATFORM_ANDROID // Base AndroidNDK
+	//#define XPLATFORM_IOS // Base CocoaFramework
+
+	// Console.
+	//#define XPLATFORM_SWITCH
+	//#define XPLATFORM_PS5
+	//#define XPLATFORM_XBOXSX
+
 	#define INVALID -1
 	#define TEXT(Text) L#Text
 
@@ -85,53 +85,49 @@ namespace XPlatform
 	typedef wchar_t CHAR16;
 
 #endif
-
-	VOID* CreateMemory(UINT32 Length);
-	VOID DeleteMemory(VOID* Pointer);
-	VOID FillMemory(VOID* Source, UINT8 Value, UINT32 Length);
-
-	struct XMemory
-	{
-	};
-
-	struct XFile
-	{
-	};
-
-	struct XNetwork
-	{
-	};
-
-	struct XInput
-	{
-	};
-
-	struct XSound
-	{
-		void Reset();
-		void Add(INT32 Identity, CHAR16* SoundFilePath);
-		void Remove(INT32 Identity);
-		void Play(INT32 Identity);
-		void Pause(INT32 Identity);
-		void Resume(INT32 Identity);
-		void Stop(INT32 Identity);
-		void SetPosition(INT32 Identity, INT32 Time);
-		INT32 GetPosition(INT32 Identity);
-		void SetVolume(INT32 Identity, INT32 Volume);
-		void GetVolume(INT32 Identity);
-	};
-
-	struct XVideo
-	{
-	};
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 메모리 함수 목록.
+	/////////////////////////////////////////////////////////////////////////////
+	VOID* XMemoryCreate(UINT32 Length);
+	VOID XMemoryDelete(VOID* Pointer);
+	VOID XMemoryFill(VOID* Source, UINT8 Value, UINT32 Length);
 
 
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 어플리케이션 함수 목록.
+	/////////////////////////////////////////////////////////////////////////////
+	VOID XApplicationCreate();
+	VOID XApplicationDestroy();
+	
 
-	struct XApplication
-	{
-	};
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 파일 함수 목록.
+	/////////////////////////////////////////////////////////////////////////////
 
-	struct XCache
-	{
-	};
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 네트워크 함수 목록.
+	/////////////////////////////////////////////////////////////////////////////
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 입력 함수 목록.
+	/////////////////////////////////////////////////////////////////////////////
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 사운드 함수 목록.
+	/////////////////////////////////////////////////////////////////////////////
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 렌더링 함수 목록.
+	/////////////////////////////////////////////////////////////////////////////
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 기타 함수 목록.
+	/////////////////////////////////////////////////////////////////////////////
+
+
 }

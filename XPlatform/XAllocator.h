@@ -6,154 +6,135 @@
 namespace XPlatform
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 메모리할당자.
+	// @ 메모리할당 클래스.
 	/////////////////////////////////////////////////////////////////////////////
-	template<typename T>
-	class XAllocator
+	template<typename T> class XAllocator
 	{
 	private:
 		UINT8* m_Memory;
 		UINT32 m_Size;
 
 	public:
-		XAllocator();
-		virtual ~XAllocator();
-
-		VOID Reset(BOOL8 resizing = false);
-		VOID Resize(UINT32 size);
-		INT32 GetSize();
-
-		// -1
-		VOID Increase(INT32 Index = -1);
-
-		// +1
-		VOID Decrease(INT32 Index = -1);
-
-		BOOL8 SetValue(INT32 Index, T Object);
-		T GetValue(INT32 Index);
-
-		inline T* Begin() { return (T*)m_Memory; }
-		inline T* End() { return ((T*)m_Memory) + m_Size; }
-	};
-
-	template<typename T>
-	inline XAllocator<T>::XAllocator()
-	{
-		m_Memory = nullptr;
-		m_Size = 0;
-	}
-
-	template<typename T>
-	inline XAllocator<T>::~XAllocator()
-	{
-		DeleteMemory((VOID*)m_Memory);
-		m_Memory = nullptr;
-		m_Size = 0;
-	}
-
-	template<typename T>
-	inline void XAllocator<T>::Reset(BOOL8 resizing)
-	{
-		if (m_Memory == nullptr)
-			return;
-
-		if (resizing)
+		XAllocator()
 		{
-			DeleteMemory((VOID*)m_Memory);
 			m_Memory = nullptr;
 			m_Size = 0;
 		}
-		else
+
+		XAllocator(UINT32 Size)
 		{
-			FillMemory((VOID*)m_Memory, 1, m_Size * sizeof(T));
+			m_Memory = nullptr;
+			m_Size = 0;
+
+			Resize(Size);
 		}
-	}
 
-	template<typename T>
-	inline void XAllocator<T>::Resize(UINT32 Size)
-	{
-		if (m_Size == Size)
-			return; 
-
-		int a[32];
-		FillMemory((VOID*)a, 1, 4 * 32);
-
-		UINT32 typeSize = sizeof(T);
-		UINT8* memory = (UINT8*)CreateMemory(Size * typeSize);
-		FillMemory((VOID*)memory, 1, Size * typeSize);
-
-		//temp = (T*)FillMemory(temp, sizeof(T) * Size);
-
-		if (Size > m_Size)
+		virtual ~XAllocator()
 		{
-			for (INT32 Index = 0; Index < sizeof(T) * m_Size; ++Index)
+			Clear(true);
+		}
+
+		VOID Clear(BOOL8 Resizing = false)
+		{
+			if (m_Memory == nullptr)
+				return;
+
+			if (Resizing)
 			{
-				((T*)memory)[Index] = ((T*)m_Memory)[Index];
+				XMemoryDelete((VOID*)m_Memory);
+				m_Memory = nullptr;
+				m_Size = 0;
 			}
-		}
-		else if (Size < m_Size)
-		{
-			for (INT32 Index = 0; Index < sizeof(T) * Size; ++Index)
+			else
 			{
-				((T*)memory)[Index] = ((T*)m_Memory)[Index];
+				XMemoryFill((VOID*)m_Memory, 1, m_Size * sizeof(T));
 			}
 		}
 
-		m_Size = Size;
-		DeleteMemory((VOID*)m_Memory);
-		m_Memory = memory;
-	}
-
-	template<typename T>
-	inline INT32 XAllocator<T>::GetSize()
-	{
-		return m_Size;
-	}
-
-
-	template<typename T>
-	inline void XAllocator<T>::Increase(INT32 Index)
-	{
-		// back.
-		if (Index < 0 || Index >= m_Size)
+		VOID Resize(UINT32 Size)
 		{
+			if (m_Size == Size)
+				return;
+
+			UINT32 typeSize = sizeof(T);
+			UINT8* memory = (UINT8*)XMemoryCreate(Size * typeSize);
+			XMemoryFill((VOID*)memory, 1, Size * typeSize);
+
+			if (Size > m_Size)
+			{
+				for (UINT32 Index = 0; Index < sizeof(T) * m_Size; ++Index)
+				{
+					((T*)memory)[Index] = ((T*)m_Memory)[Index];
+				}
+			}
+			else if (Size < m_Size)
+			{
+				for (UINT32 Index = 0; Index < sizeof(T) * Size; ++Index)
+				{
+					((T*)memory)[Index] = ((T*)m_Memory)[Index];
+				}
+			}
+
+			m_Size = Size;
+			XMemoryDelete((VOID*)m_Memory);
+			m_Memory = memory;
 		}
 
-		++m_Size;
-	}
-
-	template<typename T>
-	inline void XAllocator<T>::Decrease(INT32 Index)
-	{
-		if (m_Size <= 0)
-			return;
-
-		// back.
-		if (Index < 0 || Index >= m_Size)
+		UINT32 GetSize()
 		{
-
+			return m_Size;
 		}
 
-		--m_Size;
-	}
+		// -1
+		VOID Insert(UINT32 Index)
+		{
+			// back.
+			if (Index >= m_Size)
+			{
+			}
 
-	template<typename T>
-	inline BOOL8 XAllocator<T>::SetValue(INT32 Index, T Object)
-	{
-		if (Index < 0 || Index >= m_Size)
-			return false;
+			++m_Size;
+		}
 
-		((T*)m_Memory)[Index] = Object;
-		return true;
-	}
+		// +1
+		VOID RemoveAt(UINT32 Index)
+		{
+			if (m_Size <= 0)
+				return;
 
+			// back.
+			if (Index >= m_Size)
+			{
 
-	template<typename T>
-	inline T XAllocator<T>::GetValue(INT32 Index)
-	{
-		if (Index < 0 || Index >= m_Size)
-			return nullptr;
+			}
 
-		 return ((T*)m_Memory)[Index];
-	}
+			--m_Size;
+		}
+
+		BOOL8 SetValue(UINT32 Index, T Object)
+		{
+			if (Index >= m_Size)
+				return false;
+
+			((T*)m_Memory)[Index] = Object;
+			return true;
+		}
+
+		T GetValue(UINT32 Index)
+		{
+			if (Index >= m_Size)
+				return nullptr;
+
+			return ((T*)m_Memory)[Index];
+		}
+
+		T* Begin()
+		{
+			return (T*)m_Memory;
+		}
+		T* End()
+		{
+			return ((T*)m_Memory) + m_Size;
+		}
+	};
 }

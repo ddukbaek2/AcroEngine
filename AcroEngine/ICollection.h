@@ -15,7 +15,7 @@ namespace AcroEngine
 
 		virtual XPlatform::VOID Add(AObject Object) = 0;
 		virtual XPlatform::VOID Remove(AObject Object) = 0;
-		virtual XPlatform::VOID Reset() = 0;
+		virtual XPlatform::VOID Clear() = 0;
 
 		virtual XPlatform::BOOL8 Contains(AObject Object) = 0;
 		virtual XPlatform::VOID CopyTo(AObject Array, AInt Index) = 0;

@@ -10,7 +10,7 @@ namespace AcroEngine
     /////////////////////////////////////////////////////////////////////////////
     IObject::IObject()
     {
-        m_ID = 0;
+        m_Identifier = 0;
         m_ReferenceCount = 0;
         m_IsDestroyed = false;
     }
@@ -39,7 +39,7 @@ namespace AcroEngine
         if (Object == nullptr)
             return false;
 
-        return m_ID == Object->m_ID;
+        return m_Identifier == Object->m_Identifier;
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@ namespace AcroEngine
     /////////////////////////////////////////////////////////////////////////////
     XPlatform::INT32 IObject::GetHashCode()
     {
-        return m_ID;
+        return m_Identifier;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -27,49 +27,21 @@ namespace XPlatform
 #else // ENGINE
 #endif
 
-	void XSound::Reset()
-	{
-	}
-	void XSound::Add(INT32 Identity, CHAR16* SoundFilePath)
-	{
-	}
-	void XSound::Remove(INT32 Identity)
-	{
-	}
-	void XSound::Play(INT32 Identity)
-	{
-	}
-	void XSound::Pause(INT32 Identity)
-	{
-	}
-	void XSound::Resume(INT32 Identity)
-	{
-	}
-	void XSound::Stop(INT32 Identity)
-	{
-	}
-	void XSound::SetPosition(INT32 Identity, INT32 Time)
-	{
-	}
-	INT32 XSound::GetPosition(INT32 Identity)
-	{
-		return INT32();
-	}
 
-	VOID XSound::SetVolume(INT32 Identity, INT32 Volume)
-	{
-	}
 
-	VOID XSound::GetVolume(INT32 Identity)
-	{
-	}
-
-	VOID* CreateMemory(UINT32 Length)
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 메모리 생성.
+	/////////////////////////////////////////////////////////////////////////////
+	VOID* XMemoryCreate(UINT32 Length)
 	{
 		return new UINT8[Length];
 	}
 
-	VOID DeleteMemory(VOID* Pointer)
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 메모리 삭제.
+	/////////////////////////////////////////////////////////////////////////////
+	VOID XMemoryDelete(VOID* Pointer)
 	{
 		if (Pointer != nullptr)
 		{
@@ -77,7 +49,11 @@ namespace XPlatform
 		}
 	}
 
-	VOID FillMemory(VOID* Source, UINT8 Value, UINT32 Length)
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 메모리 값 채우기.
+	/////////////////////////////////////////////////////////////////////////////
+	VOID XMemoryFill(VOID* Source, UINT8 Value, UINT32 Length)
 	{
 		return;
 

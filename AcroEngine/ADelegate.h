@@ -29,7 +29,7 @@ namespace AcroEngine
 		{
 		}
 
-		XPlatform::VOID Reset()
+		XPlatform::VOID Clear()
 		{
 			//m_Delegates.
 		}

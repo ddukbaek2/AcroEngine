@@ -19,7 +19,7 @@ namespace AcroEngine
 	public:
 		IList() : IVariable()
 		{
-			m_Allocator.Reset();
+			m_Allocator.Clear();
 			m_Count = 0;
 		}
 
@@ -49,9 +49,9 @@ namespace AcroEngine
 		{
 		}
 
-		XPlatform::VOID Reset()
+		XPlatform::VOID Clear()
 		{
-			m_Allocator.Reset();
+			m_Allocator.Clear();
 		}
 
 		XPlatform::BOOL8 Remove(AObject Object)
@@ -60,7 +60,7 @@ namespace AcroEngine
 			if (Index == -1)
 				return false;
 
-			m_Allocator.Decrease(Index);
+			m_Allocator.RemoveAt(Index);
 			return true;
 		}
 
@@ -69,7 +69,7 @@ namespace AcroEngine
 			if (Index < 0 || Index >= m_Allocator.GetSize())
 				return false;
 
-			m_Allocator.Decrease(Index);
+			m_Allocator.RemoveAt(Index);
 			return true;
 		}
 
