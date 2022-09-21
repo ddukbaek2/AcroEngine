@@ -76,11 +76,14 @@ namespace AcroEngine
 	//class AFlag;
 	//class AEnum;
 	//class ACollection;
+	//class AAction
 
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 함수 목록.
 	/////////////////////////////////////////////////////////////////////////////
+	XPlatform::VOID LoadType(AType Type);
+	XPlatform::VOID UnloadType(AType Type);
 	XPlatform::VOID IncreaseReference(AObject Object);
 	XPlatform::VOID DecreaseReference(AObject Object);
 	AType GetType(const XPlatform::CHAR16 ClassName[]);
