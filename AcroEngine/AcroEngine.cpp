@@ -2,6 +2,7 @@
 #include "AObject.h"
 #include "ADelegate.h"
 #include "AArray.h"
+#include "AcroEngineGenerated.cpp"
 
 
 namespace AcroEngine

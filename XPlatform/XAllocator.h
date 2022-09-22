@@ -47,7 +47,7 @@ namespace XPlatform
 			}
 			else
 			{
-				XMemoryFill((VOID*)m_Memory, 1, m_Size * sizeof(T));
+				XMemoryFill((VOID*)m_Memory, 0, m_Size * sizeof(T));
 			}
 		}
 
@@ -58,7 +58,7 @@ namespace XPlatform
 
 			UINT32 typeSize = sizeof(T);
 			UINT8* memory = (UINT8*)XMemoryCreate(Size * typeSize);
-			XMemoryFill((VOID*)memory, 1, Size * typeSize);
+			XMemoryFill((VOID*)memory, 0, Size * typeSize);
 
 			if (Size > m_Size)
 			{
@@ -132,6 +132,17 @@ namespace XPlatform
 		{
 			return (T*)m_Memory;
 		}
+
+		T& Front()
+		{
+			return m_Memory[0];
+		}
+
+		T& Back()
+		{
+			return m_Memory[m_Size - 1];
+		}
+
 		T* End()
 		{
 			return ((T*)m_Memory) + m_Size;

@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="AcroEngine.h" />
-    <ClInclude Include="AClassGenerated.h" />
     <ClInclude Include="AType.h">
       <Filter>Bases</Filter>
     </ClInclude>
@@ -84,6 +83,9 @@
     <ClInclude Include="AArray.h">
       <Filter>Variables</Filter>
     </ClInclude>
+    <ClInclude Include="IAssemble.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AcroEngine.cpp" />
@@ -99,6 +101,7 @@
     <ClCompile Include="AJson.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="AcroEngineGenerated.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

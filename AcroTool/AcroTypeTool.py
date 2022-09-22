@@ -25,6 +25,8 @@ class FunctionInfo:
 class ClassInfo:
 	_Name: str
 	_Namespace: str
+	_Parents : list # ClassInfo._Name
+	_Childs : list # ClassInfo._Name
 	_VariableInfos : VariableInfo
 	_FunctionInfos : FunctionInfo
 
