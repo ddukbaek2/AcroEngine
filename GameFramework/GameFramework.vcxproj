@@ -18,11 +18,22 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GFPlayer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AcroEngine\AcroEngine.vcxproj">
+      <Project>{9206450e-dedc-42ca-993b-290d0b8000ab}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\XPlatform\XPlatform.vcxproj">
+      <Project>{82541852-d836-42c6-b148-c16cc56781a7}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{9206450e-dedc-42ca-993b-290d0b8000ab}</ProjectGuid>
-    <RootNamespace>AcroEngine</RootNamespace>
+    <ProjectGuid>{78138efb-dbef-4c39-8893-88a0fd44bc9c}</ProjectGuid>
+    <RootNamespace>GameFramework</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,27 +81,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -151,59 +149,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="AcroEngine.cpp" />
-    <ClCompile Include="AJson.cpp" />
-    <ClCompile Include="AObject.cpp" />
-    <ClCompile Include="AOwner.cpp" />
-    <ClCompile Include="AType.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\XPlatform\XPlatform.vcxproj">
-      <Project>{82541852-d836-42c6-b148-c16cc56781a7}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AArray.h" />
-    <ClInclude Include="ABoolean.h" />
-    <ClInclude Include="ADictionary.h" />
-    <ClInclude Include="ADouble.h" />
-    <ClInclude Include="AFloat.h" />
-    <ClInclude Include="AInt.h" />
-    <ClInclude Include="AJson.h" />
-    <ClInclude Include="AList.h" />
-    <ClInclude Include="AProperty.h" />
-    <ClInclude Include="AQueue.h" />
-    <ClInclude Include="ASet.h" />
-    <ClInclude Include="AShort.h" />
-    <ClInclude Include="AStack.h" />
-    <ClInclude Include="AString.h" />
-    <ClInclude Include="AType.h" />
-    <ClCompile Include="AcroEngineGenerated.cpp">
-      <FileType>CppHeader</FileType>
-    </ClCompile>
-    <ClInclude Include="AcroEngine.h" />
-    <ClInclude Include="ADelegate.h" />
-    <ClInclude Include="AObject.h" />
-    <ClInclude Include="AUShort.h" />
-    <ClInclude Include="AVariable.h" />
-    <ClInclude Include="AOwner.h" />
-    <ClInclude Include="AVector2.h" />
-    <ClInclude Include="AVector3.h" />
-    <ClInclude Include="AVector4.h" />
-    <ClInclude Include="IAssemble.h" />
-    <ClInclude Include="ICollection.h" />
-    <ClInclude Include="IEnumerable.h" />
-    <ClInclude Include="IEnumerator.h" />
-    <ClInclude Include="AUInt.h" />
-    <ClInclude Include="TProperty.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Readme.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

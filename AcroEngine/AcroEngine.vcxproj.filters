@@ -86,6 +86,9 @@
     <ClInclude Include="IAssemble.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="TProperty.h">
+      <Filter>Templates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AcroEngine.cpp" />
@@ -121,6 +124,12 @@
     </Filter>
     <Filter Include="Container">
       <UniqueIdentifier>{22e254d6-24fa-457a-b3b5-9b54d81d919e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Templates">
+      <UniqueIdentifier>{fb613a5b-c60e-477b-905b-1abf5d2dbf2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{27675de9-e589-4501-8d5a-3944a93d7b51}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

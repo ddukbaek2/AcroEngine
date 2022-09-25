@@ -30,6 +30,15 @@ class ClassInfo:
 	_VariableInfos : VariableInfo
 	_FunctionInfos : FunctionInfo
 
+class EnumInfo:
+	_Name : str
+
+
+def Block(codeBlock : str):
+	pass
+
+def Parse(code : str):
+	pass
 
 #############################################################################
 # @ 메인함수.
