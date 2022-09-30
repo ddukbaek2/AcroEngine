@@ -32,7 +32,7 @@ namespace AcroEngine
 			}
 		}
 
-		XPlatform::UINT32 ComputeHash(XPlatform::UINT32(&table)[256], XPlatform::UINT32 initial, const XPlatform::VOID* buf, XPlatform::UINT32 len)
+		XPlatform::UINT32 ComputeHash(XPlatform::UINT32(&table)[256], XPlatform::UINT32 initial, const XPlatform::POINTER buf, XPlatform::UINT32 len)
 		{
 			XPlatform::UINT32 c = initial ^ 0xFFFFFFFF;
 			const XPlatform::UINT8* u = static_cast<const XPlatform::UINT8*>(buf);

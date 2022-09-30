@@ -19,7 +19,7 @@ namespace AcroEngine
 		};
 		void Assemble()
 		{
-			AcroEngine::LoadType(TEXT("IObjectType"));
+			//AcroEngine::LoadType(TEXT("IObjectType"));
 		}
 	}
 	// usage: the following code generates crc for 2 pieces of data

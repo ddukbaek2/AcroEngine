@@ -1,47 +1,21 @@
 #include "XPlatform.h"
 
-//#include "C:\\Users\\dagraac\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\sources\\android\\"
 
 namespace XPlatform
 {
-#if defined(XPLATFORM_WINDOWS)
-#elif defined(XPLATFORM_ANDROID)
-#elif defined(XPLATFORM_IOS)
-#else // ENGINE
-#endif
-
-// APPLICATION MAIN.
-#if defined(XPLATFORM_WINDOWS)
-	void main(wchar_t argv[], int argc)
-	{
-
-	}
-#elif defined(XPLATFORM_ANDROID)
-#include <EGL/egl.h>
-#include <GLES/gl.h>
-	void android_main(android_app* state)
-	{
-
-	}
-#elif defined(XPLATFORM_IOS)
-#else // ENGINE
-#endif
-
-
-
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 메모리 생성.
 	/////////////////////////////////////////////////////////////////////////////
-	VOID* XMemoryCreate(UINT32 Length)
+	POINTER XMemoryAllocate(UINT32 Length)
 	{
-		return new UINT8[Length];
+		return (POINTER)new UINT8[Length];
 	}
 
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 메모리 삭제.
 	/////////////////////////////////////////////////////////////////////////////
-	VOID XMemoryDelete(VOID* Pointer)
+	VOID XMemoryFree(POINTER Pointer)
 	{
 		if (Pointer != nullptr)
 		{
@@ -53,7 +27,7 @@ namespace XPlatform
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 메모리 값 채우기.
 	/////////////////////////////////////////////////////////////////////////////
-	VOID XMemoryFill(VOID* Source, UINT8 Value, UINT32 Length)
+	VOID XMemorySet(POINTER Source, UINT8 Value, UINT32 Length)
 	{
 		return;
 
@@ -63,4 +37,18 @@ namespace XPlatform
 			temp[Index] = Value;
 		}
 	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 플랫폼 별 어플리케이션 처리.
+	// 	VOID XApplicationRun();
+	//	XApplicationState XApplicationState();
+	//	VOID XApplicationQuit();
+	/////////////////////////////////////////////////////////////////////////////
+#if defined(XPLATFORM_ANDROID)
+#include "XApplicationAndroid.cpp"
+#elif defined(XPLATFORM_IOS)
+#include "XApplicationIOS.cpp"
+#elif defined(WIN32)
+#include "XApplicationWin32.cpp"
+#endif
 }

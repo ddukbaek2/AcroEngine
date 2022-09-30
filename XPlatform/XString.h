@@ -12,7 +12,7 @@ namespace XPlatform
 	class XString
 	{
 	private:
-		XAllocator<CHAR16> m_Data;
+		XAllocator<CHAR16> m_Instance;
 
 	public:
 		XString()
@@ -29,46 +29,46 @@ namespace XPlatform
 		XString(XString& string)
 		{
 			Clear();
-			Set(string.m_Data.Begin());
+			Set(string.m_Instance.Begin());
 		}
 
 		virtual ~XString()
 		{
-			m_Data.Clear();
+			m_Instance.Clear();
 		}
 
 		void Clear()
 		{
-			m_Data.Resize(32);
-			for (UINT32 i = 0; i < m_Data.GetSize(); ++i)
+			m_Instance.Resize(32);
+			for (UINT32 i = 0; i < m_Instance.GetSize(); ++i)
 			{
-				m_Data.SetValue(i, 0x0000);
+				m_Instance.SetValue(i, 0x0000);
 			}
 		}
 
 		void Set(CHAR16 text[])
 		{
 			UINT32 size = sizeof(text);
-			m_Data.Resize(size);
-			for (UINT32 i = 0; i < m_Data.GetSize(); ++i)
+			m_Instance.Resize(size);
+			for (UINT32 i = 0; i < m_Instance.GetSize(); ++i)
 			{
-				m_Data.SetValue(i, text[i]);
+				m_Instance.SetValue(i, text[i]);
 			}
 		}
 
 		void At(CHAR16 text[])
 		{
 			UINT32 size = sizeof(text);
-			m_Data.Resize(size);
-			for (UINT32 i = 0; i < m_Data.GetSize(); ++i)
+			m_Instance.Resize(size);
+			for (UINT32 i = 0; i < m_Instance.GetSize(); ++i)
 			{
-				m_Data.SetValue(i, text[i]);
+				m_Instance.SetValue(i, text[i]);
 			}
 		}
 
 		const CHAR16* ToString()
 		{
-			return m_Data.Begin();
+			return m_Instance.Begin();
 		}
 	};
 }

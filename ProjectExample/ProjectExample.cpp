@@ -1,10 +1,19 @@
-﻿#define XPLATFORM_WINDOWS
+﻿// defined WIN32
 #include "../AcroEngine/AcroEngine.h"
 #include "../AcroEngine/ABoolean.h"
 
 using namespace XPlatform;
 using namespace AcroEngine;
 
+
+void OnApplicationUpdate()
+{
+    IOpenGL* GL = XPlatform::XGetOpenGL();
+
+    GL->ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+    GL->Clear(XPlatform::IOpenGL::EAttribMask::COLOR_BUFFER_BIT);
+    GL->Flush();
+}
 
 int main()
 {
@@ -19,5 +28,6 @@ int main()
     // 파괴.
     DestroyImmediate(Boolean);
     
+    XPlatform::XApplicationRun(OnApplicationUpdate);
     return 0;
 }

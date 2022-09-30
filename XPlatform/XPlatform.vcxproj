@@ -140,11 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="XAllocator.h" />
+    <ClInclude Include="XArray.h" />
+    <ClInclude Include="XList.h" />
     <ClInclude Include="XPlatform.h" />
     <ClInclude Include="XString.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="XApplicationAndroid.cpp" />
     <ClCompile Include="XPlatform.cpp" />
+    <ClCompile Include="XApplicationIOS.cpp" />
+    <ClCompile Include="XApplicationWin32.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

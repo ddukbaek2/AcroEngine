@@ -41,13 +41,13 @@ namespace XPlatform
 
 			if (Resizing)
 			{
-				XMemoryDelete((VOID*)m_Memory);
+				XMemoryFree((POINTER)m_Memory);
 				m_Memory = nullptr;
 				m_Size = 0;
 			}
 			else
 			{
-				XMemoryFill((VOID*)m_Memory, 0, m_Size * sizeof(T));
+				XMemorySet((POINTER)m_Memory, 0, m_Size * sizeof(T));
 			}
 		}
 
@@ -57,8 +57,8 @@ namespace XPlatform
 				return;
 
 			UINT32 typeSize = sizeof(T);
-			UINT8* memory = (UINT8*)XMemoryCreate(Size * typeSize);
-			XMemoryFill((VOID*)memory, 0, Size * typeSize);
+			UINT8* memory = (UINT8*)XMemoryAllocate(Size * typeSize);
+			XMemorySet((POINTER)memory, 0, Size * typeSize);
 
 			if (Size > m_Size)
 			{
@@ -76,7 +76,7 @@ namespace XPlatform
 			}
 
 			m_Size = Size;
-			XMemoryDelete((VOID*)m_Memory);
+			XMemoryFree((VOID*)m_Memory);
 			m_Memory = memory;
 		}
 

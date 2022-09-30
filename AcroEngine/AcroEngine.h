@@ -47,7 +47,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 클래스포인터 전방선언 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	typedef XPlatform::VOID* AUnknownObject;
+	typedef XPlatform::POINTER AUnknownObject;
 	typedef class IObject* AObject;
 	typedef class IType* AType;
 	typedef class IOwner* AOwner;

@@ -12,7 +12,7 @@ namespace XPlatform
 	template<typename T> class XArray 
 	{
 	private:
-		XAllocator<T> m_Data;
+		XAllocator<T> m_Instance;
 		UINT32 m_Count;
 
 	public:
@@ -23,21 +23,21 @@ namespace XPlatform
 
 		virtual ~XArray()
 		{
-			m_Data.Clear();
+			m_Instance.Clear();
 			m_Count = 0;
 		}
 
 		VOID Clear()
 		{
-			m_Data.Clear(true);
+			m_Instance.Clear(true);
 		}
 
 		VOID Add(const T& Value)
 		{
 			++m_Count;
-			if (m_Count > m_Data.GetSize())
+			if (m_Count > m_Instance.GetSize())
 			{
-				m_Data.Resize(m_Data.GetSize() * 2);
+				m_Instance.Resize(m_Instance.GetSize() * 2);
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace XPlatform
 
 		VOID RemoveAt(UINT32 Index)
 		{
-			m_Data.RemoveAt(Index);
+			m_Instance.RemoveAt(Index);
 		}
 
 		UINT32 GetCount()
