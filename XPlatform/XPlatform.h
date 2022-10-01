@@ -93,29 +93,6 @@ namespace XPlatform
 	#define FUNC(Name, Return, Params) typedef Return(*Name)(Params)
 
 
-	template<typename T> class FAction
-	{
-	public:
-		ACTION(OnAction);
-
-	private:
-		T* m_Instance;
-		OnAction m_OnAction;
-
-	public:
-		FAction(T* Instance, FAction::OnAction OnAction)
-		{
-			m_Instance = Instance;
-			m_OnAction = OnAction;
-		}
-
-		void Execute()
-		{
-			if (m_Instance != nullptr)
-				(m_Instance->*OnAction)();
-		}
-	};
-
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 전방선언.
 	/////////////////////////////////////////////////////////////////////////////
