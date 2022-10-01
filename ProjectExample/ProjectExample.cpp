@@ -6,13 +6,15 @@ using namespace XPlatform;
 using namespace AcroEngine;
 
 
-void OnApplicationUpdate()
+void OnApplicationUpdate(XApplication Application)
 {
-    IOpenGL* GL = XPlatform::XGetOpenGL();
+    XGL GL = Application->GetGL();
 
-    GL->ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-    GL->Clear(XPlatform::IOpenGL::EAttribMask::COLOR_BUFFER_BIT);
+    GL->Clear(IGL::EAttribMask::COLOR_BUFFER_BIT);
     GL->Flush();
+    //GL->ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+    //GL->Clear(XPlatform::IGL::EAttribMask::COLOR_BUFFER_BIT);
+    //GL->Flush();
 }
 
 int main()
@@ -28,6 +30,6 @@ int main()
     // 파괴.
     DestroyImmediate(Boolean);
     
-    XPlatform::XApplicationRun(OnApplicationUpdate);
+    XPlatform::RunApplication(OnApplicationUpdate);
     return 0;
 }

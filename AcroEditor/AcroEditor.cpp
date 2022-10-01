@@ -7,7 +7,7 @@
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
-HINSTANCE g_Instance;                                // 현재 인스턴스입니다.
+HINSTANCE m_Instance;                                // 현재 인스턴스입니다.
 WCHAR g_szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR g_szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
@@ -95,7 +95,7 @@ ATOM MyRegisterClass(HINSTANCE Instance)
 //
 BOOL InitInstance(HINSTANCE Instance, int Command)
 {
-   g_Instance = Instance; // 인스턴스 핸들을 전역 변수에 저장합니다.
+   m_Instance = Instance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(g_szWindowClass, g_szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, Instance, nullptr);
@@ -132,7 +132,7 @@ LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
             switch (wmId)
             {
             case IDM_ABOUT:
-                DialogBox(g_Instance, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                DialogBox(m_Instance, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);

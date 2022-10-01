@@ -32,9 +32,9 @@ namespace FrameUI
 
 	struct IInputable
 	{
-		virtual void OnKeyPress(AcroEngine::AInt KeyCode);
-		virtual void OnKeyPressing(AcroEngine::AInt KeyCode);
-		virtual void OnKeyRelease(AcroEngine::AInt KeyCode);
+		virtual void OnKeyPress(AcroEngine::AInt KeyCode) = 0;
+		virtual void OnKeyPressing(AcroEngine::AInt KeyCode) = 0;
+		virtual void OnKeyRelease(AcroEngine::AInt KeyCode) = 0;
 	};
 
 	struct IDrawable

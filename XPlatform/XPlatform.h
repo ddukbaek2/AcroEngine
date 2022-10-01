@@ -16,11 +16,6 @@ namespace XPlatform
 	//#define XPLATFORM_PS5
 	//#define XPLATFORM_XBOXSX
 
-	#define INVALID -1
-	#define TEXT(Text) L#Text
-	#define CALLBACK(FunctionName) typedef VOID(*FunctionName)(VOID);
-	#define CALLBACK(Instance, FunctionName) typedef VOID(*FunctionName)(VOID);
-
 #if defined(WIN32) // WINDOWS
 	typedef void VOID;
 	typedef void* POINTER;
@@ -87,10 +82,22 @@ namespace XPlatform
 
 #endif
 
+	#define INVALID -1
+	#define TEXT(Text) L#Text
+
+	#define ACTION(Name) typedef VOID(*Name)(VOID)
+	#define ACTION(Name, Params) typedef VOID(*Name)(Params)
+	
+	//#define FUNC(Name) typedef BOOL8(*Name)(VOID)
+	#define FUNC(Name, Return) typedef Return(*Name)(VOID)
+	#define FUNC(Name, Return, Params) typedef Return(*Name)(Params)
+
+
 	template<typename T> class FAction
 	{
 	public:
-		typedef VOID(*OnAction)(VOID);
+		ACTION(OnAction);
+
 	private:
 		T* m_Instance;
 		OnAction m_OnAction;
@@ -104,9 +111,19 @@ namespace XPlatform
 
 		void Execute()
 		{
-			(m_Instance->*OnAction)();
+			if (m_Instance != nullptr)
+				(m_Instance->*OnAction)();
 		}
 	};
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 전방선언.
+	/////////////////////////////////////////////////////////////////////////////
+	class IApplication;
+	class IGL;
+
+	typedef IApplication* XApplication;
+	typedef IGL* XGL;
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -122,10 +139,10 @@ namespace XPlatform
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 함수포인터.
+	// @ 기본 함수포인터.
 	/////////////////////////////////////////////////////////////////////////////
-	typedef VOID(*FOnAction)(VOID);
-	typedef BOOL8(*FOnFunc)(VOID);
+	ACTION(FOnAction);
+	FUNC(FOnFunc, BOOL8);
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -145,7 +162,7 @@ namespace XPlatform
 	/////////////////////////////////////////////////////////////////////////////
 	// @ OpenGL.
 	/////////////////////////////////////////////////////////////////////////////
-	class IOpenGL
+	class IGL
 	{
 	public:
 		enum class EAttribMask : UINT32
@@ -200,14 +217,17 @@ namespace XPlatform
 		virtual VOID PushMatrix() = 0;
 		virtual VOID MatrixMode(EMatrixMode MatrixMode) = 0;
 		virtual VOID Translate(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) = 0;
+		virtual VOID Scale(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) = 0;
 		virtual VOID Rotate(FLOAT32 X, FLOAT32 Y, FLOAT32 Z, FLOAT32 W) = 0;
 		virtual VOID PopMatrix() = 0;
 		virtual VOID LoadIdentity() = 0;
 		virtual VOID Begin(EBeginMode BeginMode) = 0;
-		virtual VOID Color4F(FLOAT32 R, FLOAT32 G, FLOAT32 B, FLOAT32 A) = 0;
-		virtual VOID Vertex3F(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) = 0;
+		virtual VOID Color4(FLOAT32 R, FLOAT32 G, FLOAT32 B, FLOAT32 A) = 0;
+		virtual VOID Vertex3(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) = 0;
+		virtual VOID TexCoord2(FLOAT32 U, FLOAT32 V) = 0;
 		virtual VOID End() = 0;
 		virtual VOID Flush() = 0;
+		virtual VOID Viewport(INT32 X, INT32 Y, INT32 Width, INT32 Height) = 0;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -236,8 +256,17 @@ namespace XPlatform
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 어플리케이션 함수 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	VOID XApplicationRun(FOnAction OnAction);
-	XApplicationState XGetApplicationState();
-	VOID XApplicationQuit();
-	IOpenGL* XGetOpenGL();
+	class IApplication
+	{
+	public:
+		ACTION(FOnApplicationUpdate, XApplication);
+
+	public:
+		virtual VOID Run(FOnApplicationUpdate OnAction) = 0;
+		virtual XApplicationState GeState() = 0;
+		virtual VOID Quit() = 0;
+		virtual XGL GetGL() = 0;
+	};
+
+	VOID RunApplication(IApplication::FOnApplicationUpdate OnApplicationUpdate);
 }
