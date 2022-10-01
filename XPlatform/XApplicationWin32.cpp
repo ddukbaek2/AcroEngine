@@ -83,7 +83,7 @@ namespace XPlatform
 
     private:
         HWND m_WindowHandle; // 현재 윈도우 핸들.
-        XApplicationState m_State; // 현재 상태.
+        EState m_State; // 현재 상태.
         XGL m_GL; // 현재 OpenGL.
 
     private:
@@ -96,19 +96,19 @@ namespace XPlatform
             {
             case WM_CREATE:
             {
-                Instance->SetState(XApplicationState::OnCreate);
+                Instance->SetState(EState::OnCreate);
                 break;
             }
 
             case WM_SETFOCUS:
             {
-                Instance->SetState(XApplicationState::OnResume);
+                Instance->SetState(EState::OnResume);
                 break;
             }
 
             case WM_KILLFOCUS:
             {
-                Instance->SetState(XApplicationState::OnPause);
+                Instance->SetState(EState::OnPause);
                 break;
             }
 
@@ -128,7 +128,7 @@ namespace XPlatform
 
             case WM_DESTROY:
             {
-                Instance->SetState(XApplicationState::OnDestroy);
+                Instance->SetState(EState::OnDestroy);
                 PostQuitMessage(0); // WM_QUIT // winuser.h
                 break;
             }
@@ -152,7 +152,7 @@ namespace XPlatform
         /////////////////////////////////////////////////////////////////////////////
         // @ 어플리케이션 실행.
         /////////////////////////////////////////////////////////////////////////////
-        virtual VOID Run(IApplication::FOnApplicationUpdate OnApplicationUpdate) override
+        virtual VOID Run(FOnApplicationUpdate OnApplicationUpdate) override
         {
             HINSTANCE instance = GetModuleHandle(NULL);
 
@@ -260,7 +260,7 @@ namespace XPlatform
         /////////////////////////////////////////////////////////////////////////////
         // @ 어플리케이션 상태.
         /////////////////////////////////////////////////////////////////////////////
-        VOID SetState(XApplicationState State)
+        VOID SetState(EState State)
         {
             m_State = State;
         }
@@ -268,7 +268,7 @@ namespace XPlatform
         /////////////////////////////////////////////////////////////////////////////
         // @ 어플리케이션 상태.
         /////////////////////////////////////////////////////////////////////////////
-        virtual XApplicationState GeState() override
+        virtual EState GeState() override
         {
             return m_State;
         }
