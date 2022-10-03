@@ -3,28 +3,30 @@
 
 namespace XPlatform
 {
-
-// 플랫폼 정의.
-#if defined(WIN32)
-	#define XPLATFORM_WINDOWS // Windows
-#elif defined(__ANDROID__)
-	#define XPLATFORM_ANDROID // Android
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 플랫폼 목록.
+	/////////////////////////////////////////////////////////////////////////////
+#if defined(WIN32) // WINDOWS
+	#define XPLATFORM_WINDOWS
+#elif defined(__linux__) // LINUX
+	#define XPLATFORM_LINUX
+#elif defined(TARGET_OS_OSX) // MACOSX
+	#define XPLATFORM_OSX
+#elif defined(__ANDROID__) // ANDROID
+	#define XPLATFORM_ANDROID
+#elif defined(TARGET_OS_IOS) // IOS
+	#define XPLATFORM_IOS
+#elif defined(__SWITCH__)
+	#define XPLATFORM_SWITCH
+#elif defined(__PLAYSTATION5__)
+	#define XPLATFORM_PS5
+#elif defined(__XBOXSX__)
+	#define XPLATFORM_XBOXSX
 #endif
 
-	// Desktop.
-	//#define XPLATFORM_WINDOWS // Base WindowsAPI
-	//#define XPLATFORM_MAC // Base CocoaFramework
-
-	// Mobile.
-	//#define XPLATFORM_ANDROID // Base AndroidNDK
-	//#define XPLATFORM_IOS // Base CocoaFramework
-
-	// Console.
-	//#define XPLATFORM_SWITCH
-	//#define XPLATFORM_PS5
-	//#define XPLATFORM_XBOXSX
-
-#if defined(XPLATFORM_WINDOWS) // WINDOWS
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 변수 재선언 목록.
+	/////////////////////////////////////////////////////////////////////////////
 	typedef void VOID;
 	typedef void* POINTER;
 	typedef signed char INT8;
@@ -39,41 +41,11 @@ namespace XPlatform
 	typedef float FLOAT32;
 	typedef double FLOAT64;
 	typedef wchar_t CHAR16;
-	
-#elif defined(XPLATFORM_ANDROID) // ANDORID
-	typedef void VOID;
-	typedef void* POINTER;
-	typedef signed char INT8;
-	typedef unsigned char UINT8;
-	typedef signed short INT16;
-	typedef unsigned short UINT16;
-	typedef signed int INT32;
-	typedef unsigned int UINT32;
-	typedef signed long long INT64;
-	typedef unsigned long long UINT64;
-	typedef bool BOOL8;
-	typedef float FLOAT32;
-	typedef double FLOAT64;
-	typedef wchar_t CHAR16;
 
-//#elif defined(XPLATFORM_IOS) // IOS
-//	typedef void VOID;
-//	typedef void* POINTER;
-//	typedef signed char INT8;
-//	typedef unsigned char UINT8;
-//	typedef signed short INT16;
-//	typedef unsigned short UINT16;
-//	typedef signed int INT32;
-//	typedef unsigned int UINT32;
-//	typedef signed long long INT64;
-//	typedef unsigned long long UINT64;
-//	typedef bool BOOL8;
-//	typedef float FLOAT32;
-//	typedef double FLOAT64;
-//	typedef wchar_t CHAR16;
 
-#endif
-
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 매크로 목록.
+	/////////////////////////////////////////////////////////////////////////////
 	#define INVALID -1
 	#undef TEXT
 	#define TEXT(Text) L#Text
@@ -111,13 +83,6 @@ namespace XPlatform
 	POINTER XMemoryAllocate(UINT32 Length);
 	VOID XMemoryFree(POINTER Pointer);
 	VOID XMemorySet(POINTER Source, UINT8 Value, UINT32 Length);
-
-
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 문자열 함수 목록.
-	/////////////////////////////////////////////////////////////////////////////
-	//VOID x_str_add();
-	//VOID x_str_remove();
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -191,28 +156,12 @@ namespace XPlatform
 		virtual VOID Viewport(INT32 X, INT32 Y, INT32 Width, INT32 Height) = 0;
 	};
 
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 파일 함수 목록.
-	/////////////////////////////////////////////////////////////////////////////
+	// FILE
+	// NETWORK
+	// INPUT
+	// SOUND
+	// MISC
 
-
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 네트워크 함수 목록.
-	/////////////////////////////////////////////////////////////////////////////
-
-
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 입력 함수 목록.
-	/////////////////////////////////////////////////////////////////////////////
-
-
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 사운드 함수 목록.
-	/////////////////////////////////////////////////////////////////////////////
-
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 기타 함수 목록.
-	/////////////////////////////////////////////////////////////////////////////
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 어플리케이션.

@@ -146,10 +146,16 @@
     <ClInclude Include="XString.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="XApplicationAndroid.cpp" />
+    <ClCompile Include="XApplicationAndroid.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="XPlatform.cpp" />
-    <ClCompile Include="XApplicationIOS.cpp" />
-    <ClCompile Include="XApplicationWin32.cpp" />
+    <ClCompile Include="XApplicationIOS.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="XApplicationWin32.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
