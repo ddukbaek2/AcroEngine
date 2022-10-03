@@ -40,16 +40,8 @@ namespace XPlatform
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 플랫폼 별 어플리케이션 처리.
-	// 	VOID Run();
-	//	XApplicationState XApplicationState();
-	//	VOID Quit();
-	//	IGL* GetGL();
 	/////////////////////////////////////////////////////////////////////////////
-#if defined(XPLATFORM_ANDROID)
 #include "XApplicationAndroid.cpp"
-#elif defined(XPLATFORM_IOS)
 #include "XApplicationIOS.cpp"
-#elif defined(WIN32)
 #include "XApplicationWin32.cpp"
-#endif
 }

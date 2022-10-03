@@ -1,6 +1,6 @@
-﻿#ifdef WIN32
+﻿#include "XPlatform.h"
 
-#include "XPlatform.h"
+#ifdef XPLATFORM_WINDOWS
 
 #include <SDKDDKVer.h>
 #define WIN32_LEAN_AND_MEAN
@@ -141,7 +141,7 @@ namespace XPlatform
         Win32Application()
         {
             m_WindowHandle = 0;
-            m_State = XApplicationState::Invalid;
+            m_State = EState::Invalid;
             m_GL = nullptr;
         }
 
@@ -297,13 +297,15 @@ namespace XPlatform
     Win32Application* Win32Application::Instance = nullptr;
 
 
+    /////////////////////////////////////////////////////////////////////////////
+    // @ 어플리케이션 실행.
+    /////////////////////////////////////////////////////////////////////////////
     VOID RunApplication(IApplication::FOnApplicationUpdate OnApplicationUpdate)
     {
         if (Win32Application::Instance == nullptr)
             Win32Application::Instance = new Win32Application();
 
         Win32Application::Instance->Run(OnApplicationUpdate);
-        //Win32Application::Instance->Quit();
 
         if (Win32Application::Instance != nullptr)
         {

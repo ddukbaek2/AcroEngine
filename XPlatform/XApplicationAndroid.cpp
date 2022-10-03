@@ -1,3 +1,5 @@
+#include "XPlatform.h"
+
 #ifdef XPLATFORM_ANDROID
 #include <EGL/egl.h>
 #include <GLES/gl.h>
@@ -8,7 +10,14 @@ namespace XPlatform
 {
 	void android_main(android_app* state)
 	{
+	}
 
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 어플리케이션 실행.
+	/////////////////////////////////////////////////////////////////////////////
+	VOID RunApplication(IApplication::FOnApplicationUpdate OnApplicationUpdate)
+	{
 	}
 }
 

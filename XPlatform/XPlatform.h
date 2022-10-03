@@ -3,6 +3,14 @@
 
 namespace XPlatform
 {
+
+// 플랫폼 정의.
+#if defined(WIN32)
+	#define XPLATFORM_WINDOWS // Windows
+#elif defined(__ANDROID__)
+	#define XPLATFORM_ANDROID // Android
+#endif
+
 	// Desktop.
 	//#define XPLATFORM_WINDOWS // Base WindowsAPI
 	//#define XPLATFORM_MAC // Base CocoaFramework
@@ -16,7 +24,7 @@ namespace XPlatform
 	//#define XPLATFORM_PS5
 	//#define XPLATFORM_XBOXSX
 
-#if defined(WIN32) // WINDOWS
+#if defined(XPLATFORM_WINDOWS) // WINDOWS
 	typedef void VOID;
 	typedef void* POINTER;
 	typedef signed char INT8;
@@ -32,22 +40,6 @@ namespace XPlatform
 	typedef double FLOAT64;
 	typedef wchar_t CHAR16;
 	
-#elif defined(XPLATFORM_MAC) // MAC
-	typedef void VOID;
-	typedef void* POINTER;
-	typedef signed char INT8;
-	typedef unsigned char UINT8;
-	typedef signed short INT16;
-	typedef unsigned short UINT16;
-	typedef signed int INT32;
-	typedef unsigned int UINT32;
-	typedef signed long long INT64;
-	typedef unsigned long long UINT64;
-	typedef bool BOOL8;
-	typedef float FLOAT32;
-	typedef double FLOAT64;
-	typedef wchar_t CHAR16;
-
 #elif defined(XPLATFORM_ANDROID) // ANDORID
 	typedef void VOID;
 	typedef void* POINTER;
@@ -64,33 +56,32 @@ namespace XPlatform
 	typedef double FLOAT64;
 	typedef wchar_t CHAR16;
 
-#elif defined(XPLATFORM_IOS) // IOS
-	typedef void VOID;
-	typedef void* POINTER;
-	typedef signed char INT8;
-	typedef unsigned char UINT8;
-	typedef signed short INT16;
-	typedef unsigned short UINT16;
-	typedef signed int INT32;
-	typedef unsigned int UINT32;
-	typedef signed long long INT64;
-	typedef unsigned long long UINT64;
-	typedef bool BOOL8;
-	typedef float FLOAT32;
-	typedef double FLOAT64;
-	typedef wchar_t CHAR16;
+//#elif defined(XPLATFORM_IOS) // IOS
+//	typedef void VOID;
+//	typedef void* POINTER;
+//	typedef signed char INT8;
+//	typedef unsigned char UINT8;
+//	typedef signed short INT16;
+//	typedef unsigned short UINT16;
+//	typedef signed int INT32;
+//	typedef unsigned int UINT32;
+//	typedef signed long long INT64;
+//	typedef unsigned long long UINT64;
+//	typedef bool BOOL8;
+//	typedef float FLOAT32;
+//	typedef double FLOAT64;
+//	typedef wchar_t CHAR16;
 
 #endif
 
 	#define INVALID -1
+	#undef TEXT
 	#define TEXT(Text) L#Text
 
 	#define ACTION(Name) typedef VOID(*Name)(VOID)
-	#define ACTION(Name, Params) typedef VOID(*Name)(Params)
-	
-	//#define FUNC(Name) typedef BOOL8(*Name)(VOID)
+	#define ACTION_WITH_PARAM(Name, Params) typedef VOID(*Name)(Params)
 	#define FUNC(Name, Return) typedef Return(*Name)(VOID)
-	#define FUNC(Name, Return, Params) typedef Return(*Name)(Params)
+	#define FUNC_WITH_PARAM(Name, Return, Params) typedef Return(*Name)(Params)
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -229,7 +220,7 @@ namespace XPlatform
 	class IApplication
 	{
 	public:
-		ACTION(FOnApplicationUpdate, XApplication);
+		ACTION_WITH_PARAM(FOnApplicationUpdate, XApplication);
 
 		/////////////////////////////////////////////////////////////////////////////
 		// @ 어플리케이션 상태.
