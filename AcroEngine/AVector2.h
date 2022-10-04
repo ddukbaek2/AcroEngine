@@ -12,7 +12,7 @@ namespace AcroEngine
 	class IVector2 : public IVariable
 	{
 	private:
-		XPlatform::FLOAT64 m_Values[2];
+		AcroCore::FLOAT64 m_Values[2];
 
 	public:
 	};

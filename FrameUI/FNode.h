@@ -58,7 +58,7 @@ namespace FrameUI
 			AcroEngine::Destroy(Component);
 		}
 
-		FComponent GetComponent(XPlatform::UINT32 Index)
+		FComponent GetComponent(AcroCore::UINT32 Index)
 		{
 			return (FComponent)m_Components->Find(Index);
 		}

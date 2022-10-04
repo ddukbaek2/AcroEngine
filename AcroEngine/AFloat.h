@@ -12,15 +12,15 @@ namespace AcroEngine
 	class IFloat : public IVariable
 	{
 	private:
-		XPlatform::FLOAT32 m_Value;
+		AcroCore::FLOAT32 m_Value;
 
 	public:
-		XPlatform::VOID operator = (XPlatform::FLOAT32& Value)
+		AcroCore::VOID operator = (AcroCore::FLOAT32& Value)
 		{
 			m_Value = Value;
 		}
 
-		operator XPlatform::FLOAT32& ()
+		operator AcroCore::FLOAT32& ()
 		{
 			return m_Value;
 		}

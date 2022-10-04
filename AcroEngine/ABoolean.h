@@ -12,7 +12,7 @@ namespace AcroEngine
 	class IBoolean : public IVariable
 	{
 	private:
-		XPlatform::BOOL8 m_Value;
+		AcroCore::BOOL8 m_Value;
 
 	public:
 		IBoolean() : IVariable()
@@ -25,12 +25,12 @@ namespace AcroEngine
 
 		}
 
-		XPlatform::VOID operator = (XPlatform::BOOL8 Value)
+		AcroCore::VOID operator = (AcroCore::BOOL8 Value)
 		{
 			m_Value = Value;
 		}
 
-		operator XPlatform::BOOL8 ()
+		operator AcroCore::BOOL8 ()
 		{
 			return m_Value;
 		}

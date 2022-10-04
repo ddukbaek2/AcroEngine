@@ -12,15 +12,15 @@ namespace AcroEngine
 	class IDouble : public IVariable
 	{
 	private:
-		XPlatform::FLOAT64 m_Value;
+		AcroCore::FLOAT64 m_Value;
 
 	public:
-		XPlatform::VOID operator = (XPlatform::FLOAT64& Value)
+		AcroCore::VOID operator = (AcroCore::FLOAT64& Value)
 		{
 			m_Value = Value;
 		}
 
-		operator XPlatform::FLOAT64& ()
+		operator AcroCore::FLOAT64& ()
 		{
 			return m_Value;
 		}

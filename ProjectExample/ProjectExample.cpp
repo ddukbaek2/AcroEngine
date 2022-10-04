@@ -2,7 +2,7 @@
 #include "../AcroEngine/AcroEngine.h"
 #include "../AcroEngine/ABoolean.h"
 
-using namespace XPlatform;
+using namespace AcroCore;
 using namespace AcroEngine;
 
 
@@ -65,6 +65,6 @@ int main()
     
     // 어플리케이션 실행.
     Application application;
-    XPlatform::RunApplication(&application);
+    AcroCore::RunApplication(&application);
     return 0;
 }

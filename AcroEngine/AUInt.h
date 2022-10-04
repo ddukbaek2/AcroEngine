@@ -12,7 +12,7 @@ namespace AcroEngine
 	class IUInt : public IVariable
 	{
 	private:
-		XPlatform::UINT32 m_Value;
+		AcroCore::UINT32 m_Value;
 
 	public:
 		IUInt() : IVariable(), m_Value(0)
@@ -23,12 +23,12 @@ namespace AcroEngine
 		{
 		}
 
-		XPlatform::VOID operator = (XPlatform::UINT32& Value)
+		AcroCore::VOID operator = (AcroCore::UINT32& Value)
 		{
 			m_Value = Value;
 		}
 
-		operator XPlatform::UINT32& ()
+		operator AcroCore::UINT32& ()
 		{
 			return m_Value;
 		}

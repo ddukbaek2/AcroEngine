@@ -13,7 +13,7 @@ namespace AcroEngine
 	class IString : public IVariable
 	{
 	private:
-		XPlatform::XAllocator<XPlatform::CHAR16> m_Value;
+		AcroCore::XAllocator<AcroCore::CHAR16> m_Value;
 
 	public:
 		IString()
@@ -21,11 +21,11 @@ namespace AcroEngine
 			m_Value.Clear();
 		}
 
-		IString(XPlatform::CHAR16* Value)
+		IString(AcroCore::CHAR16* Value)
 		{
 			m_Value.Clear();
 			m_Value.Resize(sizeof(Value));
-			for (XPlatform::UINT32 i = 0; i < m_Value.GetSize(); ++i)
+			for (AcroCore::UINT32 i = 0; i < m_Value.GetSize(); ++i)
 			{
 				m_Value.SetValue(i, Value[i]);
 			}

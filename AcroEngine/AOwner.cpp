@@ -25,7 +25,7 @@ namespace AcroEngine
 		UnsetOwner();
 	}
 
-	XPlatform::VOID IOwner::SetOwner(AObject target)
+	AcroCore::VOID IOwner::SetOwner(AObject target)
 	{
 		UnsetOwner();
 
@@ -36,7 +36,7 @@ namespace AcroEngine
 		}
 	}
 
-	XPlatform::VOID IOwner::UnsetOwner()
+	AcroCore::VOID IOwner::UnsetOwner()
 	{
 		if (m_Target != nullptr)
 		{
@@ -50,7 +50,7 @@ namespace AcroEngine
 		return m_Target;
 	}
 
-	XPlatform::VOID IOwner::operator = (AObject target)
+	AcroCore::VOID IOwner::operator = (AObject target)
 	{
 		SetOwner(target);
 	}
@@ -60,7 +60,7 @@ namespace AcroEngine
 		return m_Target;
 	}
 
-	XPlatform::BOOL8 IOwner::IsValid()
+	AcroCore::BOOL8 IOwner::IsValid()
 	{
 		//return AcroEngine::IsDestroyed(m_Target);
 		return false;

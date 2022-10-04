@@ -20,11 +20,11 @@ namespace AcroEngine
 		IOwner(AOwner Owner);
 		virtual ~IOwner();
 
-		XPlatform::VOID SetOwner(AObject target);
-		XPlatform::VOID UnsetOwner();
+		AcroCore::VOID SetOwner(AObject target);
+		AcroCore::VOID UnsetOwner();
 		AObject GetObject();
-		XPlatform::VOID operator = (AObject target);
+		AcroCore::VOID operator = (AObject target);
 		AObject operator -> ();
-		XPlatform::BOOL8 IsValid();
+		AcroCore::BOOL8 IsValid();
 	};
 }

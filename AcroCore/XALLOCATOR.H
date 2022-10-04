@@ -1,9 +1,9 @@
 ﻿#pragma once
 
-#include "XPlatform.h"
+#include "AcroCore.h"
 
 
-namespace XPlatform
+namespace AcroCore
 {
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 메모리할당 클래스.

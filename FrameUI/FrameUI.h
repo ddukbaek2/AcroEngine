@@ -75,4 +75,10 @@ namespace FrameUI
 	{
 
 	};
+
+	class FrameUI : public AcroCore::IModule
+	{
+	public:
+
+	};
 }

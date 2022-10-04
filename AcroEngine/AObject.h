@@ -11,22 +11,22 @@ namespace AcroEngine
 	class IObject
 	{
 	private:
-		XPlatform::INT32 m_Identifier;
-		XPlatform::INT32 m_ReferenceCount;
-		XPlatform::BOOL8 m_IsDestroyed;
+		AcroCore::INT32 m_Identifier;
+		AcroCore::INT32 m_ReferenceCount;
+		AcroCore::BOOL8 m_IsDestroyed;
 
 	public:
 		IObject();
 		virtual ~IObject();
 		virtual AString ToString();
-		virtual XPlatform::BOOL8 Equals(AObject Object);
-		virtual XPlatform::INT32 GetHashCode();
+		virtual AcroCore::BOOL8 Equals(AObject Object);
+		virtual AcroCore::INT32 GetHashCode();
 
 		friend AObject Instantiate(AType Type);
-		friend XPlatform::VOID Destroy(AObject Object);
-		friend XPlatform::VOID DestroyImmediate(AObject Object);
-		friend XPlatform::BOOL8 IsDestroyed(AObject Object);
-		friend XPlatform::VOID IncreaseReference(AObject Object);
-		friend XPlatform::VOID DecreaseReference(AObject Object);
+		friend AcroCore::VOID Destroy(AObject Object);
+		friend AcroCore::VOID DestroyImmediate(AObject Object);
+		friend AcroCore::BOOL8 IsDestroyed(AObject Object);
+		friend AcroCore::VOID IncreaseReference(AObject Object);
+		friend AcroCore::VOID DecreaseReference(AObject Object);
 	};
 }

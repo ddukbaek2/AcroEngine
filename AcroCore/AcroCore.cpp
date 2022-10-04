@@ -1,7 +1,7 @@
-#include "XPlatform.h"
+#include "AcroCore.h"
 
 
-namespace XPlatform
+namespace AcroCore
 {
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 메모리 생성.
@@ -41,7 +41,7 @@ namespace XPlatform
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 플랫폼 별 어플리케이션 처리.
 	/////////////////////////////////////////////////////////////////////////////
-#include "XApplicationAndroid.cpp"
-#include "XApplicationIOS.cpp"
-#include "XApplicationWin32.cpp"
+#include "ApplicationAndroid.cpp"
+#include "ApplicationIOS.cpp"
+#include "ApplicationWin32.cpp"
 }

@@ -21,15 +21,15 @@ namespace AcroEngine
 		//	return nullptr;
 		//}
 
-		XPlatform::VOID Add(ADelegate Delegate)
+		AcroCore::VOID Add(ADelegate Delegate)
 		{
 		}
 
-		XPlatform::VOID Remove(ADelegate Delegate)
+		AcroCore::VOID Remove(ADelegate Delegate)
 		{
 		}
 
-		XPlatform::VOID Clear()
+		AcroCore::VOID Clear()
 		{
 			//m_Delegates.
 		}

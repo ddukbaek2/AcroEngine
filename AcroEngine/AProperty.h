@@ -18,7 +18,7 @@ namespace AcroEngine
 		IProperty() {}
 		virtual ~IProperty() {}
 
-		XPlatform::VOID operator += (ADelegate Delegate)
+		AcroCore::VOID operator += (ADelegate Delegate)
 		{
 			//m_Get.Add
 		}

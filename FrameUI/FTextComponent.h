@@ -12,6 +12,6 @@ namespace FrameUI
 	class ITextComponent : public IComponent
 	{
 	public:
-		//XPlatform::VOID SetText();
+		//AcroCore::VOID SetText();
 	};
 }

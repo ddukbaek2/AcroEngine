@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "../XPlatform/XPlatform.h"
-#include "../XPlatform/XAllocator.h"
+#include "../AcroCore/AcroCore.h"
+#include "../AcroCore/XAllocator.h"
 
 
 namespace AcroEngine
@@ -47,7 +47,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 클래스포인터 전방선언 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	typedef XPlatform::POINTER AUnknownObject;
+	typedef AcroCore::POINTER AUnknownObject;
 	typedef class IObject* AObject;
 	typedef class IType* AType;
 	typedef class IOwner* AOwner;
@@ -82,14 +82,14 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 함수 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	XPlatform::VOID LoadType(AType Type);
-	XPlatform::VOID UnloadType(AType Type);
-	XPlatform::VOID IncreaseReference(AObject Object);
-	XPlatform::VOID DecreaseReference(AObject Object);
-	AType GetType(const XPlatform::CHAR16 ClassName[]);
+	AcroCore::VOID LoadType(AType Type);
+	AcroCore::VOID UnloadType(AType Type);
+	AcroCore::VOID IncreaseReference(AObject Object);
+	AcroCore::VOID DecreaseReference(AObject Object);
+	AType GetType(const AcroCore::CHAR16 ClassName[]);
 	AObject Instantiate(AType Type);
-	XPlatform::VOID Destroy(AObject Object);
-	XPlatform::VOID DestroyImmediate(AObject Object);
-	XPlatform::BOOL8 IsDestroyed(AObject Object);
-	AString Format(const XPlatform::CHAR16 Format[], AArray Arguments);
+	AcroCore::VOID Destroy(AObject Object);
+	AcroCore::VOID DestroyImmediate(AObject Object);
+	AcroCore::BOOL8 IsDestroyed(AObject Object);
+	AString Format(const AcroCore::CHAR16 Format[], AArray Arguments);
 }

@@ -1,27 +1,27 @@
 ﻿#pragma once
 
 
-namespace XPlatform
+namespace AcroCore
 {
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 플랫폼 목록.
 	/////////////////////////////////////////////////////////////////////////////
 #if defined(WIN32) // WINDOWS
-	#define XPLATFORM_WINDOWS
+	#define ACROCORE_WINDOWS
 #elif defined(__linux__) // LINUX
-	#define XPLATFORM_LINUX
+	#define ACROCORE_LINUX
 #elif defined(TARGET_OS_OSX) // MACOSX
-	#define XPLATFORM_OSX
+	#define ACROCORE_OSX
 #elif defined(__ANDROID__) // ANDROID
-	#define XPLATFORM_ANDROID
+	#define ACROCORE_ANDROID
 #elif defined(TARGET_OS_IOS) // IOS
-	#define XPLATFORM_IOS
+	#define ACROCORE_IOS
 #elif defined(__SWITCH__)
-	#define XPLATFORM_SWITCH
+	#define ACROCORE_SWITCH
 #elif defined(__PLAYSTATION5__)
-	#define XPLATFORM_PS5
+	#define ACROCORE_PS5
 #elif defined(__XBOXSX__)
-	#define XPLATFORM_XBOXSX
+	#define ACROCORE_XBOXSX
 #endif
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -59,8 +59,8 @@ namespace XPlatform
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 클래스 전방선언 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	class IApplication;
-	class IGL;
+	struct IApplication;
+	struct IGL;
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -88,9 +88,8 @@ namespace XPlatform
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 렌더러 (OpenGL) 인터페이스.
 	/////////////////////////////////////////////////////////////////////////////
-	class IGL
+	struct IGL
 	{
-	public:
 		enum class EBoolean : UINT8
 		{
 			GL_TRUE = 1,
@@ -1140,8 +1139,6 @@ namespace XPlatform
 			GL_CLIENT_ALL_ATTRIB_BITS = 0xffffffff,
 		};
 
-
-	public:
 		virtual VOID Clear(EAttribMask AttribMask) = 0;
 		virtual VOID ClearColor(FLOAT32 R, FLOAT32 G, FLOAT32 B, FLOAT32 A) = 0;
 		virtual VOID PushMatrix() = 0;
@@ -1160,19 +1157,26 @@ namespace XPlatform
 		virtual VOID Viewport(INT32 X, INT32 Y, INT32 Width, INT32 Height) = 0;
 	};
 
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 모듈 인터페이스.
+	/////////////////////////////////////////////////////////////////////////////
+	struct IModule
+	{
+	};
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 어플리케이션 인터페이스.
 	/////////////////////////////////////////////////////////////////////////////
 	struct IApplication
 	{
-		virtual VOID OnCreate() { }
-		virtual VOID OnDestroy() { }
-		virtual VOID OnPause() { }
-		virtual VOID OnResume() { }
-		virtual VOID OnUpdate(FLOAT32 DeltaTime) { }
-		virtual VOID OnDraw(XGL GL) { }
-		virtual VOID OnResize(UINT32 Width, UINT32 Height) { }
+		virtual VOID OnCreate() = 0;
+		virtual VOID OnDestroy() = 0;
+		virtual VOID OnPause() = 0;
+		virtual VOID OnResume() = 0;
+		virtual VOID OnUpdate(FLOAT32 DeltaTime) = 0;
+		virtual VOID OnDraw(XGL GL) = 0;
+		virtual VOID OnResize(UINT32 Width, UINT32 Height) = 0;
 	};
 
 

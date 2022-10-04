@@ -11,8 +11,8 @@ namespace AcroEngine
 	class IEnumerator
 	{
 	public:
-		virtual XPlatform::VOID Clear() = 0;
-		virtual XPlatform::BOOL8 MoveNext() = 0;
+		virtual AcroCore::VOID Clear() = 0;
+		virtual AcroCore::BOOL8 MoveNext() = 0;
 		virtual AObject GetCurrent() = 0;
 	};
 }

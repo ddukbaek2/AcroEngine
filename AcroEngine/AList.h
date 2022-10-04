@@ -13,8 +13,8 @@ namespace AcroEngine
 	class IList : public IVariable
 	{
 	private:
-		XPlatform::XAllocator<AObject> m_Allocator;
-		XPlatform::UINT32 m_Count;
+		AcroCore::XAllocator<AObject> m_Allocator;
+		AcroCore::UINT32 m_Count;
 
 	public:
 		IList() : IVariable()
@@ -28,7 +28,7 @@ namespace AcroEngine
 			m_Allocator.Resize(Capacity->ToInt());
 		}
 
-		XPlatform::VOID Add(AObject Object)
+		AcroCore::VOID Add(AObject Object)
 		{
 			auto size = m_Allocator.GetSize();
 			if (size == 0)
@@ -45,18 +45,18 @@ namespace AcroEngine
 			m_Allocator.SetValue(m_Count++, Object);
 		}
 
-		XPlatform::VOID Insert(AInt Index, AObject Object)
+		AcroCore::VOID Insert(AInt Index, AObject Object)
 		{
 		}
 
-		XPlatform::VOID Clear()
+		AcroCore::VOID Clear()
 		{
 			m_Allocator.Clear();
 		}
 
-		XPlatform::BOOL8 Remove(AObject Object)
+		AcroCore::BOOL8 Remove(AObject Object)
 		{
-			XPlatform::INT32 Index = Find(Object);
+			AcroCore::INT32 Index = Find(Object);
 			if (Index == -1)
 				return false;
 
@@ -64,7 +64,7 @@ namespace AcroEngine
 			return true;
 		}
 
-		XPlatform::BOOL8 RemoveAt(XPlatform::UINT32 Index)
+		AcroCore::BOOL8 RemoveAt(AcroCore::UINT32 Index)
 		{
 			if (Index < 0 || Index >= m_Allocator.GetSize())
 				return false;
@@ -73,9 +73,9 @@ namespace AcroEngine
 			return true;
 		}
 
-		XPlatform::INT32 Find(AObject Object)
+		AcroCore::INT32 Find(AObject Object)
 		{
-			for (XPlatform::UINT32 Index = 0; Index < m_Allocator.GetSize(); ++Index)
+			for (AcroCore::UINT32 Index = 0; Index < m_Allocator.GetSize(); ++Index)
 			{
 				AObject Current = m_Allocator.GetValue(Index);
 				if (Current->Equals(Object))
@@ -85,17 +85,17 @@ namespace AcroEngine
 			return -1;
 		}
 
-		AObject Find(XPlatform::UINT32 Index)
+		AObject Find(AcroCore::UINT32 Index)
 		{
 			return m_Allocator.GetValue(Index);
 		}
 
-		XPlatform::BOOL8 Contains(AObject Object)
+		AcroCore::BOOL8 Contains(AObject Object)
 		{
 			return Find(Object) != -1;
 		}
 
-		XPlatform::INT32 GetCount()
+		AcroCore::INT32 GetCount()
 		{
 			return m_Count;
 		}

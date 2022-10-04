@@ -1,6 +1,6 @@
-﻿#include "XPlatform.h"
+﻿#include "AcroCore.h"
 
-#ifdef XPLATFORM_WINDOWS
+#ifdef ACROCORE_WINDOWS
 
 //#include <SDKDDKVer.h>
 //#define WIN32_LEAN_AND_MEAN
@@ -12,7 +12,7 @@
 //#pragma comment(lib, "glu32.lib")
 
 
-namespace XPlatform
+namespace AcroCore
 {
     /////////////////////////////////////////////////////////////////////////////
     // @ 전역변수.

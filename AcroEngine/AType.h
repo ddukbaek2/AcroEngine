@@ -20,12 +20,12 @@ namespace AcroEngine
 		IType();
 		virtual ~IType();
 
-		virtual XPlatform::BOOL8 IsParent(AType Class);
-		virtual XPlatform::BOOL8 IsChildren(AType Class);
+		virtual AcroCore::BOOL8 IsParent(AType Class);
+		virtual AcroCore::BOOL8 IsChildren(AType Class);
 		virtual AString GetName();
 		virtual ADictionary GetVariables();
 		virtual ADictionary GetMethods();
 
-		friend AType GetType(const XPlatform::CHAR16 ClassName[]);
+		friend AType GetType(const AcroCore::CHAR16 ClassName[]);
 	};
 }

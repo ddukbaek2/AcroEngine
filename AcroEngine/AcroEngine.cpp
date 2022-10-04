@@ -13,13 +13,13 @@ namespace AcroEngine
 	class CRC32
 	{
 	public:
-		XPlatform::VOID CreateTable(XPlatform::UINT32(&table)[256])
+		AcroCore::VOID CreateTable(AcroCore::UINT32(&table)[256])
 		{
-			XPlatform::UINT32 polynomial = 0xEDB88320;
-			for (XPlatform::UINT32 i = 0; i < 256; i++)
+			AcroCore::UINT32 polynomial = 0xEDB88320;
+			for (AcroCore::UINT32 i = 0; i < 256; i++)
 			{
-				XPlatform::UINT32 c = i;
-				for (XPlatform::UINT32 j = 0; j < 8; j++)
+				AcroCore::UINT32 c = i;
+				for (AcroCore::UINT32 j = 0; j < 8; j++)
 				{
 					if (c & 1) {
 						c = polynomial ^ (c >> 1);
@@ -32,11 +32,11 @@ namespace AcroEngine
 			}
 		}
 
-		XPlatform::UINT32 ComputeHash(XPlatform::UINT32(&table)[256], XPlatform::UINT32 initial, const XPlatform::POINTER buf, XPlatform::UINT32 len)
+		AcroCore::UINT32 ComputeHash(AcroCore::UINT32(&table)[256], AcroCore::UINT32 initial, const AcroCore::POINTER buf, AcroCore::UINT32 len)
 		{
-			XPlatform::UINT32 c = initial ^ 0xFFFFFFFF;
-			const XPlatform::UINT8* u = static_cast<const XPlatform::UINT8*>(buf);
-			for (XPlatform::UINT32 i = 0; i < len; ++i)
+			AcroCore::UINT32 c = initial ^ 0xFFFFFFFF;
+			const AcroCore::UINT8* u = static_cast<const AcroCore::UINT8*>(buf);
+			for (AcroCore::UINT32 i = 0; i < len; ++i)
 			{
 				c = table[(c ^ u[i]) & 0xFF] ^ (c >> 8);
 			}
@@ -50,7 +50,7 @@ namespace AcroEngine
 	class ObjectManager
 	{
 	private:
-		XPlatform::XAllocator<AObject> m_Objects;
+		AcroCore::XAllocator<AObject> m_Objects;
 		
 	public:
 		ObjectManager()
@@ -101,7 +101,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 타입 로드.
 	/////////////////////////////////////////////////////////////////////////////
-	XPlatform::VOID LoadType(AType Type)
+	AcroCore::VOID LoadType(AType Type)
 	{
 
 	}
@@ -110,7 +110,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 타입 언로드.
 	/////////////////////////////////////////////////////////////////////////////
-	XPlatform::VOID UnloadType(AType Type)
+	AcroCore::VOID UnloadType(AType Type)
 	{
 
 	}
@@ -118,7 +118,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 레퍼런스 카운트 증가.
 	/////////////////////////////////////////////////////////////////////////////
-	XPlatform::VOID IncreaseReference(AObject Object)
+	AcroCore::VOID IncreaseReference(AObject Object)
 	{
 		if (Object != nullptr && !Object->m_IsDestroyed)
 		{
@@ -130,7 +130,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 레퍼런스 카운트 감소.
 	/////////////////////////////////////////////////////////////////////////////
-	XPlatform::VOID DecreaseReference(AObject Object)
+	AcroCore::VOID DecreaseReference(AObject Object)
 	{
 		if (Object != nullptr && !Object->m_IsDestroyed)
 		{
@@ -147,7 +147,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 클래스이름을 통해 타입 반환.
 	/////////////////////////////////////////////////////////////////////////////
-	AType GetType(const XPlatform::CHAR16 ClassName[])
+	AType GetType(const AcroCore::CHAR16 ClassName[])
 	{
 		return nullptr;
 	}
@@ -171,7 +171,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 파괴.
 	/////////////////////////////////////////////////////////////////////////////
-	XPlatform::VOID Destroy(AObject Object)
+	AcroCore::VOID Destroy(AObject Object)
 	{
 		if (Object != nullptr && !Object->m_IsDestroyed)
 		{
@@ -184,7 +184,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 즉시 파괴.
 	/////////////////////////////////////////////////////////////////////////////
-	XPlatform::VOID DestroyImmediate(AObject Object)
+	AcroCore::VOID DestroyImmediate(AObject Object)
 	{
 		// 이미 파괴가 예약잡힌 오브젝트는 제외한다.
 		if (Object != nullptr && !Object->m_IsDestroyed)
@@ -197,7 +197,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 파괴 여부.
 	/////////////////////////////////////////////////////////////////////////////
-	XPlatform::BOOL8 IsDestroyed(AObject Object)
+	AcroCore::BOOL8 IsDestroyed(AObject Object)
 	{
 		return Object == nullptr || Object->m_IsDestroyed;
 	}
@@ -205,7 +205,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 문자열 포맷.
 	/////////////////////////////////////////////////////////////////////////////
-	AString Format(const XPlatform::CHAR16 Format[], AArray Arguments)
+	AString Format(const AcroCore::CHAR16 Format[], AArray Arguments)
 	{
 		return nullptr;
 	}

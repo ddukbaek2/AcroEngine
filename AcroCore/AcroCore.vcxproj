@@ -24,6 +24,7 @@
     <ProjectGuid>{82541852-d836-42c6-b148-c16cc56781a7}</ProjectGuid>
     <RootNamespace>XPlatform</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>AcroCore</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,20 +141,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="XAllocator.h" />
-    <ClInclude Include="XArray.h" />
-    <ClInclude Include="XList.h" />
-    <ClInclude Include="XPlatform.h" />
-    <ClInclude Include="XString.h" />
+    <ClInclude Include="AcroCore.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="XApplicationAndroid.cpp">
+    <ClCompile Include="ApplicationAndroid.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="XPlatform.cpp" />
-    <ClCompile Include="XApplicationIOS.cpp">
+    <ClCompile Include="AcroCore.cpp" />
+    <ClCompile Include="ApplicationIOS.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="XApplicationWin32.cpp">
+    <ClCompile Include="ApplicationWin32.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
