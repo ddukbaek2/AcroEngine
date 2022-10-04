@@ -5,19 +5,47 @@
 using namespace XPlatform;
 using namespace AcroEngine;
 
+
 /////////////////////////////////////////////////////////////////////////////
-// @ 어플리케이션 업데이트.
+// @ 샘플 어플리케이션.
 /////////////////////////////////////////////////////////////////////////////
-void OnApplicationUpdate(XApplication Application)
+class Application : public IApplication
 {
-    XGL GL = Application->GetGL();
-    GL->Clear(IGL::EAttribMask::COLOR_BUFFER_BIT);
-    GL->Flush();
-}
+protected:
+    virtual VOID OnCreate() override { }
+    virtual VOID OnDestroy() override { }
+    virtual VOID OnPause() override { }
+    virtual VOID OnResume() override { }
+
+    virtual VOID OnUpdate(FLOAT32 DeltaTime) override
+    {
+    }
+
+    virtual VOID OnDraw(XGL GL) override
+    {
+        GL->Clear(IGL::EAttribMask::GL_COLOR_BUFFER_BIT);
+        {
+            GL->LoadIdentity();
+            GL->Color4(1.0f, 0.0f, 0.0f, 1.0f);
+            GL->Begin(IGL::EBeginMode::GL_QUADS);
+            GL->Vertex3(-0.5f, -0.5f, 0.0f);
+            GL->Vertex3(0.5f, -0.5f, 0.0f);
+            GL->Vertex3(0.5f, 0.5f, 0.0f);
+            GL->Vertex3(-0.5f, 0.5f, 0.0f);
+            GL->End();
+        }
+        GL->Flush();
+    }
+
+    virtual VOID OnResize(UINT32 Width, UINT32 Height) override
+    {
+        int a = 0;
+    }
+};
 
 
 /////////////////////////////////////////////////////////////////////////////
-// @ 윈도우 메인.
+// @ 진입점.
 /////////////////////////////////////////////////////////////////////////////
 int main()
 {
@@ -32,6 +60,8 @@ int main()
     // 파괴.
     DestroyImmediate(Boolean);
     
-    XPlatform::RunApplication(OnApplicationUpdate);
+    // 어플리케이션 실행.
+    Application application;
+    XPlatform::RunApplication(&application);
     return 0;
 }

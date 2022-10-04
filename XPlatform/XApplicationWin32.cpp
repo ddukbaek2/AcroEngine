@@ -2,14 +2,14 @@
 
 #ifdef XPLATFORM_WINDOWS
 
-#include <SDKDDKVer.h>
-#define WIN32_LEAN_AND_MEAN
+//#include <SDKDDKVer.h>
+//#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <gl/GL.h>
-#include <gl/GLU.h>
+//#include <gl/GLU.h>
 
 #pragma comment(lib, "opengl32.lib")
-#pragma comment(lib, "glu32.lib")
+//#pragma comment(lib, "glu32.lib")
 
 
 namespace XPlatform
@@ -76,15 +76,15 @@ namespace XPlatform
     /////////////////////////////////////////////////////////////////////////////
     // @ 어플리케이션.
     /////////////////////////////////////////////////////////////////////////////
-    class Win32Application : public IApplication
+    class Win32Application
     {
     public:
         static Win32Application* Instance;
 
     private:
         HWND m_WindowHandle; // 현재 윈도우 핸들.
-        EState m_State; // 현재 상태.
         XGL m_GL; // 현재 OpenGL.
+        XApplication m_Application;
 
     private:
         /////////////////////////////////////////////////////////////////////////////
@@ -95,54 +95,69 @@ namespace XPlatform
             switch (message)
             {
             case WM_CREATE:
-            {
-                Instance->SetState(EState::OnCreate);
-                break;
-            }
+                {
+                    if (Instance != nullptr && Instance->m_Application != nullptr)
+                        Instance->m_Application->OnCreate();
+                    break;
+                }
 
             case WM_SETFOCUS:
-            {
-                Instance->SetState(EState::OnResume);
-                break;
-            }
+                {
+                    if (Instance != nullptr && Instance->m_Application != nullptr)
+                        Instance->m_Application->OnResume();
+                    break;
+                }
 
             case WM_KILLFOCUS:
-            {
-                Instance->SetState(EState::OnPause);
-                break;
-            }
+                {
+                    if (Instance != nullptr && Instance->m_Application != nullptr)
+                        Instance->m_Application->OnPause();
+                    break;
+                }
 
             case WM_SIZE:
-            {
-                XGL gl = Instance->GetGL();
-                if (gl != nullptr)
-                    gl->Viewport(0, 0, LOWORD(lParam), HIWORD(lParam));
-                break;
-            }
+                {
+                    UINT16 width = LOWORD(lParam); // minwindef.h
+                    UINT16 height = HIWORD(lParam); // minwindef.h
+                    if (Instance != nullptr)
+                    {
+                        if (Instance->m_Application != nullptr)
+                        {
+                            Instance->m_Application->OnResize(width, height);
+                        }
+
+                        XGL gl = Instance->GetGL();
+                        if (gl != nullptr)
+                            gl->Viewport(0, 0, width, height);
+                    }
+                    break;
+                }
 
             case WM_CLOSE:
-            {
-                DestroyWindow(windowHandle); // WM_DESTROY // winuser.h
-                break;
-            }
+                {
+                    DestroyWindow(windowHandle); // WM_DESTROY // winuser.h
+                    break;
+                }
 
             case WM_DESTROY:
-            {
-                Instance->SetState(EState::OnDestroy);
-                PostQuitMessage(0); // WM_QUIT // winuser.h
-                break;
-            }
+                {
+                    if (Instance != nullptr && Instance->m_Application != nullptr)
+                        Instance->m_Application->OnDestroy();
+   
+                    PostQuitMessage(0); // WM_QUIT // winuser.h
+                    break;
+                }
             }
 
             return DefWindowProcW(windowHandle, message, wParam, lParam); // winuser.h
         }
 
     public:
-        Win32Application()
+        Win32Application(XApplication Application)
         {
             m_WindowHandle = 0;
-            m_State = EState::Invalid;
             m_GL = nullptr;
+            m_Application = Application;
         }
 
         virtual ~Win32Application()
@@ -152,7 +167,7 @@ namespace XPlatform
         /////////////////////////////////////////////////////////////////////////////
         // @ 어플리케이션 실행.
         /////////////////////////////////////////////////////////////////////////////
-        virtual VOID Run(FOnApplicationUpdate OnApplicationUpdate) override
+        virtual VOID Run()
         {
             HINSTANCE instance = GetModuleHandle(NULL);
 
@@ -187,7 +202,6 @@ namespace XPlatform
 
             // 렌더러 초기화.
             HDC deviceContext = GetDC(m_WindowHandle); // winuser.h
-
             PIXELFORMATDESCRIPTOR pixelFormatDescriptor;
             memset(&pixelFormatDescriptor, 0, sizeof(pixelFormatDescriptor));
             pixelFormatDescriptor.nSize = sizeof(pixelFormatDescriptor);
@@ -238,8 +252,11 @@ namespace XPlatform
                 }
                 else
                 {
-                    if (OnApplicationUpdate != nullptr)
-                        OnApplicationUpdate(this);
+                    if (m_Application != nullptr)
+                    {
+                        m_Application->OnUpdate(0.0f);
+                        m_Application->OnDraw(m_GL);
+                    }
                 }
             }
 
@@ -256,27 +273,11 @@ namespace XPlatform
             //return (INT32)msg.wParam;
         }
 
-    private:
-        /////////////////////////////////////////////////////////////////////////////
-        // @ 어플리케이션 상태.
-        /////////////////////////////////////////////////////////////////////////////
-        VOID SetState(EState State)
-        {
-            m_State = State;
-        }
     public:
-        /////////////////////////////////////////////////////////////////////////////
-        // @ 어플리케이션 상태.
-        /////////////////////////////////////////////////////////////////////////////
-        virtual EState GeState() override
-        {
-            return m_State;
-        }
-
         /////////////////////////////////////////////////////////////////////////////
         // @ 어플리케이션 종료.
         /////////////////////////////////////////////////////////////////////////////
-        virtual VOID Quit() override
+        VOID Quit()
         {
             if (m_WindowHandle != 0)
             {
@@ -288,7 +289,7 @@ namespace XPlatform
         /////////////////////////////////////////////////////////////////////////////
         // @ OpenGL 반환.
         /////////////////////////////////////////////////////////////////////////////
-        virtual XGL GetGL() override
+        XGL GetGL()
         {
             return m_GL;
         }
@@ -300,17 +301,28 @@ namespace XPlatform
     /////////////////////////////////////////////////////////////////////////////
     // @ 어플리케이션 실행.
     /////////////////////////////////////////////////////////////////////////////
-    VOID RunApplication(IApplication::FOnApplicationUpdate OnApplicationUpdate)
+    VOID RunApplication(XApplication Application)
     {
         if (Win32Application::Instance == nullptr)
-            Win32Application::Instance = new Win32Application();
+            Win32Application::Instance = new Win32Application(Application);
 
-        Win32Application::Instance->Run(OnApplicationUpdate);
+        Win32Application::Instance->Run();
 
         if (Win32Application::Instance != nullptr)
         {
             delete Win32Application::Instance;
             Win32Application::Instance = nullptr;
+        }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////
+    // @ 어플리케이션 종료.
+    /////////////////////////////////////////////////////////////////////////////
+    VOID QuitApplication()
+    {
+        if (Win32Application::Instance != nullptr)
+        {
+            Win32Application::Instance->Quit();
         }
     }
 }
