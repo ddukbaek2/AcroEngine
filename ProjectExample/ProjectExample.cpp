@@ -26,12 +26,15 @@ protected:
         GL->Clear(IGL::EAttribMask::GL_COLOR_BUFFER_BIT);
         {
             GL->LoadIdentity();
-            GL->Color4(1.0f, 0.0f, 0.0f, 1.0f);
             GL->Begin(IGL::EBeginMode::GL_QUADS);
-            GL->Vertex3(-0.5f, -0.5f, 0.0f);
-            GL->Vertex3(0.5f, -0.5f, 0.0f);
-            GL->Vertex3(0.5f, 0.5f, 0.0f);
-            GL->Vertex3(-0.5f, 0.5f, 0.0f);
+            GL->Vertex3(-0.5f, -0.5f, 0.0f); // 좌하.
+            GL->Color4(1.0f, 0.0f, 0.0f, 1.0f);
+            GL->Vertex3(0.5f, -0.5f, 0.0f); // 우하.
+            GL->Color4(1.0f, 0.0f, 1.0f, 1.0f);
+            GL->Vertex3(0.5f, 0.5f, 0.0f); // 우상.
+            GL->Color4(1.0f, 0.0f, 0.0f, 1.0f);
+            GL->Vertex3(-0.5f, 0.5f, 0.0f); // 좌상.
+            GL->Color4(1.0f, 1.0f, 0.0f, 1.0f);
             GL->End();
         }
         GL->Flush();
@@ -58,7 +61,7 @@ int main()
     //*Boolean = false;
 
     // 파괴.
-    DestroyImmediate(Boolean);
+    AcroEngine::DestroyImmediate(Boolean);
     
     // 어플리케이션 실행.
     Application application;
