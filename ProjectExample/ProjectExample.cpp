@@ -2,14 +2,13 @@
 #include "../AcroEngine/AcroEngine.h"
 #include "../AcroEngine/ABoolean.h"
 
-using namespace AcroCore;
 using namespace AcroEngine;
 
 
 /////////////////////////////////////////////////////////////////////////////
 // @ 샘플 어플리케이션.
 /////////////////////////////////////////////////////////////////////////////
-class Application : public IApplication
+class Application : public AcroCore::IApplication
 {
 protected:
     virtual VOID OnCreate() override { }
@@ -21,12 +20,12 @@ protected:
     {
     }
 
-    virtual VOID OnDraw(XGL GL) override
+    virtual VOID OnDraw(AcroCore::XGL GL) override
     {
-        GL->Clear(IGL::EAttribMask::GL_COLOR_BUFFER_BIT);
+        GL->Clear(AcroCore::IGL::EAttribMask::GL_COLOR_BUFFER_BIT);
         {
             GL->LoadIdentity();
-            GL->Begin(IGL::EBeginMode::GL_QUADS);
+            GL->Begin(AcroCore::IGL::EBeginMode::GL_QUADS);
             GL->Vertex3(-0.5f, -0.5f, 0.0f); // 좌하.
             GL->Color4(1.0f, 0.0f, 0.0f, 1.0f);
             GL->Vertex3(0.5f, -0.5f, 0.0f); // 우하.
