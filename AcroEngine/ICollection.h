@@ -13,11 +13,11 @@ namespace AcroEngine
 	public:
 		virtual int GetCount() = 0;
 
-		virtual AcroCore::VOID Add(AObject Object) = 0;
-		virtual AcroCore::VOID Remove(AObject Object) = 0;
-		virtual AcroCore::VOID Clear() = 0;
+		virtual VOID Add(AObject Object) = 0;
+		virtual VOID Remove(AObject Object) = 0;
+		virtual VOID Clear() = 0;
 
-		virtual AcroCore::BOOL8 Contains(AObject Object) = 0;
-		virtual AcroCore::VOID CopyTo(AObject Array, AInt Index) = 0;
+		virtual BOOL8 Contains(AObject Object) = 0;
+		virtual VOID CopyTo(AObject Array, AInt Index) = 0;
 	};
 }

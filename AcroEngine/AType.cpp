@@ -17,12 +17,12 @@ namespace AcroEngine
 		A_DESTROYIMMEDIATE(m_Methods);
 	}
 
-	AcroCore::BOOL8 IType::IsParent(AType Class)
+	BOOL8 IType::IsParent(AType Class)
 	{
 		return false;
 	}
 
-	AcroCore::BOOL8 IType::IsChildren(AType Class)
+	BOOL8 IType::IsChildren(AType Class)
 	{
 		return false;
 	}

@@ -12,7 +12,7 @@ namespace AcroEngine
 	class IInt : public IVariable
 	{
 	private:
-		AcroCore::INT32 m_Value;
+		INT32 m_Value;
 
 	public:
 		IInt() : IVariable(), m_Value(0)
@@ -23,17 +23,17 @@ namespace AcroEngine
 		{
 		}
 
-		AcroCore::VOID operator = (AcroCore::INT32& Value)
+		VOID operator = (INT32& Value)
 		{
 			m_Value = Value;
 		}
 
-		operator AcroCore::INT32& ()
+		operator INT32& ()
 		{
 			return m_Value;
 		}
 
-		AcroCore::INT32 ToInt()
+		INT32 ToInt()
 		{
 			return m_Value;
 		}

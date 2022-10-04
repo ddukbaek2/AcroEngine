@@ -11,5 +11,9 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class IQueue : public IVariable
 	{
+	private:
+		std::queue<AObject> m_Container;
+
+	public:
 	};
 }

@@ -21,15 +21,15 @@ namespace AcroEngine
 		//	return nullptr;
 		//}
 
-		AcroCore::VOID Add(ADelegate Delegate)
+		VOID Add(ADelegate Delegate)
 		{
 		}
 
-		AcroCore::VOID Remove(ADelegate Delegate)
+		VOID Remove(ADelegate Delegate)
 		{
 		}
 
-		AcroCore::VOID Clear()
+		VOID Clear()
 		{
 			//m_Delegates.
 		}

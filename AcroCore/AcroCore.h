@@ -1,61 +1,76 @@
 ﻿#pragma once
 
 
-namespace AcroCore
-{
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 플랫폼 목록.
-	/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+// @ 플랫폼 목록.
+/////////////////////////////////////////////////////////////////////////////
 #if defined(WIN32) // WINDOWS
-	#define ACROCORE_WINDOWS
+#define ACROCORE_WINDOWS
 #elif defined(__linux__) // LINUX
-	#define ACROCORE_LINUX
+#define ACROCORE_LINUX
 #elif defined(TARGET_OS_OSX) // MACOSX
-	#define ACROCORE_OSX
+#define ACROCORE_OSX
 #elif defined(__ANDROID__) // ANDROID
-	#define ACROCORE_ANDROID
+#define ACROCORE_ANDROID
 #elif defined(TARGET_OS_IOS) // IOS
-	#define ACROCORE_IOS
+#define ACROCORE_IOS
 #elif defined(__SWITCH__)
-	#define ACROCORE_SWITCH
+#define ACROCORE_SWITCH
 #elif defined(__PLAYSTATION5__)
-	#define ACROCORE_PS5
+#define ACROCORE_PS5
 #elif defined(__XBOXSX__)
-	#define ACROCORE_XBOXSX
+#define ACROCORE_XBOXSX
 #endif
 
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 변수 재선언 목록.
-	/////////////////////////////////////////////////////////////////////////////
-	typedef void VOID;
-	typedef void* POINTER;
-	typedef signed char INT8;
-	typedef unsigned char UINT8;
-	typedef signed short INT16;
-	typedef unsigned short UINT16;
-	typedef signed int INT32;
-	typedef unsigned int UINT32;
-	typedef signed long long INT64;
-	typedef unsigned long long UINT64;
-	typedef bool BOOL8;
-	typedef float FLOAT32;
-	typedef double FLOAT64;
-	typedef wchar_t CHAR16;
+
+/////////////////////////////////////////////////////////////////////////////
+// @ 사용 STL 목록.
+/////////////////////////////////////////////////////////////////////////////
+#include <vector>
+#include <queue>
+#include <stack>
+#include <set>
+#include <map>
+#include <string>
+#include <algorithm>
 
 
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 매크로 목록.
-	/////////////////////////////////////////////////////////////////////////////
-	#define INVALID -1
-	#undef TEXT
-	#define TEXT(Text) L#Text
+/////////////////////////////////////////////////////////////////////////////
+// @ 변수 재선언 목록.
+/////////////////////////////////////////////////////////////////////////////
+typedef void VOID;
+typedef void* POINTER;
+typedef signed char INT8;
+typedef unsigned char UINT8;
+typedef signed short INT16;
+typedef unsigned short UINT16;
+typedef signed int INT32;
+typedef unsigned int UINT32;
+typedef signed long long INT64;
+typedef unsigned long long UINT64;
+typedef bool BOOL8;
+typedef float FLOAT32;
+typedef double FLOAT64;
+typedef wchar_t CHAR16;
 
-	#define ACTION(Name) typedef VOID(*Name)(VOID)
-	#define ACTION_WITH_PARAM(Name, Params) typedef VOID(*Name)(Params)
-	#define FUNC(Name, Return) typedef Return(*Name)(VOID)
-	#define FUNC_WITH_PARAM(Name, Return, Params) typedef Return(*Name)(Params)
+
+/////////////////////////////////////////////////////////////////////////////
+// @ 매크로 목록.
+/////////////////////////////////////////////////////////////////////////////
+#define INVALID -1
+
+#ifndef TEXT
+#define TEXT(Text) L#Text
+#endif
+
+#define ACTION(Name) typedef VOID(*Name)(VOID)
+#define ACTION_WITH_PARAM(Name, Params) typedef VOID(*Name)(Params)
+#define FUNC(Name, Return) typedef Return(*Name)(VOID)
+#define FUNC_WITH_PARAM(Name, Return, Params) typedef Return(*Name)(Params)
 
 
+namespace AcroCore
+{
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 클래스 전방선언 목록.
 	/////////////////////////////////////////////////////////////////////////////

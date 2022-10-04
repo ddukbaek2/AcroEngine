@@ -12,7 +12,7 @@ namespace AcroEngine
 	class IShort : public IVariable
 	{
 	private:
-		AcroCore::INT16 m_Value;
+		INT16 m_Value;
 
 	public:
 		IShort() : IVariable(), m_Value(0)
@@ -23,12 +23,12 @@ namespace AcroEngine
 		{
 		}
 
-		AcroCore::VOID operator = (AcroCore::INT16& Value)
+		VOID operator = (INT16& Value)
 		{
 			m_Value = Value;
 		}
 
-		operator AcroCore::INT16& ()
+		operator INT16& ()
 		{
 			return m_Value;
 		}

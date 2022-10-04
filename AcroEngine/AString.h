@@ -13,27 +13,22 @@ namespace AcroEngine
 	class IString : public IVariable
 	{
 	private:
-		AcroCore::XAllocator<AcroCore::CHAR16> m_Value;
+		std::wstring m_Data;
 
 	public:
 		IString()
 		{
-			m_Value.Clear();
+			m_Data.clear();
 		}
 
-		IString(AcroCore::CHAR16* Value)
+		IString(CHAR16* Value)
 		{
-			m_Value.Clear();
-			m_Value.Resize(sizeof(Value));
-			for (AcroCore::UINT32 i = 0; i < m_Value.GetSize(); ++i)
-			{
-				m_Value.SetValue(i, Value[i]);
-			}
+			m_Data += Value;
 		}
 
 		virtual ~IString()
 		{
-			m_Value.Clear();
+			m_Data.clear();
 		}
 	};
 }

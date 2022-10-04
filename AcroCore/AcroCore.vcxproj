@@ -140,7 +140,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="XAllocator.h" />
     <ClInclude Include="AcroCore.h" />
   </ItemGroup>
   <ItemGroup>

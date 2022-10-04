@@ -2,8 +2,10 @@
 
 #ifdef ACROCORE_WINDOWS
 
+
 //#include <SDKDDKVer.h>
 //#define WIN32_LEAN_AND_MEAN
+#undef TEXT // windows.h에서 재정의되기에 해제.
 #include <windows.h>
 #include <gl/GL.h>
 //#include <gl/GLU.h>
