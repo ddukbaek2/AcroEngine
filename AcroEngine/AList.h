@@ -13,23 +13,23 @@ namespace AcroEngine
 	class IList : public IVariable
 	{
 	private:
-		std::vector<AObject> m_Container;
+		std::vector<AObject> m_Data;
 
 	public:
 		IList() : IVariable()
 		{
-			m_Container.clear();
+			m_Data.clear();
 		}
 
 		IList(AUInt Capacity) : IList()
 		{
 
-			m_Container.resize(Capacity->ToUInt());
+			m_Data.resize(Capacity->ToUInt());
 		}
 
 		VOID Add(AObject Object)
 		{
-			m_Container.push_back(Object);
+			m_Data.push_back(Object);
 		}
 
 		VOID Insert(AInt Index, AObject Object)
@@ -38,7 +38,7 @@ namespace AcroEngine
 
 		VOID Clear()
 		{
-			m_Container.clear();
+			m_Data.clear();
 		}
 
 		BOOL8 Remove(AObject Object)
@@ -54,7 +54,7 @@ namespace AcroEngine
 
 		BOOL8 RemoveAt(UINT32 Index)
 		{
-			if (Index < 0 || Index >= m_Container.size())
+			if (Index < 0 || Index >= m_Data.size())
 				return false;
 
 			//m_Allocator.RemoveAt(Index);
@@ -63,7 +63,7 @@ namespace AcroEngine
 
 		INT32 Find(AObject Object)
 		{
-			for (UINT32 Index = 0; Index < m_Container.size(); ++Index)
+			for (UINT32 Index = 0; Index < m_Data.size(); ++Index)
 			{
 				//AObject Current = m_Allocator.GetValue(Index);
 				//if (Current->Equals(Object))
@@ -86,7 +86,7 @@ namespace AcroEngine
 
 		UINT32 GetCount()
 		{
-			return m_Container.size();
+			return m_Data.size();
 		}
 	};
 }

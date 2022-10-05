@@ -12,7 +12,7 @@ namespace AcroEngine
 	class IQueue : public IVariable
 	{
 	private:
-		std::queue<AObject> m_Container;
+		std::queue<AObject> m_Data;
 
 	public:
 	};

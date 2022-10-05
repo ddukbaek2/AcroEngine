@@ -69,6 +69,7 @@ namespace AcroEngine
 
 		void Remove(AObject Object)
 		{
+			std::remove(m_Objects.begin(), m_Objects.end(), Object);
 			//m_Objects.erase(nullptr);
 		}
 	};

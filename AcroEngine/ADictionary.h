@@ -11,5 +11,9 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class IDictionary : public IVariable
 	{
+	private:
+		std::map<AObject, AObject> m_Data;
+
+	public:
 	};
 }
