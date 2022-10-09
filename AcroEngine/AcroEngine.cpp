@@ -1,12 +1,23 @@
 ﻿#include "AcroEngine.h"
 #include "AObject.h"
 #include "ADelegate.h"
-#include "AArray.h"
 #include "AcroEngineGenerated.cpp"
 
 
 namespace AcroEngine
 {
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 오브젝트 파괴자.
+	/////////////////////////////////////////////////////////////////////////////
+	struct ObjectDestroyer
+	{
+		void operator () (ARef<Object> Object)
+		{
+			Destroy(Object);
+		}
+	};
+
+
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 해시.
 	/////////////////////////////////////////////////////////////////////////////
@@ -50,27 +61,86 @@ namespace AcroEngine
 	class ObjectManager
 	{
 	private:
-		std::vector<AObject> m_Objects;
+		std::map<INT32, std::shared_ptr<Object>> m_Objects;
 		
 	public:
 		ObjectManager()
 		{
-			m_Objects.resize(4096);
 		}
 
 		virtual ~ObjectManager()
 		{
+			RemoveAllObjects();
 		}
 
-		void Add(AObject Object)
+		/////////////////////////////////////////////////////////////////////////////
+		// @ 등록.
+		/////////////////////////////////////////////////////////////////////////////
+		void Add(std::shared_ptr<Object> Object)
 		{
-			m_Objects.push_back(Object);
+			auto objectID = Object->GetObjectID();
+			m_Objects.insert(std::make_pair(objectID, Object));
 		}
 
-		void Remove(AObject Object)
+		/////////////////////////////////////////////////////////////////////////////
+		// @ 제거.
+		/////////////////////////////////////////////////////////////////////////////
+		void Remove(INT32 ObjectID)
 		{
-			std::remove(m_Objects.begin(), m_Objects.end(), Object);
-			//m_Objects.erase(nullptr);
+			m_Objects.erase(ObjectID);
+		}
+
+		/////////////////////////////////////////////////////////////////////////////
+		// @ 모든 오브젝트 제거.
+		/////////////////////////////////////////////////////////////////////////////
+		void RemoveAllObjects()
+		{
+			std::vector<INT32> temp;
+			for (auto& pair : m_Objects)
+				temp.push_back(pair.first);
+
+			for (auto objectID : temp)
+				Remove(objectID);
+		}
+
+		/////////////////////////////////////////////////////////////////////////////
+		// @ 참조되지 않는 모든 오브젝트 제거.
+		/////////////////////////////////////////////////////////////////////////////
+		void RemoveAllUnusedObjects()
+		{
+			std::vector<INT32> temp;
+			for (auto& pair : m_Objects)
+			{
+				auto objectReferenceCount = pair.second.use_count();
+				if (objectReferenceCount == 1)
+					temp.push_back(pair.first);
+			}
+
+			for (auto objectID : temp)
+				Remove(objectID);
+		}
+
+		/////////////////////////////////////////////////////////////////////////////
+		// @ 객체 반환.
+		/////////////////////////////////////////////////////////////////////////////
+		std::weak_ptr<Object> GetObject(INT32 ObjectID)
+		{
+			auto it = m_Objects.find(ObjectID);
+			if (it == m_Objects.end())
+				return std::weak_ptr<Object>();
+			return std::weak_ptr<Object>(it->second);
+		}
+
+		/////////////////////////////////////////////////////////////////////////////
+		// @ 참조카운트 반환.
+		/////////////////////////////////////////////////////////////////////////////
+		INT64 GetReferenceCount(INT32 ObjectID)
+		{
+			auto object = GetObject(ObjectID);
+			if (object.expired())
+				return 0;
+
+			return object.use_count();
 		}
 	};
 
@@ -81,6 +151,9 @@ namespace AcroEngine
 	class TypeManager
 	{
 	private:
+		std::map<std::wstring, std::shared_ptr<Type>> m_Types;
+		//std::map<std::wstring, UINT32> m_CachedTypeIndices;
+
 	public:
 		TypeManager()
 		{
@@ -88,6 +161,31 @@ namespace AcroEngine
 
 		virtual ~TypeManager()
 		{
+			RemoveAllTypes();
+		}
+
+		VOID Add(std::shared_ptr<Type> Type)
+		{
+			std::wstring typeName = Type->GetName();
+			m_Types.insert(std::make_pair(typeName,Type));
+		}
+
+		VOID Remove(const std::wstring& TypeName)
+		{
+			m_Types.erase(TypeName);
+		}
+
+		VOID RemoveAllTypes()
+		{
+			m_Types.clear();
+		}
+
+		AType GetType(const std::wstring& TypeName)
+		{
+			auto it = m_Types.find(TypeName);
+			if (it == m_Types.end())
+				return AType::Null();
+			return AType(it->second);
 		}
 	};
 
@@ -96,15 +194,21 @@ namespace AcroEngine
 	// @ 내부 전역 변수.
 	/////////////////////////////////////////////////////////////////////////////
 	static ObjectManager g_ObjectManager;
+	static TypeManager g_TypeManager;
 	static CRC32 g_CRC32;
 
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 타입 로드.
 	/////////////////////////////////////////////////////////////////////////////
-	VOID LoadType(AType Type)
+	AType LoadType(Type* Target)
 	{
+		if (Target == nullptr)
+			return AType::Null();
 
+		std::shared_ptr<Type> object(Target);
+		g_TypeManager.Add(object);
+		return g_TypeManager.GetType(Target->GetName());
 	}
 
 
@@ -113,35 +217,8 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	VOID UnloadType(AType Type)
 	{
-
-	}
-
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 레퍼런스 카운트 증가.
-	/////////////////////////////////////////////////////////////////////////////
-	VOID IncreaseReference(AObject Object)
-	{
-		if (Object != nullptr && !Object->m_IsDestroyed)
-		{
-			++Object->m_ReferenceCount;
-		}
-	}
-
-
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 레퍼런스 카운트 감소.
-	/////////////////////////////////////////////////////////////////////////////
-	VOID DecreaseReference(AObject Object)
-	{
-		if (Object != nullptr && !Object->m_IsDestroyed)
-		{
-			--Object->m_ReferenceCount;
-
-			if (Object->m_ReferenceCount <= 0)
-			{
-				Object->m_IsDestroyed = true;
-			}
-		}
+		const std::wstring& typeName = Type->GetName();
+		g_TypeManager.Remove(typeName);
 	}
 
 
@@ -150,7 +227,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	AType GetType(const CHAR16 ClassName[])
 	{
-		return nullptr;
+		return g_TypeManager.GetType(std::wstring(ClassName));
 	}
 
 
@@ -160,24 +237,28 @@ namespace AcroEngine
 	AObject Instantiate(AType Type)
 	{
 		//CRC32::CreateTable();
-		AObject Object = new IObject();
-		Object->m_Identifier = 1;
-		Object->m_IsDestroyed = false;
-		Object->m_ReferenceCount = 1;
-		//g_ObjectManager.Add(Object);
-		return Object;
+		Object* instance = (Object*)Type->CreateInstance();
+		instance->m_ObjectID = 1;
+		instance->m_IsDestroying = false;
+		std::shared_ptr<Object> object(instance);
+		g_ObjectManager.Add(object);
+		return AObject(object);
 	}
 
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 파괴.
 	/////////////////////////////////////////////////////////////////////////////
-	VOID Destroy(AObject Object)
+	VOID Destroy(AObject Target)
 	{
-		if (Object != nullptr && !Object->m_IsDestroyed)
+		if (AObject::IsNull(Target))
+			return;
+
+		Object* object = *Target;
+		INT32 objectID = object->GetObjectID();
+		if (!object->m_IsDestroying)
 		{
-			Object->m_ReferenceCount = 0;
-			Object->m_IsDestroyed = true;
+			object->m_IsDestroying = true;
 		}
 	}
 
@@ -185,29 +266,65 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 즉시 파괴.
 	/////////////////////////////////////////////////////////////////////////////
-	VOID DestroyImmediate(AObject Object)
+	VOID DestroyImmediate(AObject Target)
 	{
-		// 이미 파괴가 예약잡힌 오브젝트는 제외한다.
-		if (Object != nullptr && !Object->m_IsDestroyed)
-		{
-			delete(Object);
-			Object = nullptr;
-		}
+		if (AObject::IsNull(Target))
+			return;
+
+		auto object = *Target;
+		auto objectID = object->GetObjectID();
+		g_ObjectManager.Remove(objectID);
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 파괴 여부.
 	/////////////////////////////////////////////////////////////////////////////
-	BOOL8 IsDestroyed(AObject Object)
+	BOOL8 IsDestroyed(AObject Target)
 	{
-		return Object == nullptr || Object->m_IsDestroyed;
+		if (AObject::IsNull(Target))
+			return true;
+
+		auto object = *Target;
+		auto objectID = object->GetObjectID();
+		auto referenceCount = g_ObjectManager.GetReferenceCount(objectID);
+		return referenceCount > 0;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 문자열 포맷.
 	/////////////////////////////////////////////////////////////////////////////
-	AString Format(const CHAR16 Format[], AArray Arguments)
+	AString Format(const CHAR16 Format[], AList Arguments)
 	{
-		return nullptr;
+		return AString::Null();
+	}
+	
+
+	VOID Application::OnCreate()
+	{
+		Generated::Assemble();
+	}
+
+	VOID Application::OnDestroy()
+	{
+	}
+
+	VOID Application::OnPause()
+	{
+	}
+
+	VOID Application::OnResume()
+	{
+	}
+
+	VOID Application::OnUpdate(FLOAT32 DeltaTime)
+	{
+	}
+
+	VOID Application::OnDraw(AcroCore::XGL GL)
+	{
+	}
+
+	VOID Application::OnResize(UINT32 Width, UINT32 Height)
+	{
 	}
 }

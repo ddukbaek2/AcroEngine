@@ -5,7 +5,7 @@
 
 namespace GameFramework
 {
-	class IPlayer : public AcroEngine::IObject
+	class IPlayer : public AcroEngine::Object
 	{
 
 	};

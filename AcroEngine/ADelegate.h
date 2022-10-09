@@ -10,22 +10,22 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 함수대리자.
 	/////////////////////////////////////////////////////////////////////////////
-	class IDelegate : public IObject
+	class Delegate : public Object
 	{
 	private:
-		AList m_Delegates;
+		List m_Delegates;
 
 	public:
-		//static ADelegate* CreateDelegate()
+		//static Delegate* CreateDelegate()
 		//{
 		//	return nullptr;
 		//}
 
-		VOID Add(ADelegate Delegate)
+		VOID Add(Delegate Delegate)
 		{
 		}
 
-		VOID Remove(ADelegate Delegate)
+		VOID Remove(Delegate Delegate)
 		{
 		}
 
@@ -34,7 +34,7 @@ namespace AcroEngine
 			//m_Delegates.
 		}
 
-		//AObject* Invoke(...)
+		//ARef* Invoke(...)
 		//{
 		//	//for (auto delegate : m_Delegates)
 		//	{

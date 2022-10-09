@@ -1,6 +1,8 @@
 // Generate by AcroTypeTool.
+#include "AcroEngine.h"
 #include "AType.h"
 #include "AObject.h"
+#include "ABoolean.h"
 #include "IAssemble.h"
 
 
@@ -8,20 +10,67 @@ namespace AcroEngine
 {
 	namespace Generated
 	{
-		class IObjectType : public IType
+		class ObjectType : public Type
 		{
+		public:
+			ObjectType() : Type()
+			{
+				m_Name = TEXT("Object");
+			}
 
+			virtual BOOL8 IsParent(AType Type) override
+			{
+				return false;
+			}
+
+			virtual BOOL8 IsChildren(AType Type) override
+			{
+				return false;
+			}
+
+			virtual POINTER CreateInstance() override
+			{
+				return new Object();
+			}
 		};
 
-		class IAcroEngineGeneratedAssemble : IAssemble
+		class BooleanType : public Type
+		{
+		public:
+			BooleanType() : Type()
+			{
+				m_Name = TEXT("Boolean");
+			}
+
+			virtual BOOL8 IsParent(AType Type) override
+			{
+				return false;
+			}
+
+			virtual BOOL8 IsChildren(AType Type) override
+			{
+				return false;
+			}
+
+			virtual POINTER CreateInstance() override
+			{
+				return new Boolean();
+			}
+		};
+
+		class AcroEngineGeneratedAssemble : IAssemble
 		{
 		public:
 		};
+
+
 		void Assemble()
 		{
-			//AcroEngine::LoadType(TEXT("IObjectType"));
+			AcroEngine::LoadType(new Generated::ObjectType());
+			AcroEngine::LoadType(new Generated::BooleanType());
 		}
 	}
+
 	// usage: the following code generates crc for 2 pieces of data
 	// uint32_t table[256];
 	// crc32::generate_table(table);
@@ -35,10 +84,10 @@ namespace AcroEngine
 
 	//	inline const wchar_t* GetName()
 	//	{
-	//		//DECLARE_ACLASSGENERATED(AObject)
-	//		//DECLARE_ACLASSGENERATED(AString)
-	//		//DECLARE_ACLASSGENERATED(AInt)
-	//		//DECLARE_ACLASSGENERATED(AInt)
+	//		//DECLARE_ACLASSGENERATED(ARef)
+	//		//DECLARE_ACLASSGENERATED(String)
+	//		//DECLARE_ACLASSGENERATED(Int)
+	//		//DECLARE_ACLASSGENERATED(Int)
 	//	}
 	//};
 }

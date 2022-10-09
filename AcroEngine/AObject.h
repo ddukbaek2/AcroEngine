@@ -8,25 +8,22 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 기본 오브젝트 클래스.
 	/////////////////////////////////////////////////////////////////////////////
-	class IObject
+	class Object
 	{
 	private:
-		INT32 m_Identifier;
-		INT32 m_ReferenceCount;
-		BOOL8 m_IsDestroyed;
+		INT32 m_ObjectID;
+		BOOL8 m_IsDestroying;
 
 	public:
-		IObject();
-		virtual ~IObject();
+		Object();
+		virtual ~Object();
 		virtual AString ToString();
 		virtual BOOL8 Equals(AObject Object);
-		virtual INT32 GetHashCode();
+		virtual INT32 GetObjectID();
 
 		friend AObject Instantiate(AType Type);
 		friend VOID Destroy(AObject Object);
 		friend VOID DestroyImmediate(AObject Object);
 		friend BOOL8 IsDestroyed(AObject Object);
-		friend VOID IncreaseReference(AObject Object);
-		friend VOID DecreaseReference(AObject Object);
 	};
 }

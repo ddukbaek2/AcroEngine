@@ -12,28 +12,28 @@ namespace FrameUI
 	class INode : public AcroEngine::IObject
 	{
 	private:
-		AcroEngine::AVector2 m_Anchor;
-		AcroEngine::AVector2 m_Offset;
-		AcroEngine::AVector2 m_Position;
-		AcroEngine::AVector2 m_Size;
-		AcroEngine::AFloat m_Rotation;
+		AcroEngine::Vector2 m_Anchor;
+		AcroEngine::Vector2 m_Offset;
+		AcroEngine::Vector2 m_Position;
+		AcroEngine::Vector2 m_Size;
+		AcroEngine::Float m_Rotation;
 
 		FNode m_Parent;
-		AcroEngine::AList m_Childs;
-		AcroEngine::AList m_Components;
+		AcroEngine::List m_Childs;
+		AcroEngine::List m_Components;
 
 	public:
 		INode() : AcroEngine::IObject()
 		{
-			m_Components = A_INSTANTIATE(AcroEngine::AList);
-			m_Anchor = A_INSTANTIATE(AcroEngine::AVector2);
-			m_Offset = A_INSTANTIATE(AcroEngine::AVector2);
-			m_Position = A_INSTANTIATE(AcroEngine::AVector2);
-			m_Size = A_INSTANTIATE(AcroEngine::AVector2);
-			m_Rotation = A_INSTANTIATE(AcroEngine::AFloat);
+			m_Components = A_INSTANTIATE(AcroEngine::List);
+			m_Anchor = A_INSTANTIATE(AcroEngine::Vector2);
+			m_Offset = A_INSTANTIATE(AcroEngine::Vector2);
+			m_Position = A_INSTANTIATE(AcroEngine::Vector2);
+			m_Size = A_INSTANTIATE(AcroEngine::Vector2);
+			m_Rotation = A_INSTANTIATE(AcroEngine::Float);
 			
 			m_Parent = nullptr;
-			m_Childs = A_INSTANTIATE(AcroEngine::AList);
+			m_Childs = A_INSTANTIATE(AcroEngine::List);
 		}
 
 		virtual ~INode()

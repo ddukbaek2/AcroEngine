@@ -1,7 +1,7 @@
 ﻿#include "AcroCore.h"
 
-#ifdef ACROCORE_WINDOWS
 
+#ifdef ACROCORE_WINDOWS
 
 //#include <SDKDDKVer.h>
 //#define WIN32_LEAN_AND_MEAN
@@ -41,7 +41,7 @@ namespace AcroCore
         virtual VOID Begin(EBeginMode BeginMode) override { glBegin((UINT16)BeginMode); }
         virtual VOID Color4(FLOAT32 R, FLOAT32 G, FLOAT32 B, FLOAT32 A) override { glColor4f(R, G, B, A); }
         virtual VOID Vertex3(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) override { glVertex3f(X, Y, Z); }
-        virtual VOID TexCoord2(FLOAT32 U, FLOAT32 V) override { glTexCoord2f(U, V); }
+        virtual VOID TexCoord2(FLOAT32 U, FLOAT32 TDest) override { glTexCoord2f(U, TDest); }
         virtual VOID End() override { glEnd(); }
         virtual VOID Flush() override { glFlush(); }
         virtual VOID Viewport(INT32 X, INT32 Y, INT32 Width, INT32 Height) override { glViewport(X, Y, Width, Height); }

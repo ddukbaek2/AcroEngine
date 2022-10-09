@@ -8,17 +8,17 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ ¾×¼Ç.
 	/////////////////////////////////////////////////////////////////////////////
-	template<typename T> class TAction
+	template<typename TObject> class TAction
 	{
 	public:
-		ACTION(FOnAction, const T*);
+		ACTION(FOnAction, const TObject*);
 
 	private:
-		T* m_Instance;
+		TObject* m_Instance;
 		OnAction m_OnAction;
 
 	public:
-		TAction(T* Instance, FOnAction OnAction)
+		TAction(TObject* Instance, FOnAction OnAction)
 		{
 			m_Instance = Instance;
 			m_OnAction = OnAction;

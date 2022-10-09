@@ -20,9 +20,9 @@ namespace FrameUI
 
 	struct ITouchable
 	{
-		virtual void OnTouchPress(AcroEngine::AVector2 Position) = 0;
-		virtual void OnTouchDrag(AcroEngine::AVector2 Position, AcroEngine::AVector2 MoveDelta) = 0;
-		virtual void OnTouchRelease(AcroEngine::AVector2 Position) = 0;
+		virtual void OnTouchPress(AcroEngine::Vector2 Position) = 0;
+		virtual void OnTouchDrag(AcroEngine::Vector2 Position, AcroEngine::Vector2 MoveDelta) = 0;
+		virtual void OnTouchRelease(AcroEngine::Vector2 Position) = 0;
 	};
 
 	struct IReactable
@@ -32,9 +32,9 @@ namespace FrameUI
 
 	struct IInputable
 	{
-		virtual void OnKeyPress(AcroEngine::AInt KeyCode) = 0;
-		virtual void OnKeyPressing(AcroEngine::AInt KeyCode) = 0;
-		virtual void OnKeyRelease(AcroEngine::AInt KeyCode) = 0;
+		virtual void OnKeyPress(AcroEngine::Int KeyCode) = 0;
+		virtual void OnKeyPressing(AcroEngine::Int KeyCode) = 0;
+		virtual void OnKeyRelease(AcroEngine::Int KeyCode) = 0;
 	};
 
 	struct IDrawable
@@ -45,10 +45,10 @@ namespace FrameUI
 
 	struct IMeshModel
 	{
-		virtual void SetVertices(AcroEngine::AVector3 Vertices[]) = 0;
-		virtual void SetIndices(AcroEngine::AInt Indices[]) = 0;
-		virtual void SetTexture(AcroEngine::AInt Index, AcroEngine::AUnknownObject Texture) = 0;
-		virtual void SetTextureCoords(AcroEngine::AVector2 TextureCoords[]) = 0;
+		virtual void SetVertices(AcroEngine::Vector3 Vertices[]) = 0;
+		virtual void SetIndices(AcroEngine::Int Indices[]) = 0;
+		virtual void SetTexture(AcroEngine::Int Index, AcroEngine::AUnknownObject Texture) = 0;
+		virtual void SetTextureCoords(AcroEngine::Vector2 TextureCoords[]) = 0;
 	};
 
 	struct IRenderPipeline

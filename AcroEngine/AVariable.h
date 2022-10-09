@@ -9,14 +9,14 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 변수.
 	/////////////////////////////////////////////////////////////////////////////
-	class IVariable : public IObject
+	class Variable : public Object
 	{
 	public:
-		IVariable() : IObject()
+		Variable() : Object()
 		{
 		}
 
-		virtual ~IVariable()
+		virtual ~Variable()
 		{
 		}
 	};

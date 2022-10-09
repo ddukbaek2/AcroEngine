@@ -7,24 +7,60 @@
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 클래스 정보.
+	// @ 변수 정보.
 	/////////////////////////////////////////////////////////////////////////////
-	class IType
+	class FieldInfo : public Object
 	{
-	private:
-		AString	m_Name;
-		ADictionary m_Variables;
-		ADictionary m_Methods;
+	protected:
+		std::wstring m_Name;
 
 	public:
-		IType();
-		virtual ~IType();
+		VOID SetValue(AObject Object, INT32 Value)
+		{
+		}
 
-		virtual BOOL8 IsParent(AType Class);
-		virtual BOOL8 IsChildren(AType Class);
-		virtual AString GetName();
-		virtual ADictionary GetVariables();
-		virtual ADictionary GetMethods();
+		INT32 GetValue(AObject Object)
+		{
+			return 0;
+		}
+	};
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 함수 정보.
+	/////////////////////////////////////////////////////////////////////////////
+	class MethodInfo : public Object
+	{
+	protected:
+		std::wstring m_Name;
+
+	public:
+		VOID Invoke(ARef<Object> Object)
+		{
+		}
+	};
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 클래스 정보.
+	/////////////////////////////////////////////////////////////////////////////
+	class Type : public Object
+	{
+	protected:
+		std::wstring m_Name;
+		std::vector<FieldInfo> m_Fields;
+		std::vector<MethodInfo> m_Methods;
+
+	public:
+		Type() {}
+		virtual ~Type() {}
+		virtual BOOL8 IsParent(AType Type) = 0;
+		virtual BOOL8 IsChildren(AType Type) = 0;
+		virtual POINTER CreateInstance() = 0;
+
+		const std::wstring& GetName() { return m_Name; }
+		const std::vector<FieldInfo>& GetFields() { return m_Fields; }
+		const std::vector<MethodInfo>& GetMethods() { return m_Methods; }			
 
 		friend AType GetType(const CHAR16 ClassName[]);
 	};

@@ -13,6 +13,6 @@ namespace AcroEngine
 	public:
 		virtual VOID Clear() = 0;
 		virtual BOOL8 MoveNext() = 0;
-		virtual AObject GetCurrent() = 0;
+		virtual ARef GetCurrent() = 0;
 	};
 }

@@ -4,16 +4,16 @@
 
 namespace AcroEngine
 {
-	AObject IJson::Deserialize(AString String)
+	AObject Json::Deserialize(AString String)
 	{
-		return nullptr;
+		return AObject::Null();
 	}
 
-	AString IJson::Serialize(AObject Object)
+	AString Json::Serialize(AObject Object)
 	{
-		//AType type = Object->GetType();
-		//type->GetVariables();
+		//Type type = Object->GetType();
+		//type->GetFields();
 
-		return nullptr;
+		return AString::Null();
 	}
 }

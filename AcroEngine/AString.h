@@ -10,23 +10,23 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 문자열형 변수.
 	/////////////////////////////////////////////////////////////////////////////
-	class IString : public IVariable
+	class String : public Variable
 	{
 	private:
 		std::wstring m_Data;
 
 	public:
-		IString()
+		String()
 		{
 			m_Data.clear();
 		}
 
-		IString(CHAR16* Value)
+		String(CHAR16* Value)
 		{
 			m_Data += Value;
 		}
 
-		virtual ~IString()
+		virtual ~String()
 		{
 			m_Data.clear();
 		}

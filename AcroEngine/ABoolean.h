@@ -9,18 +9,18 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 논리형 변수.
 	/////////////////////////////////////////////////////////////////////////////
-	class IBoolean : public IVariable
+	class Boolean : public Variable
 	{
 	private:
 		BOOL8 m_Value;
 
 	public:
-		IBoolean() : IVariable()
+		Boolean() : Variable()
 		{
 			m_Value = false;
 		}
 
-		virtual ~IBoolean()
+		virtual ~Boolean()
 		{
 
 		}

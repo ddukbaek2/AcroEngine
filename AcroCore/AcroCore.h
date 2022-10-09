@@ -24,14 +24,15 @@
 
 
 /////////////////////////////////////////////////////////////////////////////
-// @ 사용 STL 목록.
+// @ 표준 STL 사용 목록.
 /////////////////////////////////////////////////////////////////////////////
-#include <vector>
+#include <memory> // std::shared_ptr, std::weak_ptr
+#include <string> // std::wstring
+#include <map> // std::map
+#include <vector> // std::vector
 #include <queue>
 #include <stack>
 #include <set>
-#include <map>
-#include <string>
 #include <algorithm>
 
 
@@ -60,7 +61,7 @@ typedef wchar_t CHAR16;
 #define INVALID -1
 
 #ifndef TEXT
-#define TEXT(Text) L#Text
+#define TEXT(Text) L##Text
 #endif
 
 #define ACTION(Name) typedef VOID(*Name)(VOID)
@@ -1166,11 +1167,12 @@ namespace AcroCore
 		virtual VOID Begin(EBeginMode BeginMode) = 0;
 		virtual VOID Color4(FLOAT32 R, FLOAT32 G, FLOAT32 B, FLOAT32 A) = 0;
 		virtual VOID Vertex3(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) = 0;
-		virtual VOID TexCoord2(FLOAT32 U, FLOAT32 V) = 0;
+		virtual VOID TexCoord2(FLOAT32 U, FLOAT32 TDest) = 0;
 		virtual VOID End() = 0;
 		virtual VOID Flush() = 0;
 		virtual VOID Viewport(INT32 X, INT32 Y, INT32 Width, INT32 Height) = 0;
 	};
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 모듈 인터페이스.

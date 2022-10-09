@@ -9,17 +9,17 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 실수형 변수.
 	/////////////////////////////////////////////////////////////////////////////
-	class IShort : public IVariable
+	class Short : public Variable
 	{
 	private:
 		INT16 m_Value;
 
 	public:
-		IShort() : IVariable(), m_Value(0)
+		Short() : Variable(), m_Value(0)
 		{
 		}
 
-		virtual ~IShort()
+		virtual ~Short()
 		{
 		}
 

@@ -5,9 +5,6 @@
     <ClInclude Include="AType.h">
       <Filter>Bases</Filter>
     </ClInclude>
-    <ClInclude Include="AOwner.h">
-      <Filter>Bases</Filter>
-    </ClInclude>
     <ClInclude Include="AObject.h">
       <Filter>Bases</Filter>
     </ClInclude>
@@ -80,14 +77,8 @@
     <ClInclude Include="AVector4.h">
       <Filter>Variables</Filter>
     </ClInclude>
-    <ClInclude Include="AArray.h">
-      <Filter>Variables</Filter>
-    </ClInclude>
     <ClInclude Include="IAssemble.h">
       <Filter>Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="TProperty.h">
-      <Filter>Templates</Filter>
     </ClInclude>
     <ClInclude Include="TAction.h">
       <Filter>Templates</Filter>
@@ -95,12 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AcroEngine.cpp" />
-    <ClCompile Include="AType.cpp">
-      <Filter>Bases</Filter>
-    </ClCompile>
-    <ClCompile Include="AOwner.cpp">
-      <Filter>Bases</Filter>
-    </ClCompile>
     <ClCompile Include="AObject.cpp">
       <Filter>Bases</Filter>
     </ClCompile>

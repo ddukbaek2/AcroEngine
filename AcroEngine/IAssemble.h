@@ -11,6 +11,6 @@ namespace AcroEngine
 	class IAssemble
 	{
 	public:
-		virtual AType GetAllTypes() = 0;
+		virtual Type GetAllTypes() = 0;
 	};
 }

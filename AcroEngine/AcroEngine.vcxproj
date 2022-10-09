@@ -155,11 +155,8 @@
     <ClCompile Include="AcroEngine.cpp" />
     <ClCompile Include="AJson.cpp" />
     <ClCompile Include="AObject.cpp" />
-    <ClCompile Include="AOwner.cpp" />
-    <ClCompile Include="AType.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AArray.h" />
     <ClInclude Include="ABoolean.h" />
     <ClInclude Include="ADictionary.h" />
     <ClInclude Include="ADouble.h" />
@@ -182,7 +179,6 @@
     <ClInclude Include="AObject.h" />
     <ClInclude Include="AUShort.h" />
     <ClInclude Include="AVariable.h" />
-    <ClInclude Include="AOwner.h" />
     <ClInclude Include="AVector2.h" />
     <ClInclude Include="AVector3.h" />
     <ClInclude Include="AVector4.h" />
@@ -192,7 +188,6 @@
     <ClInclude Include="IEnumerator.h" />
     <ClInclude Include="AUInt.h" />
     <ClInclude Include="TAction.h" />
-    <ClInclude Include="TProperty.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

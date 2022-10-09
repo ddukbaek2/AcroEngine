@@ -10,21 +10,20 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 색인배열 형.
 	/////////////////////////////////////////////////////////////////////////////
-	class IList : public IVariable
+	class List : public Variable
 	{
 	private:
 		std::vector<AObject> m_Data;
 
 	public:
-		IList() : IVariable()
+		List() : Variable()
 		{
 			m_Data.clear();
 		}
 
-		IList(AUInt Capacity) : IList()
+		List(UInt Capacity) : List()
 		{
-
-			m_Data.resize(Capacity->ToUInt());
+			m_Data.resize(Capacity);
 		}
 
 		VOID Add(AObject Object)
@@ -43,7 +42,7 @@ namespace AcroEngine
 
 		BOOL8 Remove(AObject Object)
 		{
-			INT32 Index = Find(Object);
+			INT32 Index = GetObject(Object);
 			if (Index == -1)
 				return false;
 
@@ -61,11 +60,11 @@ namespace AcroEngine
 			return true;
 		}
 
-		INT32 Find(AObject Object)
+		INT32 GetObject(AObject Object)
 		{
 			for (UINT32 Index = 0; Index < m_Data.size(); ++Index)
 			{
-				//AObject Current = m_Allocator.GetValue(Index);
+				//ARef Current = m_Allocator.GetValue(Index);
 				//if (Current->Equals(Object))
 				//	return Index;
 			}
@@ -73,15 +72,15 @@ namespace AcroEngine
 			return -1;
 		}
 
-		AObject Find(UINT32 Index)
+		AObject GetObject(UINT32 Index)
 		{
-			return nullptr;
+			return AObject::Null();
 			//return m_Allocator.GetValue(Index);
 		}
 
 		BOOL8 Contains(AObject Object)
 		{
-			return Find(Object) != -1;
+			return GetObject(Object) != -1;
 		}
 
 		UINT32 GetCount()

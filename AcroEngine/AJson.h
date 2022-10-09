@@ -10,15 +10,15 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ JSON ตฅภฬลอ.
 	/////////////////////////////////////////////////////////////////////////////
-	class IJson : public IObject
+	class Json : public Object
 	{
 	private:
 
 	public:
-		IJson() {}
-		virtual ~IJson() {}
+		Json() {}
+		virtual ~Json() {}
 
 		AObject Deserialize(AString String);
-		AString Serialize(AObject IObject);
+		AString Serialize(AObject Object);
 	};
 }

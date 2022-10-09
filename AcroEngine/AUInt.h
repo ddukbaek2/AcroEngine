@@ -9,17 +9,17 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 정수형 변수.
 	/////////////////////////////////////////////////////////////////////////////
-	class IUInt : public IVariable
+	class UInt : public Variable
 	{
 	private:
 		UINT32 m_Value;
 
 	public:
-		IUInt() : IVariable(), m_Value(0)
+		UInt() : Variable(), m_Value(0)
 		{
 		}
 
-		virtual ~IUInt()
+		virtual ~UInt()
 		{
 		}
 
