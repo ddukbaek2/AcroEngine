@@ -49,31 +49,21 @@ namespace AcroEngine
 	template<typename TSource = Object> class ARef
 	{
 	private:
-		std::weak_ptr<TSource>* m_WeakPtr;
+		std::weak_ptr<TSource> m_WeakPtr;
 
 	public:
 		ARef()
 		{
-			m_WeakPtr = nullptr;
-		}
-
-		ARef(const ARef<TSource>& ref)
-		{
-			m_WeakPtr = new std::weak_ptr<TSource>(ref.m_WeakPtr->lock());
+			m_WeakPtr = std::weak_ptr<TSource>();
 		}
 
 		ARef(std::shared_ptr<TSource> Object)
 		{
-			m_WeakPtr = new std::weak_ptr<TSource>(Object);
+			m_WeakPtr = std::weak_ptr<TSource>(Object);
 		}
 
 		virtual ~ARef()
 		{
-			if (m_WeakPtr != nullptr)
-			{
-				delete(m_WeakPtr);
-				m_WeakPtr = nullptr;
-			}
 		}
 
 		TSource* operator ->()
@@ -91,7 +81,7 @@ namespace AcroEngine
 			if (IsNull(*this))
 				return std::shared_ptr<Object>();
 
-			return m_WeakPtr->lock();
+			return m_WeakPtr.lock();
 		}
 
 		TSource* Get()
@@ -99,16 +89,13 @@ namespace AcroEngine
 			if (IsNull(*this))
 				return nullptr;
 
-			auto object = m_WeakPtr->lock();
+			auto object = m_WeakPtr.lock();
 			return (TSource*)object.get();
 		}
 
 		static BOOL8 IsNull(ARef<TSource> Object)
 		{
-			if (Object.m_WeakPtr == nullptr)
-				return true;
-
-			if (!Object.m_WeakPtr->expired())
+			if (Object.m_WeakPtr.expired())
 				return true;
 
 			return false;
