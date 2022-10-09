@@ -182,7 +182,7 @@
     <ClInclude Include="AVector2.h" />
     <ClInclude Include="AVector3.h" />
     <ClInclude Include="AVector4.h" />
-    <ClInclude Include="IAssemble.h" />
+    <ClInclude Include="IAssembly.h" />
     <ClInclude Include="ICollection.h" />
     <ClInclude Include="IEnumerable.h" />
     <ClInclude Include="IEnumerator.h" />

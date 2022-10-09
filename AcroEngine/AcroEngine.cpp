@@ -196,6 +196,7 @@ namespace AcroEngine
 	static ObjectManager g_ObjectManager;
 	static TypeManager g_TypeManager;
 	static CRC32 g_CRC32;
+	static UINT32 g_CRC32Table[256];
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -301,7 +302,19 @@ namespace AcroEngine
 
 	VOID Application::OnCreate()
 	{
-		Generated::Assemble();
+		auto assembly = new AcroEngineAssembly();
+		assembly->Assemble();
+		delete assembly;
+
+		g_CRC32.CreateTable(g_CRC32Table);
+		UINT32 objectID = g_CRC32.ComputeHash(g_CRC32Table, 0, 0, 0);
+
+		// usage: the following code generates crc for 2 pieces of data
+		// uint32_t table[256];
+		// crc32::generate_table(table);
+		// uint32_t crc = crc32::update(table, 0, data_piece1, len1);
+		// crc = crc32::update(table, crc, data_piece2, len2);
+		// output(crc);
 	}
 
 	VOID Application::OnDestroy()

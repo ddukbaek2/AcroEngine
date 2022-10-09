@@ -77,7 +77,7 @@
     <ClInclude Include="AVector4.h">
       <Filter>Variables</Filter>
     </ClInclude>
-    <ClInclude Include="IAssemble.h">
+    <ClInclude Include="IAssembly.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="TAction.h">
