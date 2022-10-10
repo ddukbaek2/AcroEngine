@@ -319,7 +319,7 @@ namespace AcroEngine
 		delete assembly;
 
 		g_CRC32.CreateTable(g_CRC32Table);
-		uint32 objectID = g_CRC32.ComputeHash(g_CRC32Table, 0, 0, 0);
+		//uint32 objectID = g_CRC32.ComputeHash(g_CRC32Table, 0, 0, 0);
 
 		// usage: the following code generates crc for 2 pieces of data
 		// uint32_t table[256];

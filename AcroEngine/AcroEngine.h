@@ -86,7 +86,7 @@ namespace AcroEngine
 
 		T* Get()
 		{
-			if (IsNull(*this))
+			if (IsNull())
 				return nullptr;
 
 			auto object = m_WeakPtr.lock();
@@ -103,7 +103,7 @@ namespace AcroEngine
 
 		template<typename TDest = Object> TDest* Get()
 		{
-			if (ARef<T>::IsNull(*this))
+			if (IsNull())
 				return nullptr;
 
 			auto object = Get();
@@ -112,16 +112,16 @@ namespace AcroEngine
 
 		template<typename TDest = Object> ARef<TDest> Cast()
 		{
-			if (ARef<T>::IsNull(*this))
+			if (IsNull())
 				return ARef<TDest>();
 
 			auto object = GetSharedPointer();
 			return ARef<TDest>(std::dynamic_pointer_cast<TDest>(object));
 		}
 
-		static bool8 IsNull(ARef<T> Object)
+		static bool8 IsNull(ARef<T> Target)
 		{
-			return Object.IsNull();
+			return Target.IsNull();
 		}
 
 		static ARef<T> Null()
@@ -176,16 +176,16 @@ namespace AcroEngine
 	AObject Instantiate(AType Type);
 	AObject Instantiate(const char16 TypeName[]);
 
-	void Destroy(AObject Object);
-	void DestroyImmediate(AObject Object);
+	void Destroy(AObject Target);
+	void DestroyImmediate(AObject Target);
 
-	bool8 IsDestroyed(AObject Object);
+	bool8 IsDestroyed(AObject Target);
 	AString Format(const char16 Format[], AList Arguments);
 
 	template<typename T = Object, typename TDest = Object>
-	ARef<TDest> Cast(ARef<T> Object)
+	ARef<TDest> Cast(ARef<T> Target)
 	{
-		return Object.Cast<TDest>();
+		return Target.Cast<TDest>();
 	}
 
 

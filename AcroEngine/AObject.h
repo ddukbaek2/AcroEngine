@@ -18,12 +18,12 @@ namespace AcroEngine
 		Object();
 		virtual ~Object();
 		virtual AString ToString();
-		virtual bool8 Equals(AObject Object);
+		virtual bool8 Equals(AObject Target);
 		virtual unit64 GetObjectID();
 
 		friend AObject Instantiate(AType Type);
-		friend void Destroy(AObject Object);
-		friend void DestroyImmediate(AObject Object);
-		friend bool8 IsDestroyed(AObject Object);
+		friend void Destroy(AObject Target);
+		friend void DestroyImmediate(AObject Target);
+		friend bool8 IsDestroyed(AObject Target);
 	};
 }
