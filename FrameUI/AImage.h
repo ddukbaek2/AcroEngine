@@ -1,15 +1,15 @@
 #pragma once
 
 #include "FrameUI.h"
-#include "FComponent.h"
+#include "AComponent.h"
 
 
 namespace FrameUI
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 버튼 요소.
+	// @ 이미지 요소.
 	/////////////////////////////////////////////////////////////////////////////
-	class IButtonComponent : public IComponent
+	class Image : public Component
 	{
 	public:
 

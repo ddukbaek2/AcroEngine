@@ -3,20 +3,24 @@
 #include "../AcroEngine/AcroEngine.h"
 #include "../AcroEngine/AObject.h"
 #include "../AcroEngine/AList.h"
+#include "../AcroEngine/AFloat.h"
+#include "../AcroEngine/AVector2.h"
+#include "../AcroEngine/AVector3.h"
+
 
 namespace FrameUI
 {
-	class INode;
-	class IComponent;
-	class IImageComponent;
-	class ITextComponent;
-	class IButtonComponent;
+	class Node;
+	class Component;
+	class Image;
+	class Text;
+	class Button;
 
-	typedef class INode* FNode;
-	typedef class IComponent* FComponent;
-	typedef class IImageComponent* FImageComponent;
-	typedef class ITextComponent* FTextComponent;
-	typedef class IButtonComponent* FButtonComponent;
+	typedef class AcroEngine::ARef<Node> ANode;
+	typedef class AcroEngine::ARef<Component> AComponent;
+	typedef class AcroEngine::ARef<Image> AImage;
+	typedef class AcroEngine::ARef<Text> AText;
+	typedef class AcroEngine::ARef<Button> AButton;
 
 	struct ITouchable
 	{

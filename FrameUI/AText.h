@@ -1,17 +1,17 @@
 #pragma once
 
 #include "FrameUI.h"
-#include "FComponent.h"
+#include "AComponent.h"
 
 
 namespace FrameUI
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 이미지 요소.
+	// @ 텍스트 요소.
 	/////////////////////////////////////////////////////////////////////////////
-	class IImageComponent : public IComponent
+	class Text : public Component
 	{
 	public:
-
+		//AcroCore::void SetText();
 	};
 }

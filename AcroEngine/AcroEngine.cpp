@@ -227,9 +227,9 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 클래스이름을 통해 타입 반환.
 	/////////////////////////////////////////////////////////////////////////////
-	AType GetType(const char16 ClassName[])
+	AType GetType(const char16 TypeName[])
 	{
-		return g_TypeManager.GetType(std::wstring(ClassName));
+		return g_TypeManager.GetType(std::wstring(TypeName));
 	}
 
 

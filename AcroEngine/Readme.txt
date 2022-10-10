@@ -13,7 +13,7 @@ AcroCore
 		EngineScripting (파이썬)
 
 # 컴파일 및 배포:
- - Windows : CMAKE ==> VISUALSTUDIO
+ - Windows : VISUALSTUDIO
  - Android : CMAKE + NDK ==> ANDROIDSTUDIO
  - iOS : CMAKE ==> XCODE
 

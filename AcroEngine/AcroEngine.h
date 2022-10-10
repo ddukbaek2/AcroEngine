@@ -6,10 +6,10 @@
 /////////////////////////////////////////////////////////////////////////////
 // @ 디파인 매크로 목록.
 /////////////////////////////////////////////////////////////////////////////
-#define A_TYPEOF(Class) AcroEngine::GetType(L#Class)
-#define A_INSTANTIATE(Class) AcroEngine::Cast<AcroEngine::Object, Class>(AcroEngine::Instantiate(A_TYPEOF(Class)))
-#define A_DESTROY(Object) if (Object != nullptr) { AcroEngine::Destroy(Object); Object = nullptr; }
-#define A_DESTROYIMMEDIATE(Object) if (Object != nullptr) { AcroEngine::DestroyImmediate(Object); Object = nullptr; }
+#define A_TYPEOF(Class) AcroEngine::GetType(L##Class)
+#define A_INSTANTIATE(Class) AcroEngine::Cast<AcroEngine::Object, Class>(AcroEngine::Instantiate(AcroEngine::GetType(L#Class)))
+#define A_DESTROY(Object) if (!Object.IsNull()) { AcroEngine::Destroy(Object.Cast<AcroEngine::Object>()); Object.Empty(); }
+#define A_DESTROYIMMEDIATE(Object) if (!Object.IsNull()) { AcroEngine::DestroyImmediate(Object.Cast<AcroEngine::Object>()); Object.Empty(); }
 
 
 namespace AcroEngine
@@ -101,6 +101,11 @@ namespace AcroEngine
 			return false;
 		}
 
+		void Empty()
+		{
+			m_WeakPtr.reset();
+		}
+
 		template<typename TDest = Object> TDest* Get()
 		{
 			if (IsNull())
@@ -186,6 +191,22 @@ namespace AcroEngine
 	ARef<TDest> Cast(ARef<T> Target)
 	{
 		return Target.Cast<TDest>();
+	}
+
+	template<typename T = Object>
+	ARef<T> Instantiate(AType Type)
+	{
+		auto object = Instantiate(Type);
+		if (object.IsNull())
+			return ARef<T>::Null();
+
+		return object.Cast<T>();
+	}
+
+	template<typename T = Object>
+	ARef<T> Instantiate(const char16 TypeName[])
+	{
+		return Instantiate(GetType(TypeName));
 	}
 
 

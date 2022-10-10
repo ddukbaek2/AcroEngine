@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="FComponent.h" />
-    <ClInclude Include="FNode.h" />
+    <ClInclude Include="AComponent.h" />
+    <ClInclude Include="ANode.h" />
     <ClInclude Include="FrameUI.h" />
-    <ClInclude Include="FTextComponent.h" />
-    <ClInclude Include="FImageComponent.h" />
-    <ClInclude Include="FButtonComponent.h" />
+    <ClInclude Include="AText.h" />
+    <ClInclude Include="AImage.h" />
+    <ClInclude Include="AButton.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FrameUI.cpp" />
