@@ -18,17 +18,17 @@ namespace AcroEngine
 				m_Name = TEXT("Object");
 			}
 
-			virtual BOOL8 IsParent(AType Type) override
+			virtual bool8 IsParent(AType Type) override
 			{
 				return false;
 			}
 
-			virtual BOOL8 IsChildren(AType Type) override
+			virtual bool8 IsChildren(AType Type) override
 			{
 				return false;
 			}
 
-			virtual POINTER CreateInstance() override
+			virtual pointer CreateInstance() override
 			{
 				return new Object();
 			}
@@ -42,17 +42,17 @@ namespace AcroEngine
 				m_Name = TEXT("Boolean");
 			}
 
-			virtual BOOL8 IsParent(AType Type) override
+			virtual bool8 IsParent(AType Type) override
 			{
 				return false;
 			}
 
-			virtual BOOL8 IsChildren(AType Type) override
+			virtual bool8 IsChildren(AType Type) override
 			{
 				return false;
 			}
 
-			virtual POINTER CreateInstance() override
+			virtual pointer CreateInstance() override
 			{
 				return new Boolean();
 			}
@@ -62,7 +62,7 @@ namespace AcroEngine
 	class AcroEngineAssembly : public IAssembly
 	{
 	public:
-		virtual VOID Assemble() override
+		virtual void Assemble() override
 		{
 			AcroEngine::LoadType(new Generated::ObjectType());
 			AcroEngine::LoadType(new Generated::BooleanType());

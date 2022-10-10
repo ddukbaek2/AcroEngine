@@ -15,11 +15,11 @@ namespace AcroEngine
 		std::wstring m_Name;
 
 	public:
-		VOID SetValue(AObject Object, INT32 Value)
+		void SetValue(AObject Object, int32 Value)
 		{
 		}
 
-		INT32 GetValue(AObject Object)
+		int32 Get(AObject Object)
 		{
 			return 0;
 		}
@@ -35,7 +35,7 @@ namespace AcroEngine
 		std::wstring m_Name;
 
 	public:
-		VOID Invoke(ARef<Object> Object)
+		void Invoke(ARef<Object> Object)
 		{
 		}
 	};
@@ -54,14 +54,14 @@ namespace AcroEngine
 	public:
 		Type() {}
 		virtual ~Type() {}
-		virtual BOOL8 IsParent(AType Type) = 0;
-		virtual BOOL8 IsChildren(AType Type) = 0;
-		virtual POINTER CreateInstance() = 0;
+		virtual bool8 IsParent(AType Type) = 0;
+		virtual bool8 IsChildren(AType Type) = 0;
+		virtual pointer CreateInstance() = 0;
 
 		const std::wstring& GetName() { return m_Name; }
 		const std::vector<FieldInfo>& GetFields() { return m_Fields; }
 		const std::vector<MethodInfo>& GetMethods() { return m_Methods; }			
 
-		friend AType GetType(const CHAR16 ClassName[]);
+		friend AType GetType(const char16 ClassName[]);
 	};
 }

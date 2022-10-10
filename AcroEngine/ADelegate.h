@@ -13,7 +13,7 @@ namespace AcroEngine
 	class Delegate : public Object
 	{
 	private:
-		List m_Delegates;
+		AList m_Delegates;
 
 	public:
 		//static Delegate* CreateDelegate()
@@ -21,15 +21,15 @@ namespace AcroEngine
 		//	return nullptr;
 		//}
 
-		VOID Add(Delegate Delegate)
+		void Add(Delegate Delegate)
 		{
 		}
 
-		VOID Remove(Delegate Delegate)
+		void Remove(Delegate Delegate)
 		{
 		}
 
-		VOID Clear()
+		void Clear()
 		{
 			//m_Delegates.
 		}

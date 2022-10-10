@@ -26,23 +26,23 @@ namespace AcroEngine
 			m_Data.resize(Capacity);
 		}
 
-		VOID Add(AObject Object)
+		void Add(AObject Object)
 		{
 			m_Data.push_back(Object);
 		}
 
-		VOID Insert(AInt Index, AObject Object)
+		void Insert(AInt Index, AObject Object)
 		{
 		}
 
-		VOID Clear()
+		void Clear()
 		{
 			m_Data.clear();
 		}
 
-		BOOL8 Remove(AObject Object)
+		bool8 Remove(AObject Object)
 		{
-			INT32 Index = GetObject(Object);
+			int32 Index = GetObject(Object);
 			if (Index == -1)
 				return false;
 
@@ -51,7 +51,7 @@ namespace AcroEngine
 			return true;
 		}
 
-		BOOL8 RemoveAt(UINT32 Index)
+		bool8 RemoveAt(uint32 Index)
 		{
 			if (Index < 0 || Index >= m_Data.size())
 				return false;
@@ -60,11 +60,11 @@ namespace AcroEngine
 			return true;
 		}
 
-		INT32 GetObject(AObject Object)
+		int32 GetObject(AObject Object)
 		{
-			for (UINT32 Index = 0; Index < m_Data.size(); ++Index)
+			for (uint32 Index = 0; Index < m_Data.size(); ++Index)
 			{
-				//ARef Current = m_Allocator.GetValue(Index);
+				//ARef Current = m_Allocator.Get(Index);
 				//if (Current->Equals(Object))
 				//	return Index;
 			}
@@ -72,18 +72,18 @@ namespace AcroEngine
 			return -1;
 		}
 
-		AObject GetObject(UINT32 Index)
+		AObject GetObject(uint32 Index)
 		{
 			return AObject::Null();
-			//return m_Allocator.GetValue(Index);
+			//return m_Allocator.Get(Index);
 		}
 
-		BOOL8 Contains(AObject Object)
+		bool8 Contains(AObject Object)
 		{
 			return GetObject(Object) != -1;
 		}
 
-		UINT32 GetCount()
+		uint32 GetCount()
 		{
 			return m_Data.size();
 		}

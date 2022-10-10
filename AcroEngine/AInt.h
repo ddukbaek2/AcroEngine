@@ -12,7 +12,7 @@ namespace AcroEngine
 	class Int : public Variable
 	{
 	private:
-		INT32 m_Value;
+		int32 m_Value;
 
 	public:
 		Int() : Variable(), m_Value(0)
@@ -23,17 +23,17 @@ namespace AcroEngine
 		{
 		}
 
-		VOID operator = (INT32& Value)
+		void operator = (int32& Value)
 		{
 			m_Value = Value;
 		}
 
-		operator INT32& ()
+		operator int32& ()
 		{
 			return m_Value;
 		}
 
-		INT32 ToInt()
+		int32 ToInt()
 		{
 			return m_Value;
 		}

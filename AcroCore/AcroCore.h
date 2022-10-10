@@ -39,20 +39,20 @@
 /////////////////////////////////////////////////////////////////////////////
 // @ 변수 재선언 목록.
 /////////////////////////////////////////////////////////////////////////////
-typedef void VOID;
-typedef void* POINTER;
-typedef signed char INT8;
-typedef unsigned char UINT8;
-typedef signed short INT16;
-typedef unsigned short UINT16;
-typedef signed int INT32;
-typedef unsigned int UINT32;
-typedef signed long long INT64;
-typedef unsigned long long UINT64;
-typedef bool BOOL8;
-typedef float FLOAT32;
-typedef double FLOAT64;
-typedef wchar_t CHAR16;
+//typedef void void;
+typedef void* pointer;
+typedef signed char int8;
+typedef unsigned char uint8;
+typedef signed short int16;
+typedef unsigned short uint16;
+typedef signed int int32;
+typedef unsigned int uint32;
+typedef signed long long int64;
+typedef unsigned long long unit64;
+typedef bool bool8;
+typedef float float32;
+typedef double float64;
+typedef wchar_t char16;
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@ typedef wchar_t CHAR16;
 #define TEXT(Text) L##Text
 #endif
 
-#define ACTION(Name) typedef VOID(*Name)(VOID)
-#define ACTION_WITH_PARAM(Name, Params) typedef VOID(*Name)(Params)
-#define FUNC(Name, Return) typedef Return(*Name)(VOID)
+#define ACTION(Name) typedef void(*Name)(void)
+#define ACTION_WITH_PARAM(Name, Params) typedef void(*Name)(Params)
+#define FUNC(Name, Return) typedef Return(*Name)(void)
 #define FUNC_WITH_PARAM(Name, Return, Params) typedef Return(*Name)(Params)
 
 
@@ -90,15 +90,15 @@ namespace AcroCore
 	// @ 기본 함수포인터.
 	/////////////////////////////////////////////////////////////////////////////
 	ACTION(FOnAction);
-	FUNC(FOnFunc, BOOL8);
+	FUNC(FOnFunc, bool8);
 
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 메모리 함수 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	POINTER XMemoryAllocate(UINT32 Length);
-	VOID XMemoryFree(POINTER Pointer);
-	VOID XMemorySet(POINTER Source, UINT8 Value, UINT32 Length);
+	pointer XMemoryAllocate(uint32 Length);
+	void XMemoryFree(pointer Pointer);
+	void XMemorySet(pointer Source, uint8 Value, uint32 Length);
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -106,13 +106,13 @@ namespace AcroCore
 	/////////////////////////////////////////////////////////////////////////////
 	struct IGL
 	{
-		enum class EBoolean : UINT8
+		enum class EBoolean : uint8
 		{
 			GL_TRUE = 1,
 			GL_FALSE = 0,
 		};
 
-		enum class EAccumOp : UINT16
+		enum class EAccumOp : uint16
 		{
 			GL_ACCUM = 0x0100,
 			GL_LOAD = 0x0101,
@@ -121,7 +121,7 @@ namespace AcroCore
 			GL_ADD = 0x0104,
 		};
 
-		enum class EAlphaFunction : UINT16
+		enum class EAlphaFunction : uint16
 		{
 			GL_NEVER = 0x0200,
 			GL_LESS = 0x0201,
@@ -133,7 +133,7 @@ namespace AcroCore
 			GL_ALWAYS = 0x0207,
 		};
 
-		enum class EAttribMask : UINT32
+		enum class EAttribMask : uint32
 		{
 			GL_CURRENT_BIT = 0x00000001,
 			GL_POINT_BIT = 0x00000002,
@@ -158,7 +158,7 @@ namespace AcroCore
 			GL_ALL_ATTRIB_BITS = 0x000fffff,
 		};
 
-		enum class EBeginMode : UINT16
+		enum class EBeginMode : uint16
 		{
 			GL_POINTS = 0x0000,
 			GL_LINES = 0x0001,
@@ -172,7 +172,7 @@ namespace AcroCore
 			GL_POLYGON = 0x0009,
 		};
 
-		enum class EBlendingFactorDest : UINT16
+		enum class EBlendingFactorDest : uint16
 		{
 			GL_ZERO = 0,
 			GL_ONE = 1,
@@ -184,7 +184,7 @@ namespace AcroCore
 			GL_ONE_MINUS_DST_ALPHA = 0x0305,
 		};
 
-		enum class EBlendingFactorSrc : UINT16
+		enum class EBlendingFactorSrc : uint16
 		{
 			//GL_ZERO = 0,
 			//GL_ONE = 1,
@@ -214,7 +214,7 @@ namespace AcroCore
 		//	GL_EDGE_FLAG_ARRAY,
 		//};
 
-		enum class ClipPlaneName : UINT16
+		enum class ClipPlaneName : uint16
 		{
 			GL_CLIP_PLANE0 = 0x3000,
 			GL_CLIP_PLANE1 = 0x3001,
@@ -259,7 +259,7 @@ namespace AcroCore
 		//	GL_FRONT_AND_BACK,
 		//};
 
-		//enum class EDataType : UINT16
+		//enum class EDataType : uint16
 		//{
 		//	GL_BYTE = 0x1400,
 		//	GL_UNSIGNED_BYTE = 0x1401,
@@ -286,7 +286,7 @@ namespace AcroCore
 		//	GL_ALWAYS,
 		//};
 		
-		enum class EDrawBufferMode : UINT16
+		enum class EDrawBufferMode : uint16
 		{
 			GL_NONE = 0,
 			GL_FRONT_LEFT = 0x0400,
@@ -374,7 +374,7 @@ namespace AcroCore
 		//	GL_POLYGON_OFFSET_FILL,
 		//};
 
-		enum class EErrorCode : UINT16
+		enum class EErrorCode : uint16
 		{
 			GL_NO_ERROR = 0,
 			GL_INVALID_ENUM = 0x0500,
@@ -385,7 +385,7 @@ namespace AcroCore
 			GL_OUT_OF_MEMORY = 0x0505,
 		};
 
-		enum class EFeedBackMode : UINT16
+		enum class EFeedBackMode : uint16
 		{
 			GL_2D = 0x0600,
 			GL_3D = 0x0601,
@@ -394,7 +394,7 @@ namespace AcroCore
 			GL_4D_COLOR_TEXTURE = 0x0603,
 		};
 
-		enum class EFeedBackToken : UINT16
+		enum class EFeedBackToken : uint16
 		{
 			GL_PASS_THROUGH_TOKEN = 0x0700,
 			GL_POINT_TOKEN = 0x0701,
@@ -406,7 +406,7 @@ namespace AcroCore
 			GL_LINE_RESET_TOKEN = 0x0707,
 		};
 
-		enum class EFogMode : UINT16
+		enum class EFogMode : uint16
 		{
 			//GL_LINEAR,
 			GL_EXP = 0x0800,
@@ -423,13 +423,13 @@ namespace AcroCore
 		//	GL_FOG_START,
 		//};
 
-		enum class EFrontFaceDirection : UINT16
+		enum class EFrontFaceDirection : uint16
 		{
 			GL_CW = 0x0900,
 			GL_CCW = 0x0901,
 		};
 
-		enum class EGetMapTarget : UINT16
+		enum class EGetMapTarget : uint16
 		{
 			GL_COEFF = 0x0A00,
 			GL_ORDER = 0x0A01,
@@ -460,7 +460,7 @@ namespace AcroCore
 		//	GL_EDGE_FLAG_ARRAY_POINTER,
 		//};
 
-		enum class EGetTarget : UINT16
+		enum class EGetTarget : uint16
 		{
 			GL_CURRENT_COLOR = 0x0B00,
 			GL_CURRENT_INDEX = 0x0B01,
@@ -697,7 +697,7 @@ namespace AcroCore
 			//GL_POLYGON_OFFSET_UNITS,
 		};
 
-		enum class EGetTextureParameter : UINT16
+		enum class EGetTextureParameter : uint16
 		{
 			//GL_TEXTURE_MAG_FILTER,
 			//GL_TEXTURE_MIN_FILTER,
@@ -718,7 +718,7 @@ namespace AcroCore
 			//GL_TEXTURE_RESIDENT,
 		};
 
-		enum class EHintMode : UINT16
+		enum class EHintMode : uint16
 		{
 			GL_DONT_CARE = 0x1100,
 			GL_FASTEST = 0x1101,
@@ -750,7 +750,7 @@ namespace AcroCore
 		//	GL_LIGHT_MODEL_TWO_SIDE,
 		//};
 
-		enum class ELightName : UINT16
+		enum class ELightName : uint16
 		{
 			GL_LIGHT0 = 0x4000,
 			GL_LIGHT1 = 0x4001,
@@ -762,7 +762,7 @@ namespace AcroCore
 			GL_LIGHT7 = 0x4007,
 		};
 
-		enum class ELightParameter : UINT16
+		enum class ELightParameter : uint16
 		{
 			GL_AMBIENT = 0x1200,
 			GL_DIFFUSE = 0x1201,
@@ -794,7 +794,7 @@ namespace AcroCore
 		//	GL_T4F_C4F_N3F_V4F,
 		//};
 
-		enum class EListMode : UINT16
+		enum class EListMode : uint16
 		{
 			GL_COMPILE = 0x1300,
 			GL_COMPILE_AND_EXECUTE = 0x1301,
@@ -814,7 +814,7 @@ namespace AcroCore
 		//	GL_4_BYTES,
 		//};
 
-		enum class ELogicOp : UINT16
+		enum class ELogicOp : uint16
 		{
 			GL_CLEAR = 0x1500,
 			GL_AND = 0x1501,
@@ -863,7 +863,7 @@ namespace AcroCore
 		//	GL_FRONT_AND_BACK,
 		//};
 
-		enum class EMaterialParameter : UINT16
+		enum class EMaterialParameter : uint16
 		{
 			GL_EMISSION = 0x1600,
 			GL_SHININESS = 0x1601,
@@ -874,7 +874,7 @@ namespace AcroCore
 			//GL_SPECULAR,
 		};
 
-		enum class EMatrixMode : UINT16
+		enum class EMatrixMode : uint16
 		{
 			GL_MODELVIEW = 0x1700,
 			GL_PROJECTION = 0x1701,
@@ -903,14 +903,14 @@ namespace AcroCore
 		//	GL_DOUBLE,
 		//};
 
-		enum class EPixelCopyType : UINT16
+		enum class EPixelCopyType : uint16
 		{
 			GL_COLOR = 0x1800,
 			GL_DEPTH = 0x1801,
 			GL_STENCIL = 0x1802,
 		};
 
-		enum class EPixelFormat : UINT16
+		enum class EPixelFormat : uint16
 		{
 			GL_COLOR_INDEX = 0x1900,
 			GL_STENCIL_INDEX = 0x1901,
@@ -973,7 +973,7 @@ namespace AcroCore
 		//	GL_DEPTH_BIAS,
 		//};
 
-		enum class EPixelType : UINT16
+		enum class EPixelType : uint16
 		{
 			GL_BITMAP = 0x1A00,
 			//GL_BYTE,
@@ -985,7 +985,7 @@ namespace AcroCore
 			//GL_FLOAT,
 		};
 
-		enum class EPolygonMode : UINT16
+		enum class EPolygonMode : uint16
 		{
 			GL_POINT = 0x1B00,
 			GL_LINE = 0x1B01,
@@ -1008,14 +1008,14 @@ namespace AcroCore
 		//	GL_AUX3,
 		//};
 
-		enum class ERenderingMode : UINT16
+		enum class ERenderingMode : uint16
 		{
 			GL_RENDER = 0x1C00,
 			GL_FEEDBACK = 0x1C01,
 			GL_SELECT = 0x1C02,
 		};
 
-		enum class EShadingModel : UINT16
+		enum class EShadingModel : uint16
 		{
 			GL_FLAT = 0x1D00,
 			GL_SMOOTH = 0x1D01,
@@ -1033,7 +1033,7 @@ namespace AcroCore
 		//	GL_ALWAYS,
 		//};
 
-		enum class EStencilOp : UINT16
+		enum class EStencilOp : uint16
 		{
 			//GL_ZERO,
 			GL_KEEP = 0x1E00,
@@ -1043,7 +1043,7 @@ namespace AcroCore
 			//GL_INVERT,
 		};
 
-		enum class EStringName : UINT16
+		enum class EStringName : uint16
 		{
 			GL_VENDOR = 0x1F00,
 			GL_RENDERER = 0x1F01,
@@ -1051,7 +1051,7 @@ namespace AcroCore
 			GL_EXTENSIONS = 0x1F03,
 		};
 
-		enum class ETextureCoordName : UINT16
+		enum class ETextureCoordName : uint16
 		{
 			GL_S = 0x2000,
 			GL_T = 0x2001,
@@ -1067,7 +1067,7 @@ namespace AcroCore
 		//	GL_DOUBLE,
 		//};
 
-		enum class ETextureEnvMode : UINT16
+		enum class ETextureEnvMode : uint16
 		{
 			GL_MODULATE = 0x2100,
 			GL_DECAL = 0x2101,
@@ -1075,38 +1075,38 @@ namespace AcroCore
 			//GL_REPLACE,
 		};
 
-		enum class ETextureEnvParameter : UINT16
+		enum class ETextureEnvParameter : uint16
 		{
 			GL_TEXTURE_ENV_MODE = 0x2200,
 			GL_TEXTURE_ENV_COLOR = 0x2201,
 		};
 
-		enum class ETextureEnvTarget : UINT16
+		enum class ETextureEnvTarget : uint16
 		{
 			GL_TEXTURE_ENV = 0x2300,
 		};
 
-		enum class ETextureGenMode : UINT16
+		enum class ETextureGenMode : uint16
 		{
 			GL_EYE_LINEAR = 0x2400,
 			GL_OBJECT_LINEAR = 0x2401,
 			GL_SPHERE_MAP = 0x2402,
 		};
 
-		enum class ETextureGenParameter : UINT16
+		enum class ETextureGenParameter : uint16
 		{
 			GL_TEXTURE_GEN_MODE = 0x2500,
 			GL_OBJECT_PLANE = 0x2501,
 			GL_EYE_PLANE = 0x2502,
 		};
 
-		enum class ETextureMagFilter : UINT16
+		enum class ETextureMagFilter : uint16
 		{
 			GL_NEAREST = 0x2600,
 			GL_LINEAR = 0x2601,
 		};
 
-		enum class ETextureMinFilter : UINT16
+		enum class ETextureMinFilter : uint16
 		{
 			//GL_NEAREST,
 			//GL_LINEAR,
@@ -1116,7 +1116,7 @@ namespace AcroCore
 			GL_LINEAR_MIPMAP_LINEAR = 0x2703,
 		};
 
-		enum class ETextureParameterName : UINT16
+		enum class ETextureParameterName : uint16
 		{
 			GL_TEXTURE_MAG_FILTER = 0x2800,
 			GL_TEXTURE_MIN_FILTER = 0x2801,
@@ -1134,7 +1134,7 @@ namespace AcroCore
 		//	GL_PROXY_TEXTURE_2D,
 		//};
 
-		enum class ETextureWrapMode : UINT16
+		enum class ETextureWrapMode : uint16
 		{
 			GL_CLAMP = 0x2900,
 			GL_REPEAT = 0x2901,
@@ -1148,29 +1148,29 @@ namespace AcroCore
 		//	GL_DOUBLE,
 		//};
 
-		enum class EClientAttribMask : UINT32
+		enum class EClientAttribMask : uint32
 		{
 			GL_CLIENT_PIXEL_STORE_BIT = 0x00000001,
 			GL_CLIENT_VERTEX_ARRAY_BIT = 0x00000002,
 			GL_CLIENT_ALL_ATTRIB_BITS = 0xffffffff,
 		};
 
-		virtual VOID Clear(EAttribMask AttribMask) = 0;
-		virtual VOID ClearColor(FLOAT32 R, FLOAT32 G, FLOAT32 B, FLOAT32 A) = 0;
-		virtual VOID PushMatrix() = 0;
-		virtual VOID MatrixMode(EMatrixMode MatrixMode) = 0;
-		virtual VOID Translate(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) = 0;
-		virtual VOID Scale(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) = 0;
-		virtual VOID Rotate(FLOAT32 X, FLOAT32 Y, FLOAT32 Z, FLOAT32 W) = 0;
-		virtual VOID PopMatrix() = 0;
-		virtual VOID LoadIdentity() = 0;
-		virtual VOID Begin(EBeginMode BeginMode) = 0;
-		virtual VOID Color4(FLOAT32 R, FLOAT32 G, FLOAT32 B, FLOAT32 A) = 0;
-		virtual VOID Vertex3(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) = 0;
-		virtual VOID TexCoord2(FLOAT32 U, FLOAT32 TDest) = 0;
-		virtual VOID End() = 0;
-		virtual VOID Flush() = 0;
-		virtual VOID Viewport(INT32 X, INT32 Y, INT32 Width, INT32 Height) = 0;
+		virtual void Clear(EAttribMask AttribMask) = 0;
+		virtual void ClearColor(float32 R, float32 G, float32 B, float32 A) = 0;
+		virtual void PushMatrix() = 0;
+		virtual void MatrixMode(EMatrixMode MatrixMode) = 0;
+		virtual void Translate(float32 X, float32 Y, float32 Z) = 0;
+		virtual void Scale(float32 X, float32 Y, float32 Z) = 0;
+		virtual void Rotate(float32 X, float32 Y, float32 Z, float32 W) = 0;
+		virtual void PopMatrix() = 0;
+		virtual void LoadIdentity() = 0;
+		virtual void Begin(EBeginMode BeginMode) = 0;
+		virtual void Color4(float32 R, float32 G, float32 B, float32 A) = 0;
+		virtual void Vertex3(float32 X, float32 Y, float32 Z) = 0;
+		virtual void TexCoord2(float32 U, float32 TDest) = 0;
+		virtual void End() = 0;
+		virtual void Flush() = 0;
+		virtual void Viewport(int32 X, int32 Y, int32 Width, int32 Height) = 0;
 	};
 
 
@@ -1187,19 +1187,19 @@ namespace AcroCore
 	/////////////////////////////////////////////////////////////////////////////
 	struct IApplication
 	{
-		virtual VOID OnCreate() = 0;
-		virtual VOID OnDestroy() = 0;
-		virtual VOID OnPause() = 0;
-		virtual VOID OnResume() = 0;
-		virtual VOID OnUpdate(FLOAT32 DeltaTime) = 0;
-		virtual VOID OnDraw(XGL GL) = 0;
-		virtual VOID OnResize(UINT32 Width, UINT32 Height) = 0;
+		virtual void OnCreate() = 0;
+		virtual void OnDestroy() = 0;
+		virtual void OnPause() = 0;
+		virtual void OnResume() = 0;
+		virtual void OnUpdate(float32 DeltaTime) = 0;
+		virtual void OnDraw(XGL GL) = 0;
+		virtual void OnResize(uint32 Width, uint32 Height) = 0;
 	};
 
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 어플리케이션 함수.
 	/////////////////////////////////////////////////////////////////////////////
-	VOID RunApplication(XApplication Application);
-	VOID QuitApplication();
+	void RunApplication(XApplication Application);
+	void QuitApplication();
 }

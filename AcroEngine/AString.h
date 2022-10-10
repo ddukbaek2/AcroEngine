@@ -21,7 +21,7 @@ namespace AcroEngine
 			m_Data.clear();
 		}
 
-		String(CHAR16* Value)
+		String(char16* Value)
 		{
 			m_Data += Value;
 		}

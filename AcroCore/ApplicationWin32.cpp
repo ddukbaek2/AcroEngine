@@ -29,46 +29,46 @@ namespace AcroCore
     class Win32GL : public IGL
     {
     public:
-        virtual VOID Clear(EAttribMask AttribMask) override { glClear((UINT32)AttribMask); }
-        virtual VOID ClearColor(FLOAT32 R, FLOAT32 G, FLOAT32 B, FLOAT32 A) override { glClearColor(R, G, B, A); }
-        virtual VOID PushMatrix() override { glPushMatrix(); }
-        virtual VOID MatrixMode(EMatrixMode MatrixMode) override { glMatrixMode((UINT16)MatrixMode); }
-        virtual VOID Translate(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) override { glTranslatef(X, Y, Z); }
-        virtual VOID Scale(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) override { glScalef(X, Y, Z); }
-        virtual VOID Rotate(FLOAT32 Angle, FLOAT32 X, FLOAT32 Y, FLOAT32 Z) override { glRotatef(Angle, X, Y, Z); }
-        virtual VOID PopMatrix() override { glPopMatrix(); }
-        virtual VOID LoadIdentity() override { glLoadIdentity(); }
-        virtual VOID Begin(EBeginMode BeginMode) override { glBegin((UINT16)BeginMode); }
-        virtual VOID Color4(FLOAT32 R, FLOAT32 G, FLOAT32 B, FLOAT32 A) override { glColor4f(R, G, B, A); }
-        virtual VOID Vertex3(FLOAT32 X, FLOAT32 Y, FLOAT32 Z) override { glVertex3f(X, Y, Z); }
-        virtual VOID TexCoord2(FLOAT32 U, FLOAT32 TDest) override { glTexCoord2f(U, TDest); }
-        virtual VOID End() override { glEnd(); }
-        virtual VOID Flush() override { glFlush(); }
-        virtual VOID Viewport(INT32 X, INT32 Y, INT32 Width, INT32 Height) override { glViewport(X, Y, Width, Height); }
+        virtual void Clear(EAttribMask AttribMask) override { glClear((uint32)AttribMask); }
+        virtual void ClearColor(float32 R, float32 G, float32 B, float32 A) override { glClearColor(R, G, B, A); }
+        virtual void PushMatrix() override { glPushMatrix(); }
+        virtual void MatrixMode(EMatrixMode MatrixMode) override { glMatrixMode((uint16)MatrixMode); }
+        virtual void Translate(float32 X, float32 Y, float32 Z) override { glTranslatef(X, Y, Z); }
+        virtual void Scale(float32 X, float32 Y, float32 Z) override { glScalef(X, Y, Z); }
+        virtual void Rotate(float32 Angle, float32 X, float32 Y, float32 Z) override { glRotatef(Angle, X, Y, Z); }
+        virtual void PopMatrix() override { glPopMatrix(); }
+        virtual void LoadIdentity() override { glLoadIdentity(); }
+        virtual void Begin(EBeginMode BeginMode) override { glBegin((uint16)BeginMode); }
+        virtual void Color4(float32 R, float32 G, float32 B, float32 A) override { glColor4f(R, G, B, A); }
+        virtual void Vertex3(float32 X, float32 Y, float32 Z) override { glVertex3f(X, Y, Z); }
+        virtual void TexCoord2(float32 U, float32 TDest) override { glTexCoord2f(U, TDest); }
+        virtual void End() override { glEnd(); }
+        virtual void Flush() override { glFlush(); }
+        virtual void Viewport(int32 X, int32 Y, int32 Width, int32 Height) override { glViewport(X, Y, Width, Height); }
 
-        virtual VOID Enable() { glEnable(GL_TEXTURE_2D); }
-        virtual VOID GenTextures()
+        virtual void Enable() { glEnable(GL_TEXTURE_2D); }
+        virtual void GenTextures()
         {
-            UINT32 textures = 0;
+            uint32 textures = 0;
             glGenTextures(1, &textures);
         }
 
         virtual void DeleteTexture()
         {
-            UINT32 textures = 0;
+            uint32 textures = 0;
             glDeleteTextures(1, &textures);
         }
 
-        virtual VOID BindTexture(UINT32 Texture) { glBindTexture(GL_TEXTURE_2D, Texture); }
+        virtual void BindTexture(uint32 Texture) { glBindTexture(GL_TEXTURE_2D, Texture); }
 
 
-        virtual VOID TexParameteri()
+        virtual void TexParameteri()
         {
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         }
 
-        virtual VOID TexImage2D()
+        virtual void TexImage2D()
         {
             glTexImage2D(0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
@@ -119,8 +119,8 @@ namespace AcroCore
 
             case WM_SIZE:
                 {
-                    UINT16 width = LOWORD(lParam); // minwindef.h
-                    UINT16 height = HIWORD(lParam); // minwindef.h
+                    uint16 width = LOWORD(lParam); // minwindef.h
+                    uint16 height = HIWORD(lParam); // minwindef.h
                     if (Instance != nullptr)
                     {
                         if (Instance->m_Application != nullptr)
@@ -169,7 +169,7 @@ namespace AcroCore
         /////////////////////////////////////////////////////////////////////////////
         // @ 어플리케이션 실행.
         /////////////////////////////////////////////////////////////////////////////
-        virtual VOID Run()
+        virtual void Run()
         {
             HINSTANCE instance = GetModuleHandle(NULL);
 
@@ -212,7 +212,7 @@ namespace AcroCore
             pixelFormatDescriptor.iPixelType = PFD_TYPE_RGBA;
             pixelFormatDescriptor.cColorBits = 32;
 
-            INT32 pixelFormat = ChoosePixelFormat(deviceContext, &pixelFormatDescriptor); // wingdi.h
+            int32 pixelFormat = ChoosePixelFormat(deviceContext, &pixelFormatDescriptor); // wingdi.h
             if (pixelFormat == 0)
             {
                 return;
@@ -237,7 +237,7 @@ namespace AcroCore
 
             // 메시지 루프.
             MSG msg;
-            BOOL8 isApplicationQuit = false;
+            bool8 isApplicationQuit = false;
             while (!isApplicationQuit)
             {
                 if (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE))
@@ -272,14 +272,14 @@ namespace AcroCore
                 m_GL = nullptr;
             }
 
-            //return (INT32)msg.wParam;
+            //return (int32)msg.wParam;
         }
 
     public:
         /////////////////////////////////////////////////////////////////////////////
         // @ 어플리케이션 종료.
         /////////////////////////////////////////////////////////////////////////////
-        VOID Quit()
+        void Quit()
         {
             if (m_WindowHandle != 0)
             {
@@ -303,7 +303,7 @@ namespace AcroCore
     /////////////////////////////////////////////////////////////////////////////
     // @ 어플리케이션 실행.
     /////////////////////////////////////////////////////////////////////////////
-    VOID RunApplication(XApplication Application)
+    void RunApplication(XApplication Application)
     {
         if (Win32Application::Instance == nullptr)
             Win32Application::Instance = new Win32Application(Application);
@@ -320,7 +320,7 @@ namespace AcroCore
     /////////////////////////////////////////////////////////////////////////////
     // @ 어플리케이션 종료.
     /////////////////////////////////////////////////////////////////////////////
-    VOID QuitApplication()
+    void QuitApplication()
     {
         if (Win32Application::Instance != nullptr)
         {

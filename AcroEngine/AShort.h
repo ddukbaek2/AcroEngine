@@ -12,7 +12,7 @@ namespace AcroEngine
 	class Short : public Variable
 	{
 	private:
-		INT16 m_Value;
+		int16 m_Value;
 
 	public:
 		Short() : Variable(), m_Value(0)
@@ -23,12 +23,12 @@ namespace AcroEngine
 		{
 		}
 
-		VOID operator = (INT16& Value)
+		void operator = (int16& Value)
 		{
 			m_Value = Value;
 		}
 
-		operator INT16& ()
+		operator int16& ()
 		{
 			return m_Value;
 		}

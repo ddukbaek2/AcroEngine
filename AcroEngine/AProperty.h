@@ -18,7 +18,7 @@ namespace AcroEngine
 		Property() {}
 		virtual ~Property() {}
 
-		VOID operator += (ADelegate Delegate)
+		void operator += (ADelegate Delegate)
 		{
 			//m_Get.Add
 		}

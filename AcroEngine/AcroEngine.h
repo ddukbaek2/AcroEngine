@@ -46,32 +46,32 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 참조 오브젝트.
 	/////////////////////////////////////////////////////////////////////////////
-	template<typename TSource = Object> class ARef
+	template<typename T = Object> class ARef
 	{
 	private:
-		std::weak_ptr<TSource> m_WeakPtr;
+		std::weak_ptr<T> m_WeakPtr;
 
 	public:
 		ARef()
 		{
-			m_WeakPtr = std::weak_ptr<TSource>();
+			m_WeakPtr = std::weak_ptr<T>();
 		}
 
-		ARef(std::shared_ptr<TSource> Object)
+		ARef(std::shared_ptr<T> Object)
 		{
-			m_WeakPtr = std::weak_ptr<TSource>(Object);
+			m_WeakPtr = std::weak_ptr<T>(Object);
 		}
 
 		virtual ~ARef()
 		{
 		}
 
-		TSource* operator ->()
+		T* operator ->()
 		{
 			return Get();
 		}
 
-		TSource* operator *()
+		T* operator *()
 		{
 			return Get();
 		}
@@ -84,26 +84,49 @@ namespace AcroEngine
 			return m_WeakPtr.lock();
 		}
 
-		TSource* Get()
+		T* Get()
 		{
 			if (IsNull(*this))
 				return nullptr;
 
 			auto object = m_WeakPtr.lock();
-			return (TSource*)object.get();
+			return (T*)object.get();
 		}
 
-		static BOOL8 IsNull(ARef<TSource> Object)
+		bool8 IsNull()
 		{
-			if (Object.m_WeakPtr.expired())
+			if (m_WeakPtr.expired())
 				return true;
 
 			return false;
 		}
 
-		static ARef<TSource> Null()
+		template<typename TDest = Object> TDest* Get()
 		{
-			return ARef<TSource>();
+			if (ARef<T>::IsNull(*this))
+				return nullptr;
+
+			auto object = Get();
+			return (TDest*)object;
+		}
+
+		template<typename TDest = Object> ARef<TDest> Cast()
+		{
+			if (ARef<T>::IsNull(*this))
+				return ARef<TDest>();
+
+			auto object = GetSharedPointer();
+			return ARef<TDest>(std::dynamic_pointer_cast<TDest>(object));
+		}
+
+		static bool8 IsNull(ARef<T> Object)
+		{
+			return Object.IsNull();
+		}
+
+		static ARef<T> Null()
+		{
+			return ARef<T>();
 		}
 	};
 
@@ -111,7 +134,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 레퍼런스 전방선언 목록.
 	/////////////////////////////////////////////////////////////////////////////
-	typedef POINTER AUnknownObject;
+	typedef pointer AUnknownObject;
 	typedef class ARef<FieldInfo> AFieldInfo;
 	typedef class ARef<MethodInfo> AMethodInfo;
 	typedef class ARef<Type> AType;
@@ -147,22 +170,22 @@ namespace AcroEngine
 	// @ 함수 목록.
 	/////////////////////////////////////////////////////////////////////////////
 	AType LoadType(Type* Type);
-	VOID UnloadType(AType Type);
-	AType GetType(const CHAR16 ClassName[]);
+	void UnloadType(AType Type);
+	AType GetType(const char16 TypeName[]);
+
 	AObject Instantiate(AType Type);
-	VOID Destroy(AObject Object);
-	VOID DestroyImmediate(AObject Object);
-	BOOL8 IsDestroyed(AObject Object);
-	AString Format(const CHAR16 Format[], AList Arguments);
+	AObject Instantiate(const char16 TypeName[]);
 
-	template<typename TSource = Object, typename TDest = Object>
-	ARef<TDest> Cast(ARef<TSource> Object)
+	void Destroy(AObject Object);
+	void DestroyImmediate(AObject Object);
+
+	bool8 IsDestroyed(AObject Object);
+	AString Format(const char16 Format[], AList Arguments);
+
+	template<typename T = Object, typename TDest = Object>
+	ARef<TDest> Cast(ARef<T> Object)
 	{
-		if (ARef<TSource>::IsNull(Object))
-			return ARef<TDest>();
-
-		auto object = Object.GetSharedPointer();
-		return ARef<TDest>(std::dynamic_pointer_cast<TDest>(object));
+		return Object.Cast<TDest>();
 	}
 
 
@@ -172,12 +195,12 @@ namespace AcroEngine
 	class Application : public AcroCore::IApplication
 	{
 	protected:
-		virtual VOID OnCreate() override;
-		virtual VOID OnDestroy() override;
-		virtual VOID OnPause() override;
-		virtual VOID OnResume() override;
-		virtual VOID OnUpdate(FLOAT32 DeltaTime) override;
-		virtual VOID OnDraw(AcroCore::XGL GL) override;
-		virtual VOID OnResize(UINT32 Width, UINT32 Height) override;
+		virtual void OnCreate() override;
+		virtual void OnDestroy() override;
+		virtual void OnPause() override;
+		virtual void OnResume() override;
+		virtual void OnUpdate(float32 DeltaTime) override;
+		virtual void OnDraw(AcroCore::XGL GL) override;
+		virtual void OnResize(uint32 Width, uint32 Height) override;
 	};
 }

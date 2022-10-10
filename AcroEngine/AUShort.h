@@ -12,7 +12,7 @@ namespace AcroEngine
 	class UShort : public Variable
 	{
 	private:
-		UINT16 m_Value;
+		uint16 m_Value;
 
 	public:
 		UShort() : Variable(), m_Value(0)
@@ -23,12 +23,12 @@ namespace AcroEngine
 		{
 		}
 
-		VOID operator = (UINT16& Value)
+		void operator = (uint16& Value)
 		{
 			m_Value = Value;
 		}
 
-		operator UINT16& ()
+		operator uint16& ()
 		{
 			return m_Value;
 		}

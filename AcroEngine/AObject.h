@@ -11,19 +11,19 @@ namespace AcroEngine
 	class Object
 	{
 	private:
-		INT32 m_ObjectID;
-		BOOL8 m_IsDestroying;
+		unit64 m_ObjectID;
+		bool8 m_IsDestroying;
 
 	public:
 		Object();
 		virtual ~Object();
 		virtual AString ToString();
-		virtual BOOL8 Equals(AObject Object);
-		virtual INT32 GetObjectID();
+		virtual bool8 Equals(AObject Object);
+		virtual unit64 GetObjectID();
 
 		friend AObject Instantiate(AType Type);
-		friend VOID Destroy(AObject Object);
-		friend VOID DestroyImmediate(AObject Object);
-		friend BOOL8 IsDestroyed(AObject Object);
+		friend void Destroy(AObject Object);
+		friend void DestroyImmediate(AObject Object);
+		friend bool8 IsDestroyed(AObject Object);
 	};
 }

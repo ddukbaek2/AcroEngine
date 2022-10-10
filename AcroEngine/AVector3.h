@@ -12,7 +12,7 @@ namespace AcroEngine
 	class Vector3 : public Variable
 	{
 	private:
-		FLOAT64 m_Values[3];
+		float64 m_Values[3];
 
 	public:
 	};

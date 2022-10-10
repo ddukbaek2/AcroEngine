@@ -12,7 +12,7 @@ namespace AcroEngine
 	class Boolean : public Variable
 	{
 	private:
-		BOOL8 m_Value;
+		bool8 m_Value;
 
 	public:
 		Boolean() : Variable()
@@ -25,12 +25,12 @@ namespace AcroEngine
 
 		}
 
-		VOID operator = (BOOL8 Value)
+		void operator = (bool8 Value)
 		{
 			m_Value = Value;
 		}
 
-		operator BOOL8 ()
+		operator bool8 ()
 		{
 			return m_Value;
 		}

@@ -11,28 +11,26 @@ using namespace AcroEngine;
 class ProjectExampleApplication : public Application
 {
 protected:
-    virtual VOID OnCreate() override
+    virtual void OnCreate() override
     {
         Application::OnCreate();
 
         // 생성.
-        auto type = A_TYPEOF(Boolean);
-        auto object = AcroEngine::Instantiate(type);
-        auto value = AcroEngine::Cast<Object, Boolean>(object);
-
-        // 에러 : 아직 Type 추론 작업이 되지 않아 기본형인 AObject로 생성함.
-        //*Boolean = false;
-
+        auto object = AcroEngine::Instantiate(TEXT("Boolean"));
+        auto value = object.Get<Boolean>();
+        *value = true;
+        //value.SetValue(true);
+         
         // 파괴.
-        AcroEngine::DestroyImmediate(AcroEngine::Cast<Boolean, Object>(value));
+        AcroEngine::DestroyImmediate(object);
     }
 
-    virtual VOID OnUpdate(FLOAT32 DeltaTime) override
+    virtual void OnUpdate(float32 DeltaTime) override
     {
         Application::OnUpdate(DeltaTime);
     }
 
-    virtual VOID OnDraw(AcroCore::XGL GL) override
+    virtual void OnDraw(AcroCore::XGL GL) override
     {
         Application::OnDraw(GL);
 
@@ -53,7 +51,7 @@ protected:
         GL->Flush();
     }
 
-    virtual VOID OnResize(UINT32 Width, UINT32 Height) override
+    virtual void OnResize(uint32 Width, uint32 Height) override
     {
         Application::OnResize(Width, Height);
     }

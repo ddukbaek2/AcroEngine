@@ -12,15 +12,15 @@ namespace AcroEngine
 	class Float : public Variable
 	{
 	private:
-		FLOAT32 m_Value;
+		float32 m_Value;
 
 	public:
-		VOID operator = (FLOAT32& Value)
+		void operator = (float32& Value)
 		{
 			m_Value = Value;
 		}
 
-		operator FLOAT32& ()
+		operator float32& ()
 		{
 			return m_Value;
 		}
