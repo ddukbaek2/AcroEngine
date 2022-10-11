@@ -175,20 +175,21 @@ namespace AcroCore
 					break;
 				}
 
-			case WM_CLOSE:
-				{
-					DestroyWindow(windowHandle); // WM_DESTROY // winuser.h
-					break;
-				}
+			//case WM_CLOSE:
+			//	{
+			//		DestroyWindow(windowHandle); // ==> WM_DESTROY // winuser.h
+			//		//SendMessageW(windowHandle, WM_DESTROY, 0, 0);
+			//		return 0;
+			//	}
 
-			case WM_DESTROY:
-				{
-					if (Instance != nullptr && Instance->m_Application != nullptr)
-						Instance->m_Application->OnDestroy();
-   
-					PostQuitMessage(0); // WM_QUIT // winuser.h
-					break;
-				}
+			//case WM_DESTROY:
+			//	{
+			//		if (Instance != nullptr && Instance->m_Application != nullptr)
+			//			Instance->m_Application->OnDestroy();
+
+			//		PostQuitMessage(0); // ==> WM_QUIT // winuser.h
+			//		return 0;
+			//	}
 			}
 
 			return DefWindowProcW(windowHandle, message, wParam, lParam); // winuser.h
@@ -277,21 +278,15 @@ namespace AcroCore
 
 			// 메시지 루프.
 			MSG msg;
-			bool8 isApplicationQuit = false;
-			while (!isApplicationQuit)
+			memset(&msg, 0, sizeof(MSG));
+			msg.message = WM_NULL;
+
+			while (msg.message != WM_QUIT)
 			{
 				if (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE))
 				{
-					if (msg.message == WM_QUIT)
-					//if (m_WindowHandle == 0)
-					{
-						isApplicationQuit = true;
-					}
-					else
-					{
-						TranslateMessage(&msg);
-						DispatchMessageW(&msg);
-					}
+					TranslateMessage(&msg);
+					DispatchMessageW(&msg);
 				}
 				else
 				{
@@ -303,15 +298,19 @@ namespace AcroCore
 				}
 			}
 
-			wglMakeCurrent(NULL, NULL); // wingdi.h
+			//wglMakeCurrent(NULL, NULL); // wingdi.h
+			//wglDeleteContext(renderingContext); // wingdi.h
+			//renderingContext = nullptr;
 			ReleaseDC(m_WindowHandle, deviceContext); // winuser.h
-			wglDeleteContext(renderingContext); // wingdi.h
 
 			if (m_GL != nullptr)
 			{
 				delete m_GL;
 				m_GL = nullptr;
 			}
+
+			if (m_Application != nullptr)
+				m_Application->OnDestroy();
 
 			//return (int32)msg.wParam;
 		}
@@ -322,11 +321,12 @@ namespace AcroCore
 		/////////////////////////////////////////////////////////////////////////////
 		void Quit()
 		{
-			if (m_WindowHandle != 0)
-			{
-				CloseWindow(m_WindowHandle); // winuser.h
-				m_WindowHandle = 0;
-			}
+			//CloseWindow(m_WindowHandle); // winuser.h
+			//DestroyWindow(m_WindowHandle); // ==> WM_DESTROY // winuser.h
+			//m_WindowHandle = 0;
+
+			//SendMessageW(m_WindowHandle, WM_CLOSE, 0, 0);
+			PostQuitMessage(0);
 		}
 
 		/////////////////////////////////////////////////////////////////////////////
