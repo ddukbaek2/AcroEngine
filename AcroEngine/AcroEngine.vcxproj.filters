@@ -45,19 +45,19 @@
       <Filter>Variables</Filter>
     </ClInclude>
     <ClInclude Include="AStack.h">
-      <Filter>Container</Filter>
+      <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="AQueue.h">
-      <Filter>Container</Filter>
+      <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="ASet.h">
-      <Filter>Container</Filter>
+      <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="ADictionary.h">
-      <Filter>Container</Filter>
+      <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="AList.h">
-      <Filter>Container</Filter>
+      <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="AString.h">
       <Filter>Variables</Filter>
@@ -82,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="TAction.h">
       <Filter>Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="AAsset.h">
+      <Filter>Assets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,14 +113,17 @@
     <Filter Include="Bases">
       <UniqueIdentifier>{8d8bab65-80a1-4b01-be1b-91df4395a922}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Container">
-      <UniqueIdentifier>{22e254d6-24fa-457a-b3b5-9b54d81d919e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Templates">
       <UniqueIdentifier>{fb613a5b-c60e-477b-905b-1abf5d2dbf2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rendering">
+    <Filter Include="Assets">
+      <UniqueIdentifier>{83340842-1102-42d1-9adf-eb4ff6e63b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renders">
       <UniqueIdentifier>{27675de9-e589-4501-8d5a-3944a93d7b51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{22e254d6-24fa-457a-b3b5-9b54d81d919e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

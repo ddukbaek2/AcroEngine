@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AcroEngine.h"
+#include "AObject.h"
 
 
 namespace AcroEngine

@@ -157,6 +157,7 @@
     <ClCompile Include="AObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AAsset.h" />
     <ClInclude Include="ABoolean.h" />
     <ClInclude Include="ADictionary.h" />
     <ClInclude Include="ADouble.h" />

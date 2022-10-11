@@ -1187,6 +1187,11 @@ namespace AcroCore
 	/////////////////////////////////////////////////////////////////////////////
 	struct IApplication
 	{
+		enum class EKeyCode
+		{
+			Escape,
+		};
+
 		virtual void OnCreate() = 0;
 		virtual void OnDestroy() = 0;
 		virtual void OnPause() = 0;
@@ -1194,6 +1199,13 @@ namespace AcroCore
 		virtual void OnUpdate(float32 DeltaTime) = 0;
 		virtual void OnDraw(XGL GL) = 0;
 		virtual void OnResize(uint32 Width, uint32 Height) = 0;
+
+		virtual void OnKeyPress(EKeyCode KeyCode) = 0;
+		virtual void OnKeyRelease(EKeyCode KeyCode) = 0;
+
+		virtual void OnTouchPress(uint8 Finger, float32 X, float32 Y) = 0;
+		virtual void OnTouchDrag(uint8 Finger, float32 X, float32 Y, float32 DeltaMoveX, float32 DeltaMoveY) = 0;
+		virtual void OnTouchRelease(uint8 Finger, float32 X, float32 Y) = 0;
 	};
 
 

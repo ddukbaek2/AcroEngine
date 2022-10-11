@@ -96,6 +96,46 @@ namespace AcroCore
 		{
 			switch (message)
 			{
+			case WM_KEYDOWN:
+				{
+					if (Instance != nullptr && Instance->m_Application != nullptr)
+					{
+						switch (wParam)
+						{
+						case VK_ESCAPE:
+							Instance->m_Application->OnKeyPress(IApplication::EKeyCode::Escape);
+						case VK_LEFT:
+							break;
+						case VK_RIGHT:
+							break;
+						case VK_UP:
+							break;
+						case VK_DOWN:
+							break;
+						}
+					};
+					break;
+				}
+			case WM_KEYUP:
+			{
+				if (Instance != nullptr && Instance->m_Application != nullptr)
+				{
+					switch (wParam)
+					{
+					case VK_ESCAPE:
+						Instance->m_Application->OnKeyRelease(IApplication::EKeyCode::Escape);
+					case VK_LEFT:
+						break;
+					case VK_RIGHT:
+						break;
+					case VK_UP:
+						break;
+					case VK_DOWN:
+						break;
+					}
+				}
+				break;
+			}
 			case WM_CREATE:
 				{
 					if (Instance != nullptr && Instance->m_Application != nullptr)
@@ -243,6 +283,7 @@ namespace AcroCore
 				if (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE))
 				{
 					if (msg.message == WM_QUIT)
+					//if (m_WindowHandle == 0)
 					{
 						isApplicationQuit = true;
 					}

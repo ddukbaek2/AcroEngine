@@ -13,6 +13,7 @@ namespace AcroEngine
 	private:
 		unit64 m_ObjectID;
 		bool8 m_IsDestroying;
+		AType m_Type;
 
 	public:
 		Object();
@@ -20,6 +21,7 @@ namespace AcroEngine
 		virtual AString ToString();
 		virtual bool8 Equals(AObject Target);
 		virtual unit64 GetObjectID();
+		virtual AType GetType();
 
 		friend AObject Instantiate(AType Type);
 		friend void Destroy(AObject Target);

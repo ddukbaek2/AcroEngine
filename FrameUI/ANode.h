@@ -51,7 +51,7 @@ namespace FrameUI
 			if (m_Components.IsNull())
 				return;
 
-			m_Components->Add(Component.Cast<Object>());
+			m_Components->Add(Component);
 		}
 
 		template<typename T = Component> void RemoveComponent(AcroEngine::ARef<T> Component)
@@ -59,18 +59,20 @@ namespace FrameUI
 			if (m_Components.IsNull())
 				return;
 
-			m_Components->Remove(Component.Cast<Object>();
+			m_Components->Remove(Component);
 			AcroEngine::Destroy(Component);
 		}
 
 		template<typename T = Component> T GetComponent()
 		{
-			if (m_Components.IsNull())
-				return AcroEngine::ARef<T>::Null();
+			return AcroEngine::ARef<T>::Null();
 
-			//AcroEngine::GetType(T);
-			//m_Components->GetObject()
-			return (AComponent)m_Components->Find(Index);
+			//if (m_Components.IsNull())
+			//	return AcroEngine::ARef<T>::Null();
+
+			////AcroEngine::GetType(T);
+			////m_Components->GetObject()
+			//return (AComponent)m_Components->Find(Index);
 		}
 
 		void SetParent(ANode Parent)

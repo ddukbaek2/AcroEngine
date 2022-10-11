@@ -71,6 +71,11 @@ namespace AcroEngine
 			return Get();
 		}
 
+		operator ARef<Object>()
+		{
+			return Cast<Object>();
+		}
+
 		T* operator *()
 		{
 			return Get();
@@ -171,6 +176,7 @@ namespace AcroEngine
 	//class AAction
 
 
+
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 함수 목록.
 	/////////////////////////////////////////////////////////////////////////////
@@ -193,6 +199,12 @@ namespace AcroEngine
 		return Target.Cast<TDest>();
 	}
 
+	template<typename TDest = Object>
+	ARef<TDest> Cast(AObject Target)
+	{
+		return Target.Cast<TDest>();
+	}
+
 	template<typename T = Object>
 	ARef<T> Instantiate(AType Type)
 	{
@@ -209,6 +221,11 @@ namespace AcroEngine
 		return Instantiate(GetType(TypeName));
 	}
 
+	class GC
+	{
+	public:
+	};
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 어플리케이션.
@@ -223,5 +240,11 @@ namespace AcroEngine
 		virtual void OnUpdate(float32 DeltaTime) override;
 		virtual void OnDraw(AcroCore::XGL GL) override;
 		virtual void OnResize(uint32 Width, uint32 Height) override;
+
+		virtual void OnKeyPress(EKeyCode KeyCode) override;
+		virtual void OnKeyRelease(EKeyCode KeyCode) override;
+		virtual void OnTouchPress(uint8 Finger, float32 X, float32 Y) override;
+		virtual void OnTouchDrag(uint8 Finger, float32 X, float32 Y, float32 DeltaMoveX, float32 DeltaMoveY) override;
+		virtual void OnTouchRelease(uint8 Finger, float32 X, float32 Y) override;
 	};
 }

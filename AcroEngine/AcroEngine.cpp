@@ -242,6 +242,7 @@ namespace AcroEngine
 		Object* instance = (Object*)Type->CreateInstance();
 		instance->m_ObjectID = ++g_IncreaseObjectID;
 		instance->m_IsDestroying = false;
+		instance->m_Type = Type;
 		std::shared_ptr<Object> object(instance);
 		g_ObjectManager.Add(object);
 		return AObject(object);
@@ -350,6 +351,26 @@ namespace AcroEngine
 	}
 
 	void Application::OnResize(uint32 Width, uint32 Height)
+	{
+	}
+
+	void Application::OnKeyPress(EKeyCode KeyCode)
+	{
+	}
+
+	void Application::OnKeyRelease(EKeyCode KeyCode)
+	{
+	}
+
+	void Application::OnTouchPress(uint8 Finger, float32 X, float32 Y)
+	{
+	}
+
+	void Application::OnTouchDrag(uint8 Finger, float32 X, float32 Y, float32 DeltaMoveX, float32 DeltaMoveY)
+	{
+	}
+
+	void Application::OnTouchRelease(uint8 Finger, float32 X, float32 Y)
 	{
 	}
 }

@@ -64,13 +64,25 @@ protected:
 	{
 		Application::OnResize(Width, Height);
 	}
+
+	virtual void OnKeyPress(AcroCore::IApplication::EKeyCode KeyCode)
+	{
+		Application::OnKeyPress(KeyCode);
+
+		if (KeyCode == AcroCore::IApplication::EKeyCode::Escape)
+		{
+			AcroCore::QuitApplication();
+		}
+	}
 };
 
 
 /////////////////////////////////////////////////////////////////////////////
 // @ 진입점.
 /////////////////////////////////////////////////////////////////////////////
-int main()
+//int main()
+#include <Windows.h>
+int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char16* pCmdLine, int32 nCmdShow)
 {    
 	// 어플리케이션 실행.
 	ProjectExampleApplication application;

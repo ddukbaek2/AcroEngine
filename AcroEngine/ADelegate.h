@@ -31,7 +31,7 @@ namespace AcroEngine
 
 		void Clear()
 		{
-			//m_Delegates.
+			m_Delegates->Clear();
 		}
 
 		//ARef* Invoke(...)
