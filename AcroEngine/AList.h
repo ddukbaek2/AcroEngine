@@ -31,7 +31,7 @@ namespace AcroEngine
 			m_Data.push_back(Object);
 		}
 
-		void Insert(AInt Index, AObject Object)
+		void Insert(uint32 Index, AObject Object)
 		{
 		}
 
@@ -64,7 +64,7 @@ namespace AcroEngine
 		{
 			for (uint32 Index = 0; Index < m_Data.size(); ++Index)
 			{
-				//ARef Current = m_Allocator.Get(Index);
+				//TRef Current = m_Allocator.Get(Index);
 				//if (Current->Equals(Object))
 				//	return Index;
 			}

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "AcroEngine.h"
+
+//#include "../AcroCore/AcroCore.h"
 
 
 namespace AcroEngine
@@ -8,17 +9,17 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ ¾×¼Ç.
 	/////////////////////////////////////////////////////////////////////////////
-	template<typename TObject> class TAction
+	template<typename T> class TAction
 	{
 	public:
-		ACTION(FOnAction, const TObject*);
+		ACTION_WITH_PARAM(FOnAction, const T*);
 
 	private:
-		TObject* m_Instance;
-		OnAction m_OnAction;
+		T* m_Instance;
+		FOnAction m_OnAction;
 
 	public:
-		TAction(TObject* Instance, FOnAction OnAction)
+		TAction(T* Instance, FOnAction OnAction)
 		{
 			m_Instance = Instance;
 			m_OnAction = OnAction;
@@ -31,7 +32,7 @@ namespace AcroEngine
 		void Execute()
 		{
 			if (m_Instance != nullptr)
-				(m_Instance->*OnAction)(m_Instance);
+				(m_Instance->*m_OnAction)(m_Instance);
 		}
 	};
 }

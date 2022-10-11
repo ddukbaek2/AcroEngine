@@ -11,7 +11,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	//struct ObjectDestroyer
 	//{
-	//	void operator () (ARef<Object> Object)
+	//	void operator () (TRef<Object> Object)
 	//	{
 	//		Destroy(Object);
 	//	}

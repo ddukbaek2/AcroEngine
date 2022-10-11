@@ -60,9 +60,8 @@ typedef wchar_t char16;
 /////////////////////////////////////////////////////////////////////////////
 #define INVALID -1
 
-#ifndef TEXT
+#undef TEXT
 #define TEXT(Text) L##Text
-#endif
 
 #define ACTION(Name) typedef void(*Name)(void)
 #define ACTION_WITH_PARAM(Name, Params) typedef void(*Name)(Params)

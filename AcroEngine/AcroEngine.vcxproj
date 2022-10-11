@@ -189,6 +189,7 @@
     <ClInclude Include="IEnumerator.h" />
     <ClInclude Include="AUInt.h" />
     <ClInclude Include="TAction.h" />
+    <ClInclude Include="TRef.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

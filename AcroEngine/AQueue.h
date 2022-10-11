@@ -12,7 +12,7 @@ namespace AcroEngine
 	class Queue : public Variable
 	{
 	private:
-		std::queue<ARef> m_Data;
+		std::queue<TRef> m_Data;
 
 	public:
 	};

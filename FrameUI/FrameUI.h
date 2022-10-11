@@ -16,11 +16,11 @@ namespace FrameUI
 	class Text;
 	class Button;
 
-	typedef class AcroEngine::ARef<Node> ANode;
-	typedef class AcroEngine::ARef<Component> AComponent;
-	typedef class AcroEngine::ARef<Image> AImage;
-	typedef class AcroEngine::ARef<Text> AText;
-	typedef class AcroEngine::ARef<Button> AButton;
+	typedef class AcroEngine::TRef<Node> ANode;
+	typedef class AcroEngine::TRef<Component> AComponent;
+	typedef class AcroEngine::TRef<Image> AImage;
+	typedef class AcroEngine::TRef<Text> AText;
+	typedef class AcroEngine::TRef<Button> AButton;
 
 	struct ITouchable
 	{

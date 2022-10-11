@@ -34,7 +34,7 @@ namespace AcroEngine
 			m_Delegates->Clear();
 		}
 
-		//ARef* Invoke(...)
+		//TRef* Invoke(...)
 		//{
 		//	//for (auto delegate : m_Delegates)
 		//	{

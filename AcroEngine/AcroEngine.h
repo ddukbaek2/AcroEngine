@@ -1,6 +1,9 @@
 ﻿#pragma once
 
+
 #include "../AcroCore/AcroCore.h"
+#include "TAction.h"
+#include "TRef.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -44,131 +47,33 @@ namespace AcroEngine
 
 
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 참조 오브젝트.
-	/////////////////////////////////////////////////////////////////////////////
-	template<typename T = Object> class ARef
-	{
-	private:
-		std::weak_ptr<T> m_WeakPtr;
-
-	public:
-		ARef()
-		{
-			m_WeakPtr = std::weak_ptr<T>();
-		}
-
-		ARef(std::shared_ptr<T> Object)
-		{
-			m_WeakPtr = std::weak_ptr<T>(Object);
-		}
-
-		virtual ~ARef()
-		{
-		}
-
-		T* operator ->()
-		{
-			return Get();
-		}
-
-		operator ARef<Object>()
-		{
-			return Cast<Object>();
-		}
-
-		T* operator *()
-		{
-			return Get();
-		}
-
-		std::shared_ptr<Object> GetSharedPointer()
-		{
-			if (IsNull(*this))
-				return std::shared_ptr<Object>();
-
-			return m_WeakPtr.lock();
-		}
-
-		T* Get()
-		{
-			if (IsNull())
-				return nullptr;
-
-			auto object = m_WeakPtr.lock();
-			return (T*)object.get();
-		}
-
-		bool8 IsNull()
-		{
-			if (m_WeakPtr.expired())
-				return true;
-
-			return false;
-		}
-
-		void Empty()
-		{
-			m_WeakPtr.reset();
-		}
-
-		template<typename TDest = Object> TDest* Get()
-		{
-			if (IsNull())
-				return nullptr;
-
-			auto object = Get();
-			return (TDest*)object;
-		}
-
-		template<typename TDest = Object> ARef<TDest> Cast()
-		{
-			if (IsNull())
-				return ARef<TDest>();
-
-			auto object = GetSharedPointer();
-			return ARef<TDest>(std::dynamic_pointer_cast<TDest>(object));
-		}
-
-		static bool8 IsNull(ARef<T> Target)
-		{
-			return Target.IsNull();
-		}
-
-		static ARef<T> Null()
-		{
-			return ARef<T>();
-		}
-	};
-
-
-	/////////////////////////////////////////////////////////////////////////////
 	// @ 레퍼런스 전방선언 목록.
 	/////////////////////////////////////////////////////////////////////////////
 	typedef pointer AUnknownObject;
-	typedef class ARef<FieldInfo> AFieldInfo;
-	typedef class ARef<MethodInfo> AMethodInfo;
-	typedef class ARef<Type> AType;
-	typedef class ARef<Object> AObject;
-	typedef class ARef<Json> AJson;
-	typedef class ARef<Property> AProperty;
-	typedef class ARef<Delegate> ADelegate;
-	typedef class ARef<Variable> AVariable;
-	typedef class ARef<Boolean> ABoolean;
-	typedef class ARef<Short> AShort;
-	typedef class ARef<UShort> AUShort;
-	typedef class ARef<Int> AInt;
-	typedef class ARef<UInt> AUInt;
-	typedef class ARef<Float> AFloat;
-	typedef class ARef<Double> ADouble;
-	typedef class ARef<String> AString;
-	typedef class ARef<Vector2> AVector2;
-	typedef class ARef<Vector3> AVector3;
-	typedef class ARef<Vector4> AVector4;
-	typedef class ARef<List> AList;
-	typedef class ARef<Queue> AQueue;
-	typedef class ARef<Stack> AStack;
-	typedef class ARef<Set> ASet;
-	typedef class ARef<Dictionary> ADictionary;
+	typedef class TRef<FieldInfo> AFieldInfo;
+	typedef class TRef<MethodInfo> AMethodInfo;
+	typedef class TRef<Type> AType;
+	typedef class TRef<Object> AObject;
+	typedef class TRef<Json> AJson;
+	typedef class TRef<Property> AProperty;
+	typedef class TRef<Delegate> ADelegate;
+	typedef class TRef<Variable> AVariable;
+	typedef class TRef<Boolean> ABoolean;
+	typedef class TRef<Short> AShort;
+	typedef class TRef<UShort> AUShort;
+	typedef class TRef<Int> AInt;
+	typedef class TRef<UInt> AUInt;
+	typedef class TRef<Float> AFloat;
+	typedef class TRef<Double> ADouble;
+	typedef class TRef<String> AString;
+	typedef class TRef<Vector2> AVector2;
+	typedef class TRef<Vector3> AVector3;
+	typedef class TRef<Vector4> AVector4;
+	typedef class TRef<List> AList;
+	typedef class TRef<Queue> AQueue;
+	typedef class TRef<Stack> AStack;
+	typedef class TRef<Set> ASet;
+	typedef class TRef<Dictionary> ADictionary;
 	
 	//class AFlag;
 	//class AEnum;
@@ -193,32 +98,21 @@ namespace AcroEngine
 	bool8 IsDestroyed(AObject Target);
 	AString Format(const char16 Format[], AList Arguments);
 
-	template<typename T = Object, typename TDest = Object>
-	ARef<TDest> Cast(ARef<T> Target)
-	{
-		return Target.Cast<TDest>();
-	}
-
-	template<typename TDest = Object>
-	ARef<TDest> Cast(AObject Target)
-	{
-		return Target.Cast<TDest>();
-	}
 
 	template<typename T = Object>
-	ARef<T> Instantiate(AType Type)
+	TRef<T> Instantiate(AType Type)
 	{
 		auto object = Instantiate(Type);
 		if (object.IsNull())
-			return ARef<T>::Null();
+			return TRef<T>::Null();
 
 		return object.Cast<T>();
 	}
 
 	template<typename T = Object>
-	ARef<T> Instantiate(const char16 TypeName[])
+	TRef<T> Instantiate(const char16 TypeName[])
 	{
-		return Instantiate(GetType(TypeName));
+		return Instantiate<T>(GetType(TypeName));
 	}
 
 	class GC

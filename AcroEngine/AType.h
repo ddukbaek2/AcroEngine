@@ -35,7 +35,7 @@ namespace AcroEngine
 		std::wstring m_Name;
 
 	public:
-		void Invoke(ARef<Object> Object)
+		void Invoke(TRef<Object> Object)
 		{
 		}
 	};

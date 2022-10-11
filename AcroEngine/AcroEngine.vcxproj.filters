@@ -86,6 +86,9 @@
     <ClInclude Include="AAsset.h">
       <Filter>Assets</Filter>
     </ClInclude>
+    <ClInclude Include="TRef.h">
+      <Filter>Templates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AcroEngine.cpp" />
@@ -124,6 +127,9 @@
     </Filter>
     <Filter Include="Containers">
       <UniqueIdentifier>{22e254d6-24fa-457a-b3b5-9b54d81d919e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{30365140-03c6-4dae-a252-e12647aa4d94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

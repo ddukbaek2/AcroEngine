@@ -46,7 +46,7 @@ namespace FrameUI
 			A_DESTROY(m_Childs);
 		}
 
-		template<typename T = Component> void AddComponent(AcroEngine::ARef<T> Component)
+		template<typename T = Component> void AddComponent(AcroEngine::TRef<T> Component)
 		{
 			if (m_Components.IsNull())
 				return;
@@ -54,7 +54,7 @@ namespace FrameUI
 			m_Components->Add(Component);
 		}
 
-		template<typename T = Component> void RemoveComponent(AcroEngine::ARef<T> Component)
+		template<typename T = Component> void RemoveComponent(AcroEngine::TRef<T> Component)
 		{
 			if (m_Components.IsNull())
 				return;
@@ -65,10 +65,10 @@ namespace FrameUI
 
 		template<typename T = Component> T GetComponent()
 		{
-			return AcroEngine::ARef<T>::Null();
+			return AcroEngine::TRef<T>::Null();
 
 			//if (m_Components.IsNull())
-			//	return AcroEngine::ARef<T>::Null();
+			//	return AcroEngine::TRef<T>::Null();
 
 			////AcroEngine::GetType(T);
 			////m_Components->GetObject()
