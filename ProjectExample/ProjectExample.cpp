@@ -80,9 +80,12 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 // @ 진입점.
 /////////////////////////////////////////////////////////////////////////////
-//int main()
-#include <Windows.h>
+#ifdef WIN32
+#include <Windows.h> // SUBSYSTEM:WINDOWS
 int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char16* pCmdLine, int32 nCmdShow)
+#else
+int main() // SUBSYSTEM:CONSOLE
+#endif
 {    
 	// 어플리케이션 실행.
 	ProjectExampleApplication application;
