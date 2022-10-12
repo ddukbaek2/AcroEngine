@@ -52,6 +52,7 @@ typedef unsigned long long unit64;
 typedef bool bool8;
 typedef float float32;
 typedef double float64;
+typedef char char8;
 typedef wchar_t char16;
 
 
@@ -67,7 +68,7 @@ typedef wchar_t char16;
 #define ACTION_WITH_PARAM(Name, Params) typedef void(*Name)(Params)
 #define FUNC(Name, Return) typedef Return(*Name)(void)
 #define FUNC_WITH_PARAM(Name, Return, Params) typedef Return(*Name)(Params)
-
+#define SAFE_DELETE(Pointer) if (Pointer != nullptr) { delete Pointer; Pointer = nullptr; }
 
 namespace AcroCore
 {

@@ -19,7 +19,7 @@ namespace AcroCore
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 전역변수.
 	/////////////////////////////////////////////////////////////////////////////
-	wchar_t g_szTitle[128] = TEXT(""); // 제목 표시줄 텍스트입니다.
+	wchar_t g_szTitle[128] = TEXT("TITLE"); // 제목 표시줄 텍스트입니다.
 	wchar_t g_szWindowClass[128] = TEXT("WINDOW"); // 기본 창 클래스 이름입니다.
 
 
@@ -87,6 +87,8 @@ namespace AcroCore
 		HWND m_WindowHandle; // 현재 윈도우 핸들.
 		XGL m_GL; // 현재 OpenGL.
 		XApplication m_Application;
+		HCURSOR m_Cursor;
+		HICON m_Icon;
 
 	private:
 		/////////////////////////////////////////////////////////////////////////////
@@ -96,57 +98,27 @@ namespace AcroCore
 		{
 			switch (message)
 			{
-			case WM_KEYDOWN:
-				{
-					if (Instance != nullptr && Instance->m_Application != nullptr)
-					{
-						switch (wParam)
-						{
-						case VK_ESCAPE:
-							Instance->m_Application->OnKeyPress(IApplication::EKeyCode::Escape);
-						case VK_LEFT:
-							break;
-						case VK_RIGHT:
-							break;
-						case VK_UP:
-							break;
-						case VK_DOWN:
-							break;
-						}
-					};
-					break;
-				}
-			case WM_KEYUP:
-			{
-				if (Instance != nullptr && Instance->m_Application != nullptr)
-				{
-					switch (wParam)
-					{
-					case VK_ESCAPE:
-						Instance->m_Application->OnKeyRelease(IApplication::EKeyCode::Escape);
-					case VK_LEFT:
-						break;
-					case VK_RIGHT:
-						break;
-					case VK_UP:
-						break;
-					case VK_DOWN:
-						break;
-					}
-				}
-				break;
-			}
 			case WM_CREATE:
 				{
 					if (Instance != nullptr && Instance->m_Application != nullptr)
+					{
 						Instance->m_Application->OnCreate();
+						SetCursor(Instance->m_Cursor);
+						//SendMessage(windowHandle, WM_SETICON, ICON_BIG, (LPARAM)Instance->m_Icon);
+						//SendMessage(windowHandle, WM_SETICON, ICON_SMALL, (LPARAM)Instance->m_Icon);
+					}
 					break;
 				}
 
 			case WM_SETFOCUS:
 				{
 					if (Instance != nullptr && Instance->m_Application != nullptr)
+					{
 						Instance->m_Application->OnResume();
+						//SetCursor(Instance->m_Cursor);
+						//SendMessage(windowHandle, WM_SETICON, ICON_BIG, (LPARAM)Instance->m_Icon);
+						//SendMessage(windowHandle, WM_SETICON, ICON_SMALL, (LPARAM)Instance->m_Icon);
+					}
 					break;
 				}
 
@@ -175,6 +147,47 @@ namespace AcroCore
 					break;
 				}
 
+			case WM_KEYDOWN:
+				{
+					if (Instance != nullptr && Instance->m_Application != nullptr)
+					{
+						switch (wParam)
+						{
+						case VK_ESCAPE:
+							Instance->m_Application->OnKeyPress(IApplication::EKeyCode::Escape);
+						case VK_LEFT:
+							break;
+						case VK_RIGHT:
+							break;
+						case VK_UP:
+							break;
+						case VK_DOWN:
+							break;
+						}
+					};
+					break;
+				}
+
+			case WM_KEYUP:
+				{
+					if (Instance != nullptr && Instance->m_Application != nullptr)
+					{
+						switch (wParam)
+						{
+						case VK_ESCAPE:
+							Instance->m_Application->OnKeyRelease(IApplication::EKeyCode::Escape);
+						case VK_LEFT:
+							break;
+						case VK_RIGHT:
+							break;
+						case VK_UP:
+							break;
+						case VK_DOWN:
+							break;
+						}
+					}
+					break;
+				}
 			//case WM_CLOSE:
 			//	{
 			//		DestroyWindow(windowHandle); // ==> WM_DESTROY // winuser.h
@@ -198,9 +211,11 @@ namespace AcroCore
 	public:
 		Win32Application(XApplication Application)
 		{
-			m_WindowHandle = 0;
+			m_WindowHandle = NULL;
 			m_GL = nullptr;
 			m_Application = Application;
+			m_Cursor = NULL;
+			m_Icon = NULL;
 		}
 
 		virtual ~Win32Application()
@@ -212,25 +227,21 @@ namespace AcroCore
 		/////////////////////////////////////////////////////////////////////////////
 		virtual void Run()
 		{
-			HINSTANCE instance = GetModuleHandle(NULL);
-
-			// 전역 문자열을 초기화합니다.
-			//LoadStringW(Instance, IDS_APP_TITLE, g_szTitle, MAX_LOADSTRING);
-			//LoadStringW(Instance, IDC_ACROEDITOR, g_szWindowClass, MAX_LOADSTRING);
-			WNDCLASSEXW wcex;
-			wcex.cbSize = sizeof(WNDCLASSEX);
-			wcex.style = CS_HREDRAW | CS_VREDRAW;
-			wcex.lpfnWndProc = &Win32Application::WindowProcess;
-			wcex.cbClsExtra = 0;
-			wcex.cbWndExtra = 0;
-			wcex.hInstance = instance;
-			wcex.hIcon = 0;// LoadIconW(Instance, MAKEINTRESOURCE(IDI_ACROEDITOR));
-			wcex.hCursor = 0; // LoadCursor(nullptr, IDC_ARROW);
-			wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-			wcex.lpszMenuName = 0;// MAKEINTRESOURCEW(IDC_ACROEDITOR);
-			wcex.lpszClassName = g_szWindowClass;
-			wcex.hIconSm = 0;// LoadIcon(Instance, MAKEINTRESOURCE(IDI_SMALL));
-			RegisterClassExW(&wcex); // winuser.h
+			HINSTANCE instance = GetModuleHandleW(NULL);
+			WNDCLASSEXW windowClassEx;
+			windowClassEx.cbSize = sizeof(WNDCLASSEX);
+			windowClassEx.style = NULL; //CS_HREDRAW | CS_VREDRAW;
+			windowClassEx.lpfnWndProc = &Win32Application::WindowProcess;
+			windowClassEx.cbClsExtra = NULL;
+			windowClassEx.cbWndExtra = NULL;
+			windowClassEx.hInstance = instance;
+			windowClassEx.hIcon = m_Icon = LoadIconW(NULL, IDI_APPLICATION);
+			windowClassEx.hCursor = m_Cursor = LoadCursorW(NULL, IDC_ARROW);
+			windowClassEx.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+			windowClassEx.lpszMenuName = 0;// MAKEINTRESOURCEW(IDC_ACROEDITOR);
+			windowClassEx.lpszClassName = g_szWindowClass;
+			windowClassEx.hIconSm = m_Icon;
+			RegisterClassExW(&windowClassEx); // winuser.h
 
 			m_WindowHandle = CreateWindowExW(0L, g_szWindowClass, g_szTitle,
 				WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP | WS_MAXIMIZE,
@@ -246,7 +257,7 @@ namespace AcroCore
 			// 렌더러 초기화.
 			HDC deviceContext = GetDC(m_WindowHandle); // winuser.h
 			PIXELFORMATDESCRIPTOR pixelFormatDescriptor;
-			memset(&pixelFormatDescriptor, 0, sizeof(pixelFormatDescriptor));
+			memset(&pixelFormatDescriptor, 0, sizeof(PIXELFORMATDESCRIPTOR));
 			pixelFormatDescriptor.nSize = sizeof(pixelFormatDescriptor);
 			pixelFormatDescriptor.nVersion = 1;
 			pixelFormatDescriptor.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL;
@@ -303,11 +314,7 @@ namespace AcroCore
 			//renderingContext = nullptr;
 			ReleaseDC(m_WindowHandle, deviceContext); // winuser.h
 
-			if (m_GL != nullptr)
-			{
-				delete m_GL;
-				m_GL = nullptr;
-			}
+			SAFE_DELETE(m_GL);
 
 			if (m_Application != nullptr)
 				m_Application->OnDestroy();
@@ -351,11 +358,7 @@ namespace AcroCore
 
 		Win32Application::Instance->Run();
 
-		if (Win32Application::Instance != nullptr)
-		{
-			delete Win32Application::Instance;
-			Win32Application::Instance = nullptr;
-		}
+		SAFE_DELETE(Win32Application::Instance);
 	}
 
 	/////////////////////////////////////////////////////////////////////////////

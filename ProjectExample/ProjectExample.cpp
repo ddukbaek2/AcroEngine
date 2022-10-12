@@ -82,7 +82,7 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 #ifdef WIN32
 #include <Windows.h> // SUBSYSTEM:WINDOWS
-int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char16* pCmdLine, int32 nCmdShow)
+int __stdcall wWinMain(HINSTANCE, HINSTANCE, char16*, int32)
 #else
 int main() // SUBSYSTEM:CONSOLE
 #endif

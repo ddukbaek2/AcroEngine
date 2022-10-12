@@ -11,8 +11,8 @@
 /////////////////////////////////////////////////////////////////////////////
 #define A_TYPEOF(Class) AcroEngine::GetType(L##Class)
 #define A_INSTANTIATE(Class) AcroEngine::Cast<AcroEngine::Object, Class>(AcroEngine::Instantiate(AcroEngine::GetType(L#Class)))
-#define A_DESTROY(Object) if (!Object.IsNull()) { AcroEngine::Destroy(Object.Cast<AcroEngine::Object>()); Object.Empty(); }
-#define A_DESTROYIMMEDIATE(Object) if (!Object.IsNull()) { AcroEngine::DestroyImmediate(Object.Cast<AcroEngine::Object>()); Object.Empty(); }
+#define A_DESTROY(Object) if (!Object.IsNull()) { AcroEngine::Destroy(Object.Cast<AcroEngine::Object>()); Object.SetNull(); }
+#define A_DESTROYIMMEDIATE(Object) if (!Object.IsNull()) { AcroEngine::DestroyImmediate(Object.Cast<AcroEngine::Object>()); Object.SetNull(); }
 
 
 namespace AcroEngine
@@ -44,6 +44,7 @@ namespace AcroEngine
 	class Stack;
 	class Set;
 	class Dictionary;
+	class Asset;
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -74,6 +75,7 @@ namespace AcroEngine
 	typedef class TRef<Stack> AStack;
 	typedef class TRef<Set> ASet;
 	typedef class TRef<Dictionary> ADictionary;
+	typedef class TRef<Asset> AAsset;
 	
 	//class AFlag;
 	//class AEnum;

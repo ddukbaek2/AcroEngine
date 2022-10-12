@@ -30,7 +30,7 @@ namespace FrameUI
 			m_Size = AcroEngine::Instantiate<AcroEngine::Vector2>(TEXT("Vector2"));
 			m_Rotation = AcroEngine::Instantiate<AcroEngine::Float>(TEXT("Float"));
 			
-			m_Parent.Empty();
+			m_Parent.SetNull();
 			m_Childs = AcroEngine::Instantiate<AcroEngine::List>(TEXT("List"));
 			m_Components = AcroEngine::Instantiate<AcroEngine::List>(TEXT("List"));
 		}

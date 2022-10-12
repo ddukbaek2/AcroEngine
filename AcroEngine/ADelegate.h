@@ -16,11 +16,6 @@ namespace AcroEngine
 		AList m_Delegates;
 
 	public:
-		//static Delegate* CreateDelegate()
-		//{
-		//	return nullptr;
-		//}
-
 		void Add(Delegate Delegate)
 		{
 		}

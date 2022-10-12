@@ -89,6 +89,9 @@
     <ClInclude Include="TRef.h">
       <Filter>Templates</Filter>
     </ClInclude>
+    <ClInclude Include="TProperty.h">
+      <Filter>Templates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AcroEngine.cpp" />
