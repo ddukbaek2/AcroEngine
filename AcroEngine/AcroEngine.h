@@ -44,6 +44,8 @@ namespace AcroEngine
 	class Set;
 	class Dictionary;
 	class Asset;
+	//class AFlag;
+	//class AEnum;
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -75,12 +77,6 @@ namespace AcroEngine
 	typedef class TRef<Set> ASet;
 	typedef class TRef<Dictionary> ADictionary;
 	typedef class TRef<Asset> AAsset;
-	
-	//class AFlag;
-	//class AEnum;
-	//class ACollection;
-	//class AAction
-
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -92,11 +88,6 @@ namespace AcroEngine
 	void UnloadType(AType Type);
 
 	AType GetType(const char16 TypeName[]);
-	
-	template<typename T = Object> AType GetType()
-	{
-		return GetType(AcroCore::GetTypeName<T>());
-	}
 
 	AObject Instantiate(AType Type);
 	AObject Instantiate(const char16 TypeName[]);
@@ -107,28 +98,19 @@ namespace AcroEngine
 	bool8 IsDestroyed(AObject Target);
 	AString Format(const char16 Format[], AList Arguments);
 
+	template<typename T = Object> AType GetType() { return GetType(AcroCore::GetTypeName<T>()); };
 
-	template<typename T = Object>
-	TRef<T> Instantiate(AType Type = AType::Null())
+	template<typename T = Object> TRef<T> Instantiate()
 	{
-		if (AType::IsNull(Type))
-		{
-			std::wstring typeName = AcroCore::GetTypeName<T>();
-			Type = GetType(typeName.c_str());
-		}
+		std::wstring typeName = AcroCore::GetTypeName<T>();
+		AType Type = GetType(typeName.c_str());
 
-		auto object = Instantiate(Type);
+		AObject object = Instantiate(Type);
 		if (object.IsNull())
 			return TRef<T>::Null();
 
 		return object.Cast<T>();
-	}
-
-	template<typename T = Object>
-	TRef<T> Instantiate(const char16 TypeName[])
-	{
-		return Instantiate<T>(GetType<T>());
-	}
+	};
 
 	class GC
 	{

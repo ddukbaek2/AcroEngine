@@ -10,5 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FrameUI.cpp" />
+    <ClCompile Include="FrameUIGenerated.cpp" />
   </ItemGroup>
 </Project>

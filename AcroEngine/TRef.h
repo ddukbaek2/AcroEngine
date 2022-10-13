@@ -57,10 +57,10 @@ namespace AcroEngine
 			return Get();
 		}
 
-		std::shared_ptr<Object> GetSharedPointer()
+		std::shared_ptr<T> GetSharedPointer()
 		{
 			if (IsNull(*this))
-				return std::shared_ptr<Object>();
+				return std::shared_ptr<T>();
 
 			return m_WeakPtr.lock();
 		}
@@ -101,8 +101,9 @@ namespace AcroEngine
 			if (IsNull())
 				return TRef<TDest>();
 
-			auto object = GetSharedPointer();
-			return TRef<TDest>(std::dynamic_pointer_cast<TDest>(object));
+			std::shared_ptr<T> sharedptr = GetSharedPointer();
+			std::shared_ptr<TDest> castedptr = std::dynamic_pointer_cast<TDest>(sharedptr);
+			return TRef<TDest>(castedptr);
 		}
 
 		static bool8 IsNull(TRef<T> Target)

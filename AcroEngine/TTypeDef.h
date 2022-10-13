@@ -1,27 +1,18 @@
 #pragma once
 
+
 #include "AcroEngine.h"
-#include "AObject.h"
 
 
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 프로퍼티.
+	// @ 타입 정의.
 	/////////////////////////////////////////////////////////////////////////////
-	class Property : public Object
+	template<typename T = Object> class TTypeDef : public Type
 	{
-	private:
-		ADelegate m_Get;
-		ADelegate m_Set;
-
 	public:
-		Property() {}
-		virtual ~Property() {}
-
-		void operator += (ADelegate Delegate)
-		{
-			//m_Get.Add
-		}
+		TTypeDef() : Type(AcroCore::GetTypeName<T>()) { }
+		virtual pointer CreateInstance() override { return new T(); }
 	};
 }

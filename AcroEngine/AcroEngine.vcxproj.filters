@@ -17,9 +17,6 @@
     <ClInclude Include="ADelegate.h">
       <Filter>Bases</Filter>
     </ClInclude>
-    <ClInclude Include="AProperty.h">
-      <Filter>Bases</Filter>
-    </ClInclude>
     <ClInclude Include="IEnumerator.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
@@ -90,6 +87,9 @@
       <Filter>Templates</Filter>
     </ClInclude>
     <ClInclude Include="TProperty.h">
+      <Filter>Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="TTypeDef.h">
       <Filter>Templates</Filter>
     </ClInclude>
   </ItemGroup>

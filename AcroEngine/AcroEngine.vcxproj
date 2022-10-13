@@ -165,7 +165,6 @@
     <ClInclude Include="AInt.h" />
     <ClInclude Include="AJson.h" />
     <ClInclude Include="AList.h" />
-    <ClInclude Include="AProperty.h" />
     <ClInclude Include="AQueue.h" />
     <ClInclude Include="ASet.h" />
     <ClInclude Include="AShort.h" />
@@ -191,6 +190,7 @@
     <ClInclude Include="TAction.h" />
     <ClInclude Include="TProperty.h" />
     <ClInclude Include="TRef.h" />
+    <ClInclude Include="TTypeDef.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

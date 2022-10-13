@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FrameUI.cpp" />
+    <ClCompile Include="FrameUIGenerated.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AcroEngine\AcroEngine.vcxproj">
