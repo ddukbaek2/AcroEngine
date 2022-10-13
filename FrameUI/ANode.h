@@ -24,15 +24,15 @@ namespace FrameUI
 	public:
 		Node() : AcroEngine::Object()
 		{
-			m_Anchor = AcroEngine::Instantiate<AcroEngine::Vector2>(TEXT("Vector2"));
-			m_Offset = AcroEngine::Instantiate<AcroEngine::Vector2>(TEXT("Vector2"));
-			m_Position = AcroEngine::Instantiate<AcroEngine::Vector2>(TEXT("Vector2"));
-			m_Size = AcroEngine::Instantiate<AcroEngine::Vector2>(TEXT("Vector2"));
-			m_Rotation = AcroEngine::Instantiate<AcroEngine::Float>(TEXT("Float"));
+			m_Anchor = AcroEngine::Instantiate<AcroEngine::Vector2>(XTEXT("Vector2"));
+			m_Offset = AcroEngine::Instantiate<AcroEngine::Vector2>(XTEXT("Vector2"));
+			m_Position = AcroEngine::Instantiate<AcroEngine::Vector2>(XTEXT("Vector2"));
+			m_Size = AcroEngine::Instantiate<AcroEngine::Vector2>(XTEXT("Vector2"));
+			m_Rotation = AcroEngine::Instantiate<AcroEngine::Float>(XTEXT("Float"));
 			
 			m_Parent.SetNull();
-			m_Childs = AcroEngine::Instantiate<AcroEngine::List>(TEXT("List"));
-			m_Components = AcroEngine::Instantiate<AcroEngine::List>(TEXT("List"));
+			m_Childs = AcroEngine::Instantiate<AcroEngine::List>(XTEXT("List"));
+			m_Components = AcroEngine::Instantiate<AcroEngine::List>(XTEXT("List"));
 		}
 
 		virtual ~Node()

@@ -15,7 +15,7 @@ namespace AcroEngine
 		public:
 			ObjectType() : Type()
 			{
-				m_Name = TEXT("Object");
+				m_Name = AcroCore::GetTypeName<Object>();
 			}
 
 			virtual bool8 IsParent(AType Type) override
@@ -39,7 +39,7 @@ namespace AcroEngine
 		public:
 			BooleanType() : Type()
 			{
-				m_Name = TEXT("Boolean");
+				m_Name = AcroCore::GetTypeName<Boolean>();
 			}
 
 			virtual bool8 IsParent(AType Type) override

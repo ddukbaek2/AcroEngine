@@ -5,7 +5,6 @@
 
 //#include <SDKDDKVer.h>
 //#define WIN32_LEAN_AND_MEAN
-#undef TEXT // windows.h에서 재정의되기에 해제.
 #include <windows.h>
 #include <gl/GL.h>
 //#include <gl/GLU.h>
@@ -16,13 +15,6 @@
 
 namespace AcroCore
 {
-	/////////////////////////////////////////////////////////////////////////////
-	// @ 전역변수.
-	/////////////////////////////////////////////////////////////////////////////
-	wchar_t g_szTitle[128] = TEXT("TITLE"); // 제목 표시줄 텍스트입니다.
-	wchar_t g_szWindowClass[128] = TEXT("WINDOW"); // 기본 창 클래스 이름입니다.
-
-
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 그래픽.
 	/////////////////////////////////////////////////////////////////////////////
@@ -82,6 +74,7 @@ namespace AcroCore
 	{
 	public:
 		static Win32Application* Instance;
+		static ApplicationProfile Profile;
 
 	private:
 		HWND m_WindowHandle; // 현재 윈도우 핸들.
@@ -142,7 +135,10 @@ namespace AcroCore
 
 						XGL gl = Instance->GetGL();
 						if (gl != nullptr)
-							gl->Viewport(0, 0, width, height);
+						{
+							//gl->Viewport(0, 0, width, height);
+							gl->Viewport(0, 0, Profile.Width, Profile.Height);
+						}
 					}
 					break;
 				}
@@ -227,30 +223,29 @@ namespace AcroCore
 		/////////////////////////////////////////////////////////////////////////////
 		virtual void Run()
 		{
-			HINSTANCE instance = GetModuleHandleW(NULL);
+			HINSTANCE instance = GetModuleHandleW(NULL); // libloaderapi.h
+			m_Icon = LoadIconW(NULL, IDI_APPLICATION); // winuser.h
+			m_Cursor = LoadCursorW(NULL, IDC_ARROW); // winuser.h
+
 			WNDCLASSEXW windowClassEx;
+			memset(&windowClassEx, 0, sizeof(WNDCLASSEX));
 			windowClassEx.cbSize = sizeof(WNDCLASSEX);
-			windowClassEx.style = NULL; //CS_HREDRAW | CS_VREDRAW;
 			windowClassEx.lpfnWndProc = &Win32Application::WindowProcess;
-			windowClassEx.cbClsExtra = NULL;
-			windowClassEx.cbWndExtra = NULL;
 			windowClassEx.hInstance = instance;
-			windowClassEx.hIcon = m_Icon = LoadIconW(NULL, IDI_APPLICATION);
-			windowClassEx.hCursor = m_Cursor = LoadCursorW(NULL, IDC_ARROW);
-			windowClassEx.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-			windowClassEx.lpszMenuName = 0;// MAKEINTRESOURCEW(IDC_ACROEDITOR);
-			windowClassEx.lpszClassName = g_szWindowClass;
+			windowClassEx.hIcon = m_Icon;
+			windowClassEx.hCursor = m_Cursor;
+			windowClassEx.hbrBackground = (HBRUSH)CreateSolidBrush(RGB(191, 191, 191)); // wingdi.h
+			windowClassEx.lpszClassName = Win32Application::Profile.Name;
 			windowClassEx.hIconSm = m_Icon;
 			RegisterClassExW(&windowClassEx); // winuser.h
 
-			m_WindowHandle = CreateWindowExW(0L, g_szWindowClass, g_szTitle,
-				WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP | WS_MAXIMIZE,
+			m_WindowHandle = CreateWindowExW(0L, Win32Application::Profile.Name, Win32Application::Profile.Name,
+				WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP,
 				CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
 				nullptr, nullptr, instance, nullptr); // winuser.h
 
 			if (!m_WindowHandle)
 			{
-				//return FALSE;
 				return;
 			}
 
@@ -284,7 +279,7 @@ namespace AcroCore
 			m_GL = new Win32GL();
 			m_GL->ClearColor(0.72f, 0.72f, 0.72f, 1.0f);
 
-			ShowWindow(m_WindowHandle, SW_SHOW); // winuser.h
+			ShowWindow(m_WindowHandle, /*SW_SHOW*/SW_SHOWMAXIMIZED); // winuser.h
 			UpdateWindow(m_WindowHandle); // winuser.h
 
 			// 메시지 루프.
@@ -345,7 +340,12 @@ namespace AcroCore
 		}
 	};
 
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 어플리케이션 전역 변수.
+	/////////////////////////////////////////////////////////////////////////////
 	Win32Application* Win32Application::Instance = nullptr;
+	ApplicationProfile Win32Application::Profile;
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -360,6 +360,16 @@ namespace AcroCore
 
 		SAFE_DELETE(Win32Application::Instance);
 	}
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// @ 어플리케이션 설정.
+	/////////////////////////////////////////////////////////////////////////////
+	void SetApplication(const ApplicationProfile& Profile)
+	{
+		Win32Application::Profile = Profile;
+	}
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 어플리케이션 종료.

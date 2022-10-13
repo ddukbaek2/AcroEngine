@@ -42,6 +42,16 @@ namespace AcroEngine
 			return Cast<Object>();
 		}
 
+		operator T()
+		{
+			return Get<T>();
+		}
+
+		//operator TRef<T>()
+		//{
+		//	return Cast<T>();
+		//}
+
 		T* operator *()
 		{
 			return Get();

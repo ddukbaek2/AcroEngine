@@ -7,6 +7,29 @@
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
+	// @ 문자열 분리.
+	/////////////////////////////////////////////////////////////////////////////
+	std::vector<std::wstring> StringSplit(std::wstring text, const std::wstring& seperator)
+	{
+		int32 previous = 0;
+		int32 current = 0;
+		std::vector<std::wstring> list;
+		current = text.find(seperator);
+		//find는 찾을게 없으면 npos를 리턴함
+		while (current != std::wstring::npos)
+		{
+			std::wstring substring = text.substr(previous, current - previous);
+			list.push_back(substring);
+			previous = current + 1;
+			current = text.find(seperator, previous);
+		}
+
+		list.push_back(text.substr(previous, current - previous));
+		return list;
+	}
+
+
+	/////////////////////////////////////////////////////////////////////////////
 	// @ 오브젝트 파괴자.
 	/////////////////////////////////////////////////////////////////////////////
 	//struct ObjectDestroyer
@@ -229,7 +252,14 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	AType GetType(const char16 TypeName[])
 	{
-		return g_TypeManager.GetType(std::wstring(TypeName));
+		//std::wstring typeName(TypeName);
+		//auto list = StringSplit(TypeName, XTEXT("::"));
+		//if (list.empty())
+		//	return AType::Null();
+
+		//
+		//return g_TypeManager.GetType(list.back());
+		return g_TypeManager.GetType(TypeName);
 	}
 
 
@@ -238,7 +268,9 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	AObject Instantiate(AType Type)
 	{
-		//CRC32::CreateTable();
+		if (AType::IsNull(Type))
+			return AObject::Null();
+
 		Object* instance = (Object*)Type->CreateInstance();
 		instance->m_ObjectID = ++g_IncreaseObjectID;
 		instance->m_IsDestroying = false;
@@ -253,11 +285,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	AObject Instantiate(const char16 ClassName[])
 	{
-		AType type = GetType(ClassName);
-		if (AType::IsNull(type))
-			return AObject::Null();
-		
-		return Instantiate(type);
+		return Instantiate(GetType(ClassName));
 	}
 
 	/////////////////////////////////////////////////////////////////////////////

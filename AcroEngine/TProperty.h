@@ -9,14 +9,10 @@ namespace AcroEngine
 	template<typename T> class TProperty
 	{
 	private:
-		T* Value;
+		T Value;
 
 	public:
-		TProperty(const T& Value)
-		{
-		}
-
-		TProperty(const T& Value)
+		TProperty()
 		{
 		}
 

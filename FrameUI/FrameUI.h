@@ -82,7 +82,13 @@ namespace FrameUI
 
 	class FrameUI : public AcroCore::IModule
 	{
-	public:
+	protected:
+		virtual void OnCreate() override
+		{
+		}
 
+		virtual void OnDestroy() override
+		{
+		}
 	};
 }

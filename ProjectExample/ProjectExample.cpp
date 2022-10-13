@@ -25,7 +25,8 @@ protected:
 		Application::OnCreate();
 
 		// 생성.
-		auto object = AcroEngine::Instantiate(TEXT("Boolean"));
+		/*auto object = AcroEngine::Instantiate(XTEXT("Boolean"));*/
+		auto object = AcroEngine::Instantiate<Boolean>();
 		auto value = object.Get<Boolean>();
 		*value = true;
 		//value.SetValue(true);

@@ -12,6 +12,7 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class Asset : public Object
 	{
+	private:
 	public:
 		static AAsset Load()
 		{
@@ -20,7 +21,14 @@ namespace AcroEngine
 
 		static void Unload(AAsset Target)
 		{
-			
 		}
+	};
+
+	class Texture : public Asset
+	{
+	private:
+		int32 m_OpenGLTextureID;
+
+	public:
 	};
 }

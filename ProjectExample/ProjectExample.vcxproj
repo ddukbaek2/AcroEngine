@@ -133,6 +133,9 @@
     <ProjectReference Include="..\AcroEngine\AcroEngine.vcxproj">
       <Project>{9206450e-dedc-42ca-993b-290d0b8000ab}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\FrameUI\FrameUI.vcxproj">
+      <Project>{e1f2f37b-fc36-4bb7-b673-831ed23dd2f2}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

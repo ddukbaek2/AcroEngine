@@ -9,7 +9,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // @ 디파인 매크로 목록.
 /////////////////////////////////////////////////////////////////////////////
-#define A_TYPEOF(Class) AcroEngine::GetType(L##Class)
 #define A_INSTANTIATE(Class) AcroEngine::Cast<AcroEngine::Object, Class>(AcroEngine::Instantiate(AcroEngine::GetType(L#Class)))
 #define A_DESTROY(Object) if (!Object.IsNull()) { AcroEngine::Destroy(Object.Cast<AcroEngine::Object>()); Object.SetNull(); }
 #define A_DESTROYIMMEDIATE(Object) if (!Object.IsNull()) { AcroEngine::DestroyImmediate(Object.Cast<AcroEngine::Object>()); Object.SetNull(); }
@@ -87,9 +86,17 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 함수 목록.
 	/////////////////////////////////////////////////////////////////////////////
+	std::vector<std::wstring> StringSplit(std::wstring text, const std::wstring& seperator);
+
 	AType LoadType(Type* Type);
 	void UnloadType(AType Type);
+
 	AType GetType(const char16 TypeName[]);
+	
+	template<typename T = Object> AType GetType()
+	{
+		return GetType(AcroCore::GetTypeName<T>());
+	}
 
 	AObject Instantiate(AType Type);
 	AObject Instantiate(const char16 TypeName[]);
@@ -102,8 +109,14 @@ namespace AcroEngine
 
 
 	template<typename T = Object>
-	TRef<T> Instantiate(AType Type)
+	TRef<T> Instantiate(AType Type = AType::Null())
 	{
+		if (AType::IsNull(Type))
+		{
+			std::wstring typeName = AcroCore::GetTypeName<T>();
+			Type = GetType(typeName.c_str());
+		}
+
 		auto object = Instantiate(Type);
 		if (object.IsNull())
 			return TRef<T>::Null();
@@ -114,12 +127,15 @@ namespace AcroEngine
 	template<typename T = Object>
 	TRef<T> Instantiate(const char16 TypeName[])
 	{
-		return Instantiate<T>(GetType(TypeName));
+		return Instantiate<T>(GetType<T>());
 	}
 
 	class GC
 	{
 	public:
+		static void Collect()
+		{
+		}
 	};
 
 

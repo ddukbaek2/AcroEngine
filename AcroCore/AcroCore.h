@@ -34,6 +34,7 @@
 #include <stack>
 #include <set>
 #include <algorithm>
+//#include <sstream>
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -60,9 +61,7 @@ typedef wchar_t char16;
 // @ 매크로 목록.
 /////////////////////////////////////////////////////////////////////////////
 #define INVALID -1
-
-#undef TEXT
-#define TEXT(Text) L##Text
+#define XTEXT(Quote) L##Quote
 
 #define ACTION(Name) typedef void(*Name)(void)
 #define ACTION_WITH_PARAM(Name, Params) typedef void(*Name)(Params)
@@ -94,11 +93,29 @@ namespace AcroCore
 
 
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 메모리 함수 목록.
+	// @ 타임이름 클래스.
 	/////////////////////////////////////////////////////////////////////////////
-	pointer XMemoryAllocate(uint32 Length);
-	void XMemoryFree(pointer Pointer);
-	void XMemorySet(pointer Source, uint8 Value, uint32 Length);
+	template<typename T> class XType
+	{
+	protected:
+#ifdef ACROCORE_WINDOWS
+		static const std::string Name() { return std::string(__FUNCTION__); } // MSVC
+#else
+		static const std::string Name() { return std::string(__PRETTY_FUNCTION__); } // GCC, CLANG
+#endif
+	public:
+		static const std::wstring Get()
+		{
+			std::string name_org = XType<T>::Name();
+			std::wstring name;
+			name.assign(name_org.begin(), name_org.end());
+			int32 left = name.find(XTEXT("<"));
+			int32 right = name.rfind(XTEXT(">"));
+			return name.substr(left + 1, right - left - 1);
+		}
+	};
+
+	template<typename T> const std::wstring GetTypeName() { return XType<T>::Get(); }
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -1179,6 +1196,8 @@ namespace AcroCore
 	/////////////////////////////////////////////////////////////////////////////
 	struct IModule
 	{
+		virtual void OnCreate() = 0;
+		virtual void OnDestroy() = 0;
 	};
 
 
@@ -1210,8 +1229,19 @@ namespace AcroCore
 
 
 	/////////////////////////////////////////////////////////////////////////////
+	// @ 어플리케이션 프로파일.
+	/////////////////////////////////////////////////////////////////////////////
+	struct ApplicationProfile
+	{
+		wchar_t Name[128] = XTEXT("AcroCore");
+		uint32 Width = 1920;
+		uint32 Height = 1080;
+	};
+
+	/////////////////////////////////////////////////////////////////////////////
 	// @ 어플리케이션 함수.
 	/////////////////////////////////////////////////////////////////////////////
 	void RunApplication(XApplication Application);
+	void SetApplication(const ApplicationProfile& Profile);
 	void QuitApplication();
 }
