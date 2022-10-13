@@ -1,57 +1,86 @@
-#############################################################################
-# @ Àü¹æ¼±¾ğ.
+ï»¿#############################################################################
+# @ ì „ë°©ì„ ì–¸.
 #############################################################################
 import os
 import sys
 
 
 #############################################################################
-# @ Çì´õ Å¬·¡½º.
+# @ ë¼ì¸ ì¶”ê°€.
 #############################################################################
-class TypeClass:
-	def __init__(self) -> None:
-		pass
+def AppendLine(cppline : list, line : str, tab : int = 0):
+	if tab > 0:
+		indent = str()
+		for i in range(tab):
+			indent += "\t"
+		cppline.append(f"{indent}{line}\n")
+	else:
+		cppline.append(f"{line}\n")
 
-
-class VariableInfo:
-	_Name : str
-	_Type : str
-
-class FunctionInfo:
-	_Name : str
-	_ReturnTypeNam : str # _Type
-	_ParamterTypes : list # VariableInfo
-
-class ClassInfo:
-	_Name: str
-	_Namespace: str
-	_Parents : list # ClassInfo._Name
-	_Childs : list # ClassInfo._Name
-	_VariableInfos : VariableInfo
-	_FunctionInfos : FunctionInfo
-
-class EnumInfo:
-	_Name : str
-
-
-def Block(codeBlock : str):
-	pass
-
-def Parse(code : str):
-	pass
 
 #############################################################################
-# @ ¸ŞÀÎÇÔ¼ö.
+# @ í´ë˜ìŠ¤ ë©”íƒ€ë°ì´í„° ìƒì„±.
+#############################################################################
+def GenerateReflectionCPP(cppname : str, namespaces : list(), classnames : list()):
+	cppline = list()
+	AppendLine(cppline, f"// Generated from AcroTypeTool ().")
+	AppendLine(cppline, f"")
+
+	# add include default files.
+	AppendLine(cppline, f"#include \"AcroEngine.h\"")
+	AppendLine(cppline, f"#include \"IAssembly.h\"")
+	AppendLine(cppline, f"#include \"AType.h\"")
+	AppendLine(cppline, f"#include \"TTypeDef.h\"")
+
+	# add include classses files.
+	for e in enumerate(classnames):
+		index = e[0]
+		classname = e[1]
+		AppendLine(cppline, f"#include \"{classname}.h\"")
+	
+	#if len(namespaces) == 0:
+	#	namespaces.append(f"")
+
+	# load all types.
+	indent = 0
+	count = len(namespaces)
+	for e in enumerate(namespaces):
+		index = e[0]
+		namespace = e[1]
+		AppendLine(cppline, f"{namespace}", indent)
+		AppendLine(cppline, f"{{", indent)
+		if index + 1 == count:
+			indent += 1
+			AppendLine(cppline, f"class AcroEngineAssembly : public AcroEngine::IAssembly", indent)
+			AppendLine(cppline, f"{{")
+			AppendLine(cppline, f"public:")
+			indent += 1
+			AppendLine(cppline, f"virtual void Assemble() override", indent)
+			AppendLine(cppline, f"{{", indent)
+			indent += 1
+			for classname in classnames:
+				AppendLine(cppline, f"AcroEngine::LoadType(new TTypeDef<{classname}>());", indent)
+			indent -= 1
+			AppendLine(cppline, f"}}", indent)
+			indent -= 1
+			AppendLine(cppline, f"}};", indent)
+			indent -= 1
+		AppendLine(cppline, f"}}", indent)
+		indent += 1
+	
+
+#############################################################################
+# @ ë©”ì¸í•¨ìˆ˜.
 #############################################################################
 def OnMain(arguments : list):
-	# ÀÎÀÚ·Î ¹ŞÀº °æ·Î ¾ÈÀÇ ¸ğµç Çì´õÆÄÀÏÀ» ÀüºÎ ºÎ¸¥ µÚ... ±â·ÏÇÑ´Ù.
-	# ±×¸®°í ±â·ÏµÈ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÑ´Ù.
-	# 
+	# ì¸ìë¡œ ë°›ì€ ê²½ë¡œ ì•ˆì˜ ëª¨ë“  í—¤ë”íŒŒì¼ì„ ì „ë¶€ ë¶€ë¥¸ ë’¤... ê¸°ë¡í•œë‹¤.
+	# ê·¸ë¦¬ê³  ê¸°ë¡ëœ ë°ì´í„°ë¥¼ ì €ì¥í•œë‹¤.
+	GenerateReflectionCPP("AcroEngineGenerated.h", ["AcroEngine"], ["Object"])
 	pass
 
 
 #############################################################################
-# @ ÁøÀÔÁ¡.
+# @ ì§„ì…ì .
 #############################################################################
 if __name__ == "main":
 	OnMain(sys.argv)

@@ -12,6 +12,13 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	class Asset : public Object
 	{
+	public:
+		struct AsyncOperation
+		{
+			
+		};
+
+
 	private:
 	public:
 		static AAsset Load()
@@ -19,16 +26,34 @@ namespace AcroEngine
 			return AAsset::Null();
 		}
 
+		static AsyncOperation LoadAsync()
+		{
+			return AsyncOperation();
+		}
+
 		static void Unload(AAsset Target)
 		{
 		}
 	};
 
-	class Texture : public Asset
+	class TextureAsset : public Asset
 	{
 	private:
 		int32 m_OpenGLTextureID;
 
+	public:
+
+	};
+
+	class SoundAsset : public Asset
+	{
+	private:
+	public:
+	};
+
+	class TextAsset : public Asset
+	{
+	private:
 	public:
 	};
 }
