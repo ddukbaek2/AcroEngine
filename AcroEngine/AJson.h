@@ -8,17 +8,30 @@
 namespace AcroEngine
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// @ JSON µ•¿Ã≈Õ.
+	// @ JSON ∞¥√º.
 	/////////////////////////////////////////////////////////////////////////////
 	class Json : public Object
 	{
+	public:
+		enum class EType
+		{
+			Text,
+			Number,
+			Real,
+			Boolean,
+			Array,
+			Object,
+		};
+
 	private:
+		AObject m_Value;
+		EType m_Type;
 
 	public:
 		Json() {}
 		virtual ~Json() {}
 
-		AObject Deserialize(AString String);
-		AString Serialize(AObject Object);
+		static AObject Deserialize(AString String);
+		static AString Serialize(AObject Object);
 	};
 }

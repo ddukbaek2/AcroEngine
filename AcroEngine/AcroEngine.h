@@ -4,6 +4,7 @@
 #include "../AcroCore/AcroCore.h"
 #include "TAction.h"
 #include "TRef.h"
+#include "TProperty.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -120,6 +121,16 @@ namespace AcroEngine
 		}
 	};
 
+	struct Coroutine
+	{
+		
+	};
+
+	struct IYield
+	{
+
+	};
+	
 
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 어플리케이션.
@@ -131,7 +142,9 @@ namespace AcroEngine
 		virtual void OnDestroy() override;
 		virtual void OnPause() override;
 		virtual void OnResume() override;
+		virtual void OnBeginUpdate() override;
 		virtual void OnUpdate(float32 DeltaTime) override;
+		virtual void OnEndUpdate() override;
 		virtual void OnDraw(AcroCore::XGL GL) override;
 		virtual void OnResize(uint32 Width, uint32 Height) override;
 

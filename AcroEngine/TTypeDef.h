@@ -15,10 +15,10 @@ namespace AcroEngine
 	public:
 		TTypeDef() : Type(AcroCore::GetTypeName<T>())
 		{
-			// m_Fields
-			// m_Methods
-			// m_Parents
-			// m_Children
+			// m_Fields // 변수목록.
+			// m_Methods // 함수목록.
+			// m_Parents // 부모객체목록.
+			// m_Children // 자식객체목록.
 		}
 
 		virtual pointer CreateInstance() override { return new T(); }

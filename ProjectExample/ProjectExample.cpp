@@ -14,15 +14,30 @@ class LazyLoader : public Object
 public:
 };
 
+
 /////////////////////////////////////////////////////////////////////////////
 // @ 샘플 어플리케이션.
 /////////////////////////////////////////////////////////////////////////////
 class ProjectExampleApplication : public Application
 {
 protected:
+	//DECLARE_PROPERTY(int32)
+	class CountProperty : public TProperty<int32> {
+	public:
+		virtual int32& Get() override {
+			return m_Value;
+		}
+	};
+
+	CountProperty m_Count;
+
+protected:
 	virtual void OnCreate() override
 	{
 		Application::OnCreate();
+
+		m_Count.Get();
+		m_Count.Set(5);
 
 		// 생성.
 		/*auto object = AcroEngine::Instantiate(XTEXT("Boolean"));*/

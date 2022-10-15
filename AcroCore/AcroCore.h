@@ -34,6 +34,10 @@
 #include <stack>
 #include <set>
 #include <algorithm>
+#include <functional>
+#include <chrono>
+//#include <ctime>
+//#include <thread>
 //#include <sstream>
 
 
@@ -62,7 +66,8 @@ typedef wchar_t char16;
 /////////////////////////////////////////////////////////////////////////////
 #define INVALID -1
 #define XTEXT(Quote) L##Quote
-
+//std::initializer_list
+#define BIND(Target, Function, ...) std::bind(Function, Target, ##__VA_ARGS__)
 #define ACTION(Name) typedef void(*Name)(void)
 #define ACTION_WITH_PARAM(Name, Params) typedef void(*Name)(Params)
 #define FUNC(Name, Return) typedef Return(*Name)(void)
@@ -1215,7 +1220,9 @@ namespace AcroCore
 		virtual void OnDestroy() = 0;
 		virtual void OnPause() = 0;
 		virtual void OnResume() = 0;
+		virtual void OnBeginUpdate() = 0;
 		virtual void OnUpdate(float32 DeltaTime) = 0;
+		virtual void OnEndUpdate() = 0;
 		virtual void OnDraw(XGL GL) = 0;
 		virtual void OnResize(uint32 Width, uint32 Height) = 0;
 
@@ -1229,7 +1236,7 @@ namespace AcroCore
 
 
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 어플리케이션 프로파일.
+	// @ 어플리케이션 설정.
 	/////////////////////////////////////////////////////////////////////////////
 	struct ApplicationProfile
 	{
@@ -1238,10 +1245,13 @@ namespace AcroCore
 		uint32 Height = 1080;
 	};
 
+
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 어플리케이션 함수.
 	/////////////////////////////////////////////////////////////////////////////
 	void RunApplication(XApplication Application);
 	void SetApplication(const ApplicationProfile& Profile);
 	void QuitApplication();
+	float32 GetApplicationTime(); // realtime since startup.
+	float32 GetApplicationDeltaTime(); // frame interval time.
 }

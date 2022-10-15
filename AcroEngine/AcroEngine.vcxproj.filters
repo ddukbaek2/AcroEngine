@@ -104,9 +104,6 @@
     <ClCompile Include="AcroEngineGenerated.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Variables">
       <UniqueIdentifier>{82961b3c-5be9-48e6-ba87-1636c9337a0d}</UniqueIdentifier>
     </Filter>
@@ -130,9 +127,6 @@
     </Filter>
     <Filter Include="Containers">
       <UniqueIdentifier>{22e254d6-24fa-457a-b3b5-9b54d81d919e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application">
-      <UniqueIdentifier>{30365140-03c6-4dae-a252-e12647aa4d94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,7 @@
 #include "AList.h"
 #include "AObject.h"
 
+#define DELEGATE_INVOKE(...) AcroEngine::Delegate::Invoke(__VA_ARGS__)
 
 namespace AcroEngine
 {
@@ -16,6 +17,14 @@ namespace AcroEngine
 		AList m_Delegates;
 
 	public:
+		Delegate()
+		{
+		}
+
+		virtual ~Delegate()
+		{
+		}
+
 		void Add(Delegate Delegate)
 		{
 		}
@@ -29,12 +38,13 @@ namespace AcroEngine
 			m_Delegates->Clear();
 		}
 
-		//TRef* Invoke(...)
-		//{
-		//	//for (auto delegate : m_Delegates)
-		//	{
+		static AObject Invoke(...)
+		{
+		
+			//for (auto delegate : m_Delegates)
+			{
 
-		//	}
-		//}
+			}
+		}
 	};
 }

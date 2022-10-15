@@ -16,6 +16,13 @@
 namespace AcroCore
 {
 	/////////////////////////////////////////////////////////////////////////////
+	// @ 공통 전역 변수.
+	/////////////////////////////////////////////////////////////////////////////
+	std::chrono::system_clock::time_point g_StartTime;
+	float32 g_DeltaTime;
+
+
+	/////////////////////////////////////////////////////////////////////////////
 	// @ 그래픽.
 	/////////////////////////////////////////////////////////////////////////////
 	class Win32GL : public IGL
@@ -212,6 +219,9 @@ namespace AcroCore
 			m_Application = Application;
 			m_Cursor = NULL;
 			m_Icon = NULL;
+
+			g_StartTime = std::chrono::system_clock::now();
+			g_DeltaTime = 0.0f;
 		}
 
 		virtual ~Win32Application()
@@ -286,7 +296,8 @@ namespace AcroCore
 			MSG msg;
 			memset(&msg, 0, sizeof(MSG));
 			msg.message = WM_NULL;
-
+			
+			auto prevTime = std::chrono::system_clock::now();
 			while (msg.message != WM_QUIT)
 			{
 				if (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE))
@@ -298,8 +309,16 @@ namespace AcroCore
 				{
 					if (m_Application != nullptr)
 					{
-						m_Application->OnUpdate(0.0f);
+						auto currentTime = std::chrono::system_clock::now();
+						std::chrono::duration<float32> deltaTime = currentTime - prevTime;
+						g_DeltaTime = deltaTime.count();
+
+						m_Application->OnBeginUpdate();
+						m_Application->OnUpdate(g_DeltaTime);
 						m_Application->OnDraw(m_GL);
+						m_Application->OnEndUpdate();
+
+						prevTime = currentTime;
 					}
 				}
 			}
@@ -342,7 +361,7 @@ namespace AcroCore
 
 
 	/////////////////////////////////////////////////////////////////////////////
-	// @ 어플리케이션 전역 변수.
+	// @ 전역 변수.
 	/////////////////////////////////////////////////////////////////////////////
 	Win32Application* Win32Application::Instance = nullptr;
 	ApplicationProfile Win32Application::Profile;
