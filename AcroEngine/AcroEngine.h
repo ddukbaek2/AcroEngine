@@ -20,6 +20,8 @@ namespace AcroEngine
 	/////////////////////////////////////////////////////////////////////////////
 	// @ 클래스 전방선언 목록.
 	/////////////////////////////////////////////////////////////////////////////
+	struct IEnumerator;
+
 	class Type;
 	class FieldInfo;
 	class MethodInfo;
@@ -53,6 +55,8 @@ namespace AcroEngine
 	// @ 레퍼런스 전방선언 목록.
 	/////////////////////////////////////////////////////////////////////////////
 	typedef pointer AUnknownObject;
+	typedef struct IEnumerator* AEnumerator;
+
 	typedef class TRef<FieldInfo> AFieldInfo;
 	typedef class TRef<MethodInfo> AMethodInfo;
 	typedef class TRef<Type> AType;

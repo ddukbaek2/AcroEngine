@@ -12,6 +12,6 @@ namespace AcroEngine
 	class IEnumerable
 	{
 	public:
-		virtual const IEnumerator* GetEnumerator() = 0;
+		virtual const AEnumerator GetEnumerator() = 0;
 	};
 }

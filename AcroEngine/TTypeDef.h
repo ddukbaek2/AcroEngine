@@ -13,7 +13,7 @@ namespace AcroEngine
 	template<typename T = Object> class TTypeDef : public Type
 	{
 	public:
-		TTypeDef() : Type(AcroCore::GetTypeName<T>())
+		TTypeDef( ) : Type(AcroCore::GetTypeName<T>())
 		{
 			// m_Fields // 변수목록.
 			// m_Methods // 함수목록.
