@@ -69,6 +69,8 @@ namespace AcroEngine
 		std::vector<AObject> m_Data;
 
 	public:
+
+	public:
 		List() : Variable()
 		{
 			m_Data.clear();
